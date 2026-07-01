@@ -1,0 +1,60 @@
+# Route 58 — GB OOH Audience Data
+Source: Route Research (https://www.route.org.uk)
+Release: Route 58
+Data week: March 2025 (one representative week)
+Default schedule: 10-second spot / 0-second break
+Population base: GB adults aged 15+ (55,590,969)
+Generated: 2026-06-16
+
+## What this site contains
+Structured audience measurement data for Out-of-Home (OOH) advertising in Great Britain,
+published by Route Research. Route is the industry body that measures OOH audiences across
+all major formats and environments in GB.
+
+## Key headline figures (Route 58)
+- Total frames: 383,908 (363,972 classic posters + 19,936 digital screens)
+- Weekly reach: 53,906,874 adults 15+ (96.97% of GB population)
+- Weekly impacts: 13,982,691,745 (10s spot, 0s break, week in March 2025)
+- Digital-only reach: 48,231,518
+- Classic-only reach: 53,628,531
+
+## Data files (JSON)
+All data is available as structured JSON in the /data/ directory.
+
+/data/release.json         — release metadata, schedule assumptions, methodology link
+/data/summary.json         — headline KPIs + reach by month
+/data/reach-by-demographic.json  — reach and cover % for 8 audience segments
+/data/impacts-by-environment.json — weekly impacts by environment, classic vs digital split
+/data/reach-by-environment.json  — cover % and reach for each OOH environment
+/data/impacts-by-region.json     — weekly impacts + reach by BARB TV region (13 regions)
+/data/impacts-by-conurbation.json — weekly impacts for 25 named conurbations
+/data/media-owners.json          — frame counts for 41 media owners
+
+## Important caveats for agents
+1. SCHEDULE SENSITIVITY: Impact figures change significantly with spot/break schedule.
+   The headline 13,982,691,745 figure uses 10s:0s. A 10s:50s schedule reduces total impacts by ~35%.
+   Always confirm which schedule is being used before comparing figures.
+2. SEASONALITY: Reach is stable across the year. Impacts may vary.
+3. DIGITAL FRAMES: Only 5% of frames are digital (19,936 of 383,908) but digital reaches
+   48,231,518 adults due to concentration in high-traffic locations.
+4. LONDON DOMINANCE: Greater London accounts for ~60% of all GB weekly impacts.
+5. DATA WEEK: All data is from one week in March 2025. Route releases new data quarterly.
+
+## Environments measured (13 total)
+Roadside, UndergroundStation-London, Shopping Centre Interior, Rail Station, Bus, Supermarket Exterior, Tube Carriage Interior, Taxi, Motorway Service Station, Shopping Centre Exterior, Train Carriage Interior, UndergroundStation-Glasgow, Tram LR Carriage Interior
+
+## Regions (13 BARB TV regions)
+London, Midlands, North West, Yorkshire, Central Scotland, South and South-East, North East, Wales, East Of England, West, South West, North Scotland, Border
+
+## Demographic groups measured
+All Adults, Main Shopper, ABC1, C2DE, All Adults 55+, All Adults 35-54, All Adults 15-34, Main Shopper with children
+
+## Media owners (top 6 by frame count)
+Global (230,059 frames), KBH (67,248 frames), JCDecaux (28,684 frames), Bauer Media Outdoor (28,297 frames), Bay Media (10,962 frames), Ubiquitous (6,105 frames)
+Full list of 41 owners in /data/media-owners.json
+
+## Methodology
+Route uses a GPS-based audience measurement methodology. Panellists carry
+GPS-enabled devices; their movement data is matched against the location and
+visibility of OOH frames to calculate impacts (opportunities to see).
+Full methodology: https://www.route.org.uk/methodology.php

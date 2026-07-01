@@ -1,0 +1,119 @@
+[
+  {
+    "region": "London",
+    "weekly_impacts": 8428350297,
+    "classic_impacts": 5281803461,
+    "digital_impacts": 3146546836,
+    "digital_pct": 37,
+    "classic_pct": 63,
+    "reach": 14962261
+  },
+  {
+    "region": "Midlands",
+    "weekly_impacts": 1243586829,
+    "classic_impacts": 601383553,
+    "digital_impacts": 642203276,
+    "digital_pct": 52,
+    "classic_pct": 48,
+    "reach": 9337321
+  },
+  {
+    "region": "North West",
+    "weekly_impacts": 1225503247,
+    "classic_impacts": 660595882,
+    "digital_impacts": 564907365,
+    "digital_pct": 46,
+    "classic_pct": 54,
+    "reach": 6972094
+  },
+  {
+    "region": "Yorkshire",
+    "weekly_impacts": 769534061,
+    "classic_impacts": 409317138,
+    "digital_impacts": 360216923,
+    "digital_pct": 47,
+    "classic_pct": 53,
+    "reach": 6677543
+  },
+  {
+    "region": "Central Scotland",
+    "weekly_impacts": 649191719,
+    "classic_impacts": 330005596,
+    "digital_impacts": 319186123,
+    "digital_pct": 49,
+    "classic_pct": 51,
+    "reach": 3516584
+  },
+  {
+    "region": "South and South-East",
+    "weekly_impacts": 538529313,
+    "classic_impacts": 338224104,
+    "digital_impacts": 200305209,
+    "digital_pct": 37,
+    "classic_pct": 63,
+    "reach": 9924122
+  },
+  {
+    "region": "North East",
+    "weekly_impacts": 326981716,
+    "classic_impacts": 152585014,
+    "digital_impacts": 174396702,
+    "digital_pct": 53,
+    "classic_pct": 47,
+    "reach": 2650150
+  },
+  {
+    "region": "Wales",
+    "weekly_impacts": 249872392,
+    "classic_impacts": 164424985,
+    "digital_impacts": 85447407,
+    "digital_pct": 34,
+    "classic_pct": 66,
+    "reach": 3085053
+  },
+  {
+    "region": "East Of England",
+    "weekly_impacts": 233496595,
+    "classic_impacts": 145126210,
+    "digital_impacts": 88370385,
+    "digital_pct": 38,
+    "classic_pct": 62,
+    "reach": 6430952
+  },
+  {
+    "region": "West",
+    "weekly_impacts": 147959081,
+    "classic_impacts": 76291472,
+    "digital_impacts": 71667609,
+    "digital_pct": 48,
+    "classic_pct": 52,
+    "reach": 3158407
+  },
+  {
+    "region": "South West",
+    "weekly_impacts": 87792392,
+    "classic_impacts": 54420779,
+    "digital_impacts": 33371613,
+    "digital_pct": 38,
+    "classic_pct": 62,
+    "reach": 2193168
+  },
+  {
+    "region": "North Scotland",
+    "weekly_impacts": 69396318,
+    "classic_impacts": 43197622,
+    "digital_impacts": 26198696,
+    "digital_pct": 38,
+    "classic_pct": 62,
+    "reach": 1449417
+  },
+  {
+    "region": "Border",
+    "weekly_impacts": 12497796,
+    "classic_impacts": 8356360,
+    "digital_impacts": 4141436,
+    "digital_pct": 33,
+    "classic_pct": 67,
+    "reach": null
+  }
+]

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Route 58 — GB OOH Audience Data</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Route 58 — GB OOH Audience Data",
+  "description": "Out-of-Home audience measurement data for Great Britain, covering reach, weekly impacts, demographics, environments, regions, and conurbations. Published by Route Research.",
+  "url": "",
+  "creator": { "@type": "Organization", "name": "Route Research", "url": "https://www.route.org.uk" },
+  "datePublished": "2026",
+  "temporalCoverage": "2025-03",
+  "spatialCoverage": "Great Britain",
+  "variableMeasured": ["weekly_impacts", "reach", "cover_pct", "frames"],
+  "distribution": [
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "data/summary.json" },
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "data/impacts-by-environment.json" },
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "data/impacts-by-region.json" },
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "data/impacts-by-conurbation.json" },
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "data/reach-by-demographic.json" },
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "data/media-owners.json" }
+  ]
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f5f4f0;--bg3:#eeedea;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px;--rl:12px}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--bg3:#333330;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:10}
+.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent;transition:color .15s}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
+.subtitle a{color:inherit}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:2rem}
+.kpi{background:var(--bg2);border-radius:var(--r);padding:14px 16px}
+.kpi-label{font-size:12px;color:var(--text2);margin-bottom:4px}
+.kpi-val{font-size:24px;font-weight:500}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.section{margin-bottom:2.5rem}
+.section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.card{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--rl);padding:16px 18px;text-decoration:none;color:var(--text);transition:background .15s}
+.card:hover{background:var(--bg2)}
+.card-title{font-size:14px;font-weight:500;margin-bottom:4px}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.5}
+.chart-wrap{position:relative;width:100%}
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:12px;color:var(--text2)}
+.legend-sq{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{border-bottom:0.5px solid var(--border2)}
+th{text-align:left;padding:8px 8px;font-weight:500;color:var(--text2);font-size:12px}
+th:not(:first-child){text-align:right}
+td{padding:8px 8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
+td:not(:first-child){text-align:right}
+tr.total td{color:var(--text);font-weight:500}
+.data-index{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:1.5rem}
+.data-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 12px;background:var(--bg2);border-radius:var(--r);font-size:13px}
+.data-row a{color:var(--accent);text-decoration:none;font-family:monospace;font-size:12px}
+.data-row a:hover{text-decoration:underline}
+.caveat{background:var(--bg2);border-left:3px solid #BA7517;border-radius:0 var(--r) var(--r) 0;padding:10px 14px;font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5}
+.caveat strong{color:var(--text);font-weight:500}
+footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">Route 58</a>
+  <a class="nav-link active" href="index.html">Overview</a>
+  <a class="nav-link" href="environment/index.html">Environment</a>
+  <a class="nav-link" href="region/index.html">Region</a>
+  <a class="nav-link" href="region-x-environment/index.html">Env × Region</a>
+  <a class="nav-link" href="conurbation/index.html">Conurbation</a>
+  <a class="nav-link" href="media-owner/index.html">Media Owner</a>
+  <a class="nav-link" href="frames/index.html">Frames</a>
+  <a class="nav-link" href="planning-summary/index.html">Planning Summary</a>
+</nav>
+
+<main>
+  <h1>Route 58 — GB OOH audience data</h1>
+  <p class="subtitle">Source: Route Research · Week in March 2025 · 10s:0s schedule · GB adults 15+</p>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-label">Weekly reach</div><div class="kpi-val">53.9M</div><div class="kpi-sub">96.97% of GB adults 15+</div></div>
+    <div class="kpi"><div class="kpi-label">Weekly impacts</div><div class="kpi-val">14.0Bn</div><div class="kpi-sub">10s spot · 0s break</div></div>
+    <div class="kpi"><div class="kpi-label">Total frames</div><div class="kpi-val">383,908</div><div class="kpi-sub">363,972 classic · 19,936 digital</div></div>
+    <div class="kpi"><div class="kpi-label">Population base</div><div class="kpi-val">55.6M</div><div class="kpi-sub">GB adults 15+</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Explore by dimension</div>
+    <div class="card-grid">
+      <a class="card" href="environment/index.html">
+        <div class="card-title">Environment</div>
+        <div class="card-desc">Impacts and reach across 13 OOH environments — roadside, underground, rail, bus, shopping centre, and more.</div>
+      </a>
+      <a class="card" href="region/index.html">
+        <div class="card-title">Region</div>
+        <div class="card-desc">Weekly impacts and reach by BARB TV region across Great Britain. London accounts for ~60% of all impacts.</div>
+      </a>
+      <a class="card" href="conurbation/index.html">
+        <div class="card-title">Conurbation</div>
+        <div class="card-desc">City-level impacts for named conurbations.</div>
+      </a>
+      <a class="card" href="media-owner/index.html">
+        <div class="card-title">Media Owner</div>
+        <div class="card-desc">Frame counts for ~40 media owners.</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Reach by demographic</div>
+    <div class="legend-row">
+      <span><span class="legend-sq" style="background:#378ADD"></span>Reach (millions)</span>
+      <span><span class="legend-sq" style="background:#1D9E75"></span>Cover %</span>
+    </div>
+    <div class="chart-wrap" style="height:260px">
+      <canvas id="chartDemo"></canvas>
+    </div>
+    <table style="margin-top:16px">
+      <thead><tr><th>Demographic</th><th>Reach</th><th>Cover %</th></tr></thead>
+      <tbody>
+        
+        <tr class="total">
+          <td>All Adults</td>
+          <td>53,906,873</td>
+          <td>96.97%</td>
+        </tr>
+        
+        <tr>
+          <td>Main Shopper</td>
+          <td>43,210,912</td>
+          <td>96.98%</td>
+        </tr>
+        
+        <tr>
+          <td>ABC1</td>
+          <td>30,177,759</td>
+          <td>97.77%</td>
+        </tr>
+        
+        <tr>
+          <td>C2DE</td>
+          <td>23,729,113</td>
+          <td>95.97%</td>
+        </tr>
+        
+        <tr>
+          <td>All Adults 55+</td>
+          <td>20,526,529</td>
+          <td>96.17%</td>
+        </tr>
+        
+        <tr>
+          <td>All Adults 35-54</td>
+          <td>16,823,531</td>
+          <td>97.67%</td>
+        </tr>
+        
+        <tr>
+          <td>All Adults 15-34</td>
+          <td>16,556,813</td>
+          <td>97.27%</td>
+        </tr>
+        
+        <tr>
+          <td>Main Shopper with children</td>
+          <td>12,704,482</td>
+          <td>97.50%</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Data files — machine-readable JSON</div>
+    <div class="data-index">
+      <div class="data-row"><span>Release metadata</span><a href="data/release.json">data/release.json</a></div>
+      <div class="data-row"><span>Summary KPIs + reach by month</span><a href="data/summary.json">data/summary.json</a></div>
+      <div class="data-row"><span>Reach by demographic</span><a href="data/reach-by-demographic.json">data/reach-by-demographic.json</a></div>
+      <div class="data-row"><span>Impacts by environment</span><a href="data/impacts-by-environment.json">data/impacts-by-environment.json</a></div>
+      <div class="data-row"><span>Reach by environment</span><a href="data/reach-by-environment.json">data/reach-by-environment.json</a></div>
+      <div class="data-row"><span>Impacts + reach by region</span><a href="data/impacts-by-region.json">data/impacts-by-region.json</a></div>
+      <div class="data-row"><span>Impacts by conurbation</span><a href="data/impacts-by-conurbation.json">data/impacts-by-conurbation.json</a></div>
+      <div class="data-row"><span>Media owner frame counts</span><a href="data/media-owners.json">data/media-owners.json</a></div>
+    </div>
+    <p style="font-size:12px;color:var(--text3)">For AI/agent context see <a href="llms.txt" style="color:var(--accent)">llms.txt</a>. JSON-LD Dataset schema is embedded in each page &lt;head&gt;.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Key caveats</div>
+    <div class="caveat"><strong>Schedule sensitivity:</strong> The headline weekly impacts figure uses a 10s spot / 0s break schedule. A 10s:50s schedule reduces total weekly impacts by ~35%. Always confirm the schedule when comparing figures across sources.</div>
+    <div class="caveat"><strong>Data week:</strong> All figures are from one week in March 2025. Route releases new data quarterly. Reach is stable year-round; impacts may vary seasonally.</div>
+    <div class="caveat"><strong>Digital vs classic:</strong> Digital frames are only 5% of inventory (19,936 of 383,908) but reach the majority of adults due to concentration in high-traffic locations.</div>
+  </div>
+</main>
+
+<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+
+<script>
+const isDark = matchMedia('(prefers-color-scheme:dark)').matches;
+const gc = isDark ? 'rgba(255,255,255,.08)' : 'rgba(0,0,0,.07)';
+const tc = isDark ? 'rgba(255,255,255,.5)' : 'rgba(0,0,0,.45)';
+new Chart(document.getElementById('chartDemo'), {
+  type:'bar',
+  data:{
+    labels:["All Adults", "Main Shopper", "ABC1", "C2DE", "All Adults 55+", "All Adults 35-54", "All Adults 15-34", "Main Shopper with children"],
+    datasets:[
+      {label:'Reach (M)',data:[53.9, 43.2, 30.2, 23.7, 20.5, 16.8, 16.6, 12.7],backgroundColor:'#378ADD',yAxisID:'y'},
+      {label:'Cover %',data:[97.0, 97.0, 97.8, 96.0, 96.2, 97.7, 97.3, 97.5],type:'line',borderColor:'#1D9E75',backgroundColor:'#1D9E75',pointRadius:4,tension:.3,yAxisID:'y2'}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},
+      y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+'M'},title:{display:true,text:'Reach (M)',color:tc,font:{size:11}}},
+      y2:{position:'right',grid:{drawOnChartArea:false},ticks:{color:tc,font:{size:11},callback:v=>v+'%'},min:94,max:100,title:{display:true,text:'Cover %',color:tc,font:{size:11}}}
+    }
+  }
+});
+</script>
+</body>
+</html>

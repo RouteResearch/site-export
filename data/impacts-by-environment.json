@@ -1,0 +1,93 @@
+[
+  {
+    "environment": "Roadside",
+    "total_weekly_impacts": 5606137779,
+    "classic_impacts": 3512819094,
+    "digital_impacts": 2093318685,
+    "digital_pct": 37
+  },
+  {
+    "environment": "UndergroundStation-London",
+    "total_weekly_impacts": 3230424335,
+    "classic_impacts": 2419125798,
+    "digital_impacts": 811298537,
+    "digital_pct": 25
+  },
+  {
+    "environment": "Shopping Centre Interior",
+    "total_weekly_impacts": 1970031856,
+    "classic_impacts": 128916964,
+    "digital_impacts": 1841114892,
+    "digital_pct": 93
+  },
+  {
+    "environment": "Rail Station",
+    "total_weekly_impacts": 1320551683,
+    "classic_impacts": 615843428,
+    "digital_impacts": 704708255,
+    "digital_pct": 53
+  },
+  {
+    "environment": "Bus",
+    "total_weekly_impacts": 1069750972,
+    "classic_impacts": 1069750972,
+    "digital_impacts": 0,
+    "digital_pct": 0
+  },
+  {
+    "environment": "Supermarket Exterior",
+    "total_weekly_impacts": 212370915,
+    "classic_impacts": 47265229,
+    "digital_impacts": 165105686,
+    "digital_pct": 78
+  },
+  {
+    "environment": "Tube Carriage Interior",
+    "total_weekly_impacts": 210425279,
+    "classic_impacts": 210425279,
+    "digital_impacts": 0,
+    "digital_pct": 0
+  },
+  {
+    "environment": "Taxi",
+    "total_weekly_impacts": 150240941,
+    "classic_impacts": 150240941,
+    "digital_impacts": 0,
+    "digital_pct": 0
+  },
+  {
+    "environment": "Motorway Service Station",
+    "total_weekly_impacts": 84373647,
+    "classic_impacts": 28315526,
+    "digital_impacts": 56058121,
+    "digital_pct": 66
+  },
+  {
+    "environment": "Shopping Centre Exterior",
+    "total_weekly_impacts": 43601241,
+    "classic_impacts": 5877083,
+    "digital_impacts": 37724158,
+    "digital_pct": 87
+  },
+  {
+    "environment": "Train Carriage Interior",
+    "total_weekly_impacts": 41908856,
+    "classic_impacts": 41908856,
+    "digital_impacts": 0,
+    "digital_pct": 0
+  },
+  {
+    "environment": "UndergroundStation-Glasgow",
+    "total_weekly_impacts": 22192677,
+    "classic_impacts": 14561434,
+    "digital_impacts": 7631243,
+    "digital_pct": 34
+  },
+  {
+    "environment": "Tram LR Carriage Interior",
+    "total_weekly_impacts": 20681571,
+    "classic_impacts": 20681571,
+    "digital_impacts": 0,
+    "digital_pct": 0
+  }
+]

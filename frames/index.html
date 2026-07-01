@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frame Explorer — Route 58</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:1000;flex-wrap:wrap}
+.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent;transition:color .15s}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
+.section{margin-bottom:2rem}
+.section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.data-links{display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap}
+.data-link{font-size:12px;color:var(--accent);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
+.data-link:hover{text-decoration:underline}
+
+/* Filters */
+.filters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.filter-group label{display:block;font-size:11px;color:var(--text2);margin-bottom:4px;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.filter-group select{width:100%;font-size:13px;padding:6px 8px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer}
+
+/* KPIs */
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2rem}
+.kpi{background:var(--bg2);border-radius:var(--r);padding:14px 16px}
+.kpi-label{font-size:12px;color:var(--text2);margin-bottom:4px}
+.kpi-val{font-size:26px;font-weight:500}
+
+/* Map */
+#map{height:500px;border-radius:var(--r);border:0.5px solid var(--border2);overflow:hidden}
+.note{font-size:11px;color:var(--text3);margin-top:8px}
+
+/* Table */
+.table-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;color:var(--text2)}
+.table-nav-btns{display:flex;gap:8px}
+.table-nav-btns button{font-size:12px;padding:4px 12px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer}
+.table-nav-btns button:disabled{opacity:.35;cursor:default}
+.table-nav-btns button:not(:disabled):hover{background:var(--bg)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{border-bottom:0.5px solid var(--border2)}
+th{text-align:left;padding:7px 8px;font-weight:500;color:var(--text2);font-size:11px;white-space:nowrap}
+th:last-child{text-align:right}
+td{padding:7px 8px;color:var(--text2);border-bottom:0.5px solid var(--border);white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+td:last-child{text-align:right}
+
+/* Loading */
+#loading{padding:3rem 0;text-align:center;color:var(--text2);font-size:14px}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:10px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+#content{display:none}
+
+footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="../index.html">Route 58</a>
+  <a class="nav-link" href="../index.html">Overview</a>
+  <a class="nav-link" href="../environment/index.html">Environment</a>
+  <a class="nav-link" href="../region/index.html">Region</a>
+  <a class="nav-link" href="../region-x-environment/index.html">Env × Region</a>
+  <a class="nav-link" href="../conurbation/index.html">Conurbation</a>
+  <a class="nav-link" href="../media-owner/index.html">Media Owner</a>
+  <a class="nav-link active" href="index.html">Frames</a>
+  <a class="nav-link" href="../planning-summary/index.html">Planning Summary</a>
+</nav>
+<main>
+  <h1>Frame Explorer</h1>
+  <p class="subtitle">All Route 58 frames with location. Data: week in March 2025 · GB adults 15+</p>
+
+  <div class="data-links">
+    <a class="data-link" href="../data/frames.csv">frames.csv</a>
+  </div>
+
+  <div id="loading"><span class="spinner"></span>Loading frame data (~10 MB)…</div>
+
+  <div id="content">
+    <div class="section">
+      <div class="section-title">Filters</div>
+      <div class="filters-grid">
+        <div class="filter-group"><label>Frame type</label><select id="f-ft"></select></div>
+        <div class="filter-group"><label>Region</label><select id="f-reg"></select></div>
+        <div class="filter-group"><label>Conurbation</label><select id="f-conurb"></select></div>
+        <div class="filter-group"><label>Environment</label><select id="f-env"></select></div>
+        <div class="filter-group"><label>POI</label><select id="f-poi"></select></div>
+        <div class="filter-group"><label>Media owner</label><select id="f-owner"></select></div>
+        <div class="filter-group"><label>Postal district</label><select id="f-pd"></select></div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Frames</div><div class="kpi-val" id="kpi-frames">—</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Frame locations</div>
+      <div id="map"></div>
+      <p class="note" id="map-note" style="display:none"></p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Frame data</div>
+      <div class="table-nav">
+        <span id="table-info"></span>
+        <div class="table-nav-btns">
+          <button id="btn-prev" disabled>← Prev</button>
+          <button id="btn-next" disabled>Next →</button>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Frame ID</th>
+            <th>Type</th>
+            <th>Region</th>
+            <th>Conurbation</th>
+            <th>Environment</th>
+            <th>POI</th>
+            <th>Media owner</th>
+            <th>Postal district</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+
+<script>
+const PAGE_SIZE = 10;
+const MAP_LIMIT = 10000;
+
+const FILTERS = [
+  { id: 'f-ft',    col: 'FrameTypeClassicDigital', nullLabel: null },
+  { id: 'f-reg',   col: 'BarbRegion_Name',         nullLabel: null },
+  { id: 'f-conurb',col: 'Conurbation_Name',        nullLabel: 'No conurbation' },
+  { id: 'f-env',   col: 'EnvironmentDescription',  nullLabel: null },
+  { id: 'f-poi',   col: 'POI',                     nullLabel: 'No POI' },
+  { id: 'f-owner', col: 'MediaOwnerName',           nullLabel: null },
+  { id: 'f-pd',    col: 'Postal_District',          nullLabel: null },
+];
+
+let ALL = [], filtered = [], page = 0;
+
+async function init() {
+  const resp = await fetch('../data/frames.csv');
+  const text = await resp.text();
+
+  ALL = Papa.parse(text, {
+    header: true,
+    dynamicTyping: col => col === 'Latitude' || col === 'Longitude',
+    skipEmptyLines: true,
+  }).data;
+
+  // Populate dropdowns — sorted by frequency desc so most common value is first
+  FILTERS.forEach(f => {
+    const counts = {};
+    ALL.forEach(r => { const v = r[f.col] ?? ''; counts[v] = (counts[v] || 0) + 1; });
+    const vals = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    const sel = document.getElementById(f.id);
+    const allOpt = new Option('All', '__ALL__');
+    sel.add(allOpt);
+    vals.forEach(v => {
+      const label = v === '' ? (f.nullLabel || '—') : v;
+      sel.add(new Option(label, v));
+    });
+  });
+
+  // Default: first media owner by frame count (most frames)
+  const ownerSel = document.getElementById('f-owner');
+  if (ownerSel.options.length > 1) ownerSel.selectedIndex = 11;
+
+  FILTERS.forEach(f => document.getElementById(f.id).addEventListener('change', applyFilters));
+  document.getElementById('btn-prev').addEventListener('click', () => { page--; renderTable(); });
+  document.getElementById('btn-next').addEventListener('click', () => { page++; renderTable(); });
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+
+  applyFilters();
+}
+
+function applyFilters() {
+  const state = {};
+  FILTERS.forEach(f => {
+    const v = document.getElementById(f.id).value;
+    state[f.col] = v === '__ALL__' ? null : v;
+  });
+
+  // Rebuild each dropdown using only values that exist given all OTHER active filters
+  FILTERS.forEach(f => {
+    const sel = document.getElementById(f.id);
+    const currentVal = state[f.col];
+
+    const subset = ALL.filter(r =>
+      FILTERS.every(g => g.col === f.col || state[g.col] === null || (r[g.col] ?? '') === state[g.col])
+    );
+
+    const counts = {};
+    subset.forEach(r => { const v = r[f.col] ?? ''; counts[v] = (counts[v] || 0) + 1; });
+    const vals = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+
+    sel.innerHTML = '';
+    sel.add(new Option('All', '__ALL__'));
+    vals.forEach(v => {
+      const label = v === '' ? (f.nullLabel || '—') : v;
+      sel.add(new Option(label, v));
+    });
+
+    if (currentVal !== null && counts.hasOwnProperty(currentVal)) {
+      sel.value = currentVal;
+    } else if (currentVal !== null) {
+      state[f.col] = null;
+    }
+  });
+
+  filtered = ALL.filter(r =>
+    FILTERS.every(f => state[f.col] === null || (r[f.col] ?? '') === state[f.col])
+  );
+
+  renderKPIs();
+  renderMap();
+  page = 0;
+  renderTable();
+}
+
+function renderKPIs() {
+  const ids = new Set();
+  filtered.forEach(r => { ids.add(r.FrameID); });
+  document.getElementById('kpi-frames').textContent = ids.size.toLocaleString();
+}
+
+function renderMap() {
+  const sample = filtered.length > MAP_LIMIT ? filtered.slice(0, MAP_LIMIT) : filtered;
+  const pts = sample.filter(r => r.Latitude && r.Longitude);
+
+  let centerLat = 54.5, centerLon = -2, zoom = 5;
+  if (pts.length > 0) {
+    const lats = pts.map(r => r.Latitude);
+    const lons = pts.map(r => r.Longitude);
+    centerLat = (Math.min(...lats) + Math.max(...lats)) / 2;
+    centerLon = (Math.min(...lons) + Math.max(...lons)) / 2;
+    const span = Math.max(Math.max(...lats) - Math.min(...lats), Math.max(...lons) - Math.min(...lons));
+    zoom = span > 8 ? 5 : span > 4 ? 6 : span > 2 ? 7 : span > 1 ? 8 : span > 0.5 ? 9 : span > 0.2 ? 10 : 11;
+  }
+
+  Plotly.react('map', [{
+    type: 'scattermap',
+    mode: 'markers',
+    lat: pts.map(r => r.Latitude),
+    lon: pts.map(r => r.Longitude),
+    text: pts.map(r => `${r.FrameID} · ${r.EnvironmentDescription || '—'}`),
+    hovertemplate: '%{text}<extra></extra>',
+    marker: {
+      size: 6,
+      color: pts.map(r => r.FrameTypeClassicDigital === 'Digital' ? '#378ADD' : '#7F77DD'),
+      opacity: 0.7,
+    },
+  }], {
+    map: { style: 'open-street-map', center: { lat: centerLat, lon: centerLon }, zoom },
+    margin: { t: 0, r: 0, b: 0, l: 0 },
+    paper_bgcolor: 'transparent',
+  }, { responsive: true });
+
+  const note = document.getElementById('map-note');
+  if (filtered.length > MAP_LIMIT) {
+    note.textContent = `Showing first ${MAP_LIMIT.toLocaleString()} of ${filtered.length.toLocaleString()} frames on map — apply more filters to see all.`;
+    note.style.display = 'block';
+  } else {
+    note.style.display = 'none';
+  }
+}
+
+function renderTable() {
+  const start = page * PAGE_SIZE;
+  const end = Math.min(start + PAGE_SIZE, filtered.length);
+
+  document.getElementById('tbody').innerHTML = filtered.slice(start, end).map(r => `<tr>
+    <td title="${r.FrameID}">${r.FrameID}</td>
+    <td>${r.FrameTypeClassicDigital}</td>
+    <td>${r.BarbRegion_Name || '—'}</td>
+    <td>${r.Conurbation_Name || 'No conurbation'}</td>
+    <td>${r.EnvironmentDescription || '—'}</td>
+    <td>${r.POI || 'No POI'}</td>
+    <td>${r.MediaOwnerName || '—'}</td>
+    <td>${r.Postal_District || '—'}</td>
+  </tr>`).join('');
+
+  document.getElementById('table-info').textContent =
+    filtered.length === 0
+      ? 'No frames match the selected filters'
+      : `Showing ${(start + 1).toLocaleString()}–${end.toLocaleString()} of ${filtered.length.toLocaleString()} frames`;
+
+  document.getElementById('btn-prev').disabled = page === 0;
+  document.getElementById('btn-next').disabled = end >= filtered.length;
+}
+
+init().catch(err => {
+  document.getElementById('loading').innerHTML =
+    `<p style="color:var(--text2)">Failed to load frame data: ${err.message}.<br>This page requires a web server — open via <code>python3 -m http.server 8000</code>.</p>`;
+});
+</script>
+</body>
+</html>

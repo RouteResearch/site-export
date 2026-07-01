@@ -1,0 +1,67 @@
+{
+  "frames": {
+    "total": 383908,
+    "classic": 363972,
+    "digital": 19936
+  },
+  "weekly_impacts": 13982691745,
+  "reach": {
+    "total": 53906874,
+    "cover_pct": 96.97,
+    "digital_only": 48231518,
+    "classic_only": 53628531
+  },
+  "population": 55590969,
+  "reach_by_month": [
+    {
+      "month": "Jan",
+      "reach": 53864814
+    },
+    {
+      "month": "Feb",
+      "reach": 53880575
+    },
+    {
+      "month": "Mar",
+      "reach": 53906873
+    },
+    {
+      "month": "Apr",
+      "reach": 53889669
+    },
+    {
+      "month": "May",
+      "reach": 53906819
+    },
+    {
+      "month": "Jun",
+      "reach": 53910694
+    },
+    {
+      "month": "Jul",
+      "reach": 53908731
+    },
+    {
+      "month": "Aug",
+      "reach": 53878705
+    },
+    {
+      "month": "Sep",
+      "reach": 53906379
+    },
+    {
+      "month": "Oct",
+      "reach": 53909930
+    },
+    {
+      "month": "Nov",
+      "reach": 53924994
+    },
+    {
+      "month": "Dec",
+      "reach": 53833048
+    }
+  ],
+  "release": "Route 58",
+  "data_week": "March 2025"
+}

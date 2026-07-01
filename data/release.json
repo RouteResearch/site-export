@@ -1,0 +1,9 @@
+{
+  "release": "Route 58",
+  "data_week": "March 2025",
+  "schedule": "10s spot / 0s break",
+  "population_base": "GB adults 15+",
+  "source": "Route Research",
+  "source_url": "https://routedata.org.uk",
+  "methodology_url": "https://www.route.org.uk/methodology.php"
+}

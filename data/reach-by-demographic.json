@@ -1,0 +1,42 @@
+[
+  {
+    "demographic": "All Adults",
+    "reach": 53906873,
+    "cover_pct": 96.97
+  },
+  {
+    "demographic": "Main Shopper",
+    "reach": 43210912,
+    "cover_pct": 96.98
+  },
+  {
+    "demographic": "ABC1",
+    "reach": 30177759,
+    "cover_pct": 97.77
+  },
+  {
+    "demographic": "C2DE",
+    "reach": 23729113,
+    "cover_pct": 95.97
+  },
+  {
+    "demographic": "All Adults 55+",
+    "reach": 20526529,
+    "cover_pct": 96.17
+  },
+  {
+    "demographic": "All Adults 35-54",
+    "reach": 16823531,
+    "cover_pct": 97.67
+  },
+  {
+    "demographic": "All Adults 15-34",
+    "reach": 16556813,
+    "cover_pct": 97.27
+  },
+  {
+    "demographic": "Main Shopper with children",
+    "reach": 12704482,
+    "cover_pct": 97.5
+  }
+]

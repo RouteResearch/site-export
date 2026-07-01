@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Owner — Route 58</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset","name":"Route 58 — OOH Frames by Media Owner","description":"Frame counts for media owners measured by Route in GB, including regions covered and environments covered.","url":"/media-owner","creator":{"@type":"Organization","name":"Route Research"},"temporalCoverage":"2025-03","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/media-owners.json"}]}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;position:sticky;top:0;z-index:10}
+.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
+.section{margin-bottom:2.5rem}
+.section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.chart-wrap{position:relative;width:100%}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{border-bottom:0.5px solid var(--border2)}
+th{text-align:left;padding:8px;font-weight:500;color:var(--text2);font-size:12px}
+th:not(:first-child){text-align:right}
+td{padding:8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
+td:not(:first-child){text-align:right}
+.data-link{font-size:12px;color:var(--accent);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:1.5rem}
+.note{font-size:11px;color:var(--text3);margin-top:8px}
+.pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:0.5px solid var(--border)}
+.pagination-info{color:var(--text3);font-size:12px}
+.pagination-btns{display:flex;gap:4px}
+.page-btn{background:none;border:0.5px solid var(--border2);color:var(--text2);padding:5px 14px;border-radius:var(--r);cursor:pointer;font-size:12px;font-family:inherit;line-height:1.4;transition:color .15s,border-color .15s,background .15s}
+.page-btn:hover:not(:disabled){color:var(--text);border-color:var(--accent);background:var(--bg2)}
+.page-btn:disabled{opacity:0.3;cursor:default}
+footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="../index.html">Route 58</a>
+  <a class="nav-link" href="../index.html">Overview</a>
+  <a class="nav-link" href="../environment/index.html">Environment</a>
+  <a class="nav-link" href="../region/index.html">Region</a>
+  <a class="nav-link" href="../region-x-environment/index.html">Env × Region</a>
+  <a class="nav-link" href="../conurbation/index.html">Conurbation</a>
+  <a class="nav-link active" href="index.html">Media Owner</a>
+  <a class="nav-link" href="../frames/index.html">Frames</a>
+  <a class="nav-link" href="../planning-summary/index.html">Planning Summary</a>
+</nav>
+<main>
+  <h1>Media owner analysis</h1>
+  <p class="subtitle">Frame counts for 41 media owners measured by Route. Total: 383,908 frames across all owners.</p>
+
+  <a class="data-link" href="../data/media-owners.json">media-owners.json</a>
+
+  <div class="section">
+    <div class="section-title">Frames by media owner — top 15</div>
+    <div class="chart-wrap" style="height:500px">
+      <canvas id="chartOwner"></canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">All media owners — frame count</div>
+    <table>
+      <thead><tr><th>Media owner</th><th>Frames</th><th>Regions covered</th><th>Environments covered</th></tr></thead>
+      <tbody id="ownerTbody">
+        
+        <tr>
+          <td>Global</td>
+          <td>230,059</td>
+          <td>13</td>
+          <td>8</td>
+        </tr>
+        
+        <tr>
+          <td>KBH</td>
+          <td>67,248</td>
+          <td>9</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>JCDecaux</td>
+          <td>28,684</td>
+          <td>13</td>
+          <td>5</td>
+        </tr>
+        
+        <tr>
+          <td>Bauer Media Outdoor</td>
+          <td>28,297</td>
+          <td>13</td>
+          <td>5</td>
+        </tr>
+        
+        <tr>
+          <td>Bay Media</td>
+          <td>10,962</td>
+          <td>9</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Ubiquitous</td>
+          <td>6,105</td>
+          <td>7</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Sherbet London</td>
+          <td>1,679</td>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Alight Media</td>
+          <td>1,505</td>
+          <td>13</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>i-Media Advertising</td>
+          <td>1,416</td>
+          <td>13</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Fernbank</td>
+          <td>950</td>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Coop</td>
+          <td>872</td>
+          <td>13</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>75Media</td>
+          <td>858</td>
+          <td>12</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Build</td>
+          <td>765</td>
+          <td>10</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Limited Space</td>
+          <td>567</td>
+          <td>11</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Ocean Outdoor</td>
+          <td>560</td>
+          <td>11</td>
+          <td>3</td>
+        </tr>
+        
+        <tr>
+          <td>Pop Art media Group</td>
+          <td>556</td>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Hi! Street Digital</td>
+          <td>496</td>
+          <td>12</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Route Media</td>
+          <td>374</td>
+          <td>4</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Gb Outdoor Ltd</td>
+          <td>347</td>
+          <td>10</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Pixology Outdoor</td>
+          <td>288</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Dunnhumby (Tesco)</td>
+          <td>225</td>
+          <td>9</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Elonex Outdoor Media</td>
+          <td>186</td>
+          <td>11</td>
+          <td>3</td>
+        </tr>
+        
+        <tr>
+          <td>Global Street Art</td>
+          <td>178</td>
+          <td>9</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Jolt</td>
+          <td>124</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Reach Passengers</td>
+          <td>119</td>
+          <td>5</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Boomerang Media</td>
+          <td>113</td>
+          <td>8</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Smart Outdoor</td>
+          <td>83</td>
+          <td>8</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Mural Republic</td>
+          <td>72</td>
+          <td>7</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>London Lites</td>
+          <td>62</td>
+          <td>1</td>
+          <td>3</td>
+        </tr>
+        
+        <tr>
+          <td>Out of Hand Maximus</td>
+          <td>56</td>
+          <td>5</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Open Media</td>
+          <td>35</td>
+          <td>7</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Crystal Clear Media</td>
+          <td>18</td>
+          <td>3</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>City Outdoor Media</td>
+          <td>15</td>
+          <td>3</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>EOM DOOH LTD</td>
+          <td>8</td>
+          <td>3</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>Maxx Media</td>
+          <td>7</td>
+          <td>4</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Pearl & Dean Outdoor</td>
+          <td>5</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>BlowUP Media</td>
+          <td>5</td>
+          <td>3</td>
+          <td>2</td>
+        </tr>
+        
+        <tr>
+          <td>T4 MEDIA</td>
+          <td>3</td>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>Connexin Media</td>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>MediaCo OOH</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        
+        <tr>
+          <td>GEM Display</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <p class="note">Total: 383,908 frames.</p>
+  </div>
+</main>
+<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<script>
+function paginate(tbodyId,pageSize){const tbody=document.getElementById(tbodyId);const rows=Array.from(tbody.rows);const total=rows.length;const pages=Math.ceil(total/pageSize);let cur=0;const wrap=document.createElement('div');wrap.className='pagination';const info=document.createElement('span');info.className='pagination-info';const btns=document.createElement('div');btns.className='pagination-btns';const prev=document.createElement('button');prev.className='page-btn';prev.textContent='← Prev';const next=document.createElement('button');next.className='page-btn';next.textContent='Next →';btns.append(prev,next);wrap.append(info,btns);tbody.closest('table').after(wrap);function render(){rows.forEach((r,i)=>r.style.display=(i>=cur*pageSize&&i<(cur+1)*pageSize)?'':'none');const from=cur*pageSize+1;const to=Math.min((cur+1)*pageSize,total);info.textContent=`Showing ${from}–${to} of ${total}`;prev.disabled=cur===0;next.disabled=cur===pages-1;}prev.onclick=()=>{cur--;render();};next.onclick=()=>{cur++;render();};render();}
+paginate('ownerTbody',10);
+const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
+const gc=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+const tc=isDark?'rgba(255,255,255,.5)':'rgba(0,0,0,.45)';
+new Chart(document.getElementById('chartOwner'),{
+  type:'bar',
+  data:{
+    labels:["Global", "KBH", "JCDecaux", "Bauer Media Outdoor", "Bay Media", "Ubiquitous", "Sherbet London", "Alight Media", "i-Media Advertising", "Fernbank", "Coop", "75Media", "Build", "Limited Space", "Ocean Outdoor"],
+    datasets:[{label:'Frames',data:[230059, 67248, 28684, 28297, 10962, 6105, 1679, 1505, 1416, 950, 872, 858, 765, 567, 560],backgroundColor:'#378ADD'}]
+  },
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.x.toLocaleString()+' frames'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v.toLocaleString()}},y:{grid:{color:'transparent'},ticks:{color:tc,font:{size:11},autoSkip:false}}}}
+});
+</script>
+</body>
+</html>

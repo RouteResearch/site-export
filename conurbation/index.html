@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conurbation — Route 58</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset","name":"Route 58 — OOH Impacts by Conurbation","description":"Weekly OOH impacts for named conurbations in Great Britain.","url":"/conurbation","creator":{"@type":"Organization","name":"Route Research"},"temporalCoverage":"2025-03","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/impacts-by-conurbation.json"}]}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;position:sticky;top:0;z-index:10}
+.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
+.section{margin-bottom:2.5rem}
+.section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.chart-wrap{position:relative;width:100%}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{border-bottom:0.5px solid var(--border2)}
+th{text-align:left;padding:8px;font-weight:500;color:var(--text2);font-size:12px}
+th:not(:first-child){text-align:right}
+td{padding:8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
+td:not(:first-child){text-align:right}
+.data-link{font-size:12px;color:var(--accent);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:1.5rem}
+.pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:0.5px solid var(--border)}
+.pagination-info{color:var(--text3);font-size:12px}
+.pagination-btns{display:flex;gap:4px}
+.page-btn{background:none;border:0.5px solid var(--border2);color:var(--text2);padding:5px 14px;border-radius:var(--r);cursor:pointer;font-size:12px;font-family:inherit;line-height:1.4;transition:color .15s,border-color .15s,background .15s}
+.page-btn:hover:not(:disabled){color:var(--text);border-color:var(--accent);background:var(--bg2)}
+.page-btn:disabled{opacity:0.3;cursor:default}
+footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="../index.html">Route 58</a>
+  <a class="nav-link" href="../index.html">Overview</a>
+  <a class="nav-link" href="../environment/index.html">Environment</a>
+  <a class="nav-link" href="../region/index.html">Region</a>
+  <a class="nav-link" href="../region-x-environment/index.html">Env × Region</a>
+  <a class="nav-link active" href="index.html">Conurbation</a>
+  <a class="nav-link" href="../media-owner/index.html">Media Owner</a>
+  <a class="nav-link" href="../frames/index.html">Frames</a>
+  <a class="nav-link" href="../planning-summary/index.html">Planning Summary</a>
+</nav>
+<main>
+  <h1>Conurbation analysis</h1>
+  <p class="subtitle">Weekly OOH impacts for 25 conurbations. Data: week in March 2025 · 10s:0s schedule · GB adults 15+</p>
+
+  <a class="data-link" href="../data/impacts-by-conurbation.json">impacts-by-conurbation.json</a>
+
+  <div class="section">
+    <div class="section-title">Weekly impacts — all conurbations</div>
+    <div class="chart-wrap" style="height:750px">
+      <canvas id="chartConurb"></canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Conurbation data table</div>
+    <table>
+      <thead><tr><th>Conurbation</th><th>Weekly impacts</th></tr></thead>
+      <tbody id="conurbTbody">
+        
+        <tr><td>Greater London</td><td>8,151,607,198</td></tr>
+        
+        <tr><td>No conurbation</td><td>1,645,486,991</td></tr>
+        
+        <tr><td>West Midlands</td><td>823,762,116</td></tr>
+        
+        <tr><td>Greater Manchester</td><td>768,152,436</td></tr>
+        
+        <tr><td>Greater Glasgow</td><td>375,168,303</td></tr>
+        
+        <tr><td>West Yorkshire</td><td>364,774,636</td></tr>
+        
+        <tr><td>Liverpool</td><td>260,454,012</td></tr>
+        
+        <tr><td>Tyneside</td><td>228,246,054</td></tr>
+        
+        <tr><td>Sheffield</td><td>224,998,042</td></tr>
+        
+        <tr><td>Cardiff</td><td>169,720,075</td></tr>
+        
+        <tr><td>Edinburgh</td><td>152,092,438</td></tr>
+        
+        <tr><td>South Hampshire</td><td>126,180,854</td></tr>
+        
+        <tr><td>Bristol</td><td>108,340,767</td></tr>
+        
+        <tr><td>Nottingham</td><td>91,585,988</td></tr>
+        
+        <tr><td>Coventry</td><td>66,994,183</td></tr>
+        
+        <tr><td>Brighton and Hove</td><td>66,452,256</td></tr>
+        
+        <tr><td>Reading</td><td>59,236,001</td></tr>
+        
+        <tr><td>Leicester</td><td>56,292,830</td></tr>
+        
+        <tr><td>Kingston upon Hull</td><td>51,205,715</td></tr>
+        
+        <tr><td>Stoke-on-Trent</td><td>45,380,575</td></tr>
+        
+        <tr><td>Teesside</td><td>37,192,829</td></tr>
+        
+        <tr><td>Bournemouth/Poole</td><td>33,844,746</td></tr>
+        
+        <tr><td>Swansea</td><td>26,201,560</td></tr>
+        
+        <tr><td>Birkenhead</td><td>24,999,448</td></tr>
+        
+        <tr><td>Southend On Sea</td><td>24,321,705</td></tr>
+        
+      </tbody>
+    </table>
+  </div>
+</main>
+<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<script>
+function paginate(tbodyId,pageSize){const tbody=document.getElementById(tbodyId);const rows=Array.from(tbody.rows);const total=rows.length;const pages=Math.ceil(total/pageSize);let cur=0;const wrap=document.createElement('div');wrap.className='pagination';const info=document.createElement('span');info.className='pagination-info';const btns=document.createElement('div');btns.className='pagination-btns';const prev=document.createElement('button');prev.className='page-btn';prev.textContent='← Prev';const next=document.createElement('button');next.className='page-btn';next.textContent='Next →';btns.append(prev,next);wrap.append(info,btns);tbody.closest('table').after(wrap);function render(){rows.forEach((r,i)=>r.style.display=(i>=cur*pageSize&&i<(cur+1)*pageSize)?'':'none');const from=cur*pageSize+1;const to=Math.min((cur+1)*pageSize,total);info.textContent=`Showing ${from}–${to} of ${total}`;prev.disabled=cur===0;next.disabled=cur===pages-1;}prev.onclick=()=>{cur--;render();};next.onclick=()=>{cur++;render();};render();}
+paginate('conurbTbody',10);
+const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
+const gc=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+const tc=isDark?'rgba(255,255,255,.5)':'rgba(0,0,0,.45)';
+new Chart(document.getElementById('chartConurb'),{
+  type:'bar',
+  data:{
+    labels:["Greater London", "No conurbation", "West Midlands", "Greater Manchester", "Greater Glasgow", "West Yorkshire", "Liverpool", "Tyneside", "Sheffield", "Cardiff", "Edinburgh", "South Hampshire", "Bristol", "Nottingham", "Coventry", "Brighton and Hove", "Reading", "Leicester", "Kingston upon Hull", "Stoke-on-Trent", "Teesside", "Bournemouth/Poole", "Swansea", "Birkenhead", "Southend On Sea"],
+    datasets:[{label:'Weekly impacts (M)',data:[8152, 1645, 824, 768, 375, 365, 260, 228, 225, 170, 152, 126, 108, 92, 67, 66, 59, 56, 51, 45, 37, 34, 26, 25, 24],backgroundColor:'#D85A30'}]
+  },
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.x.toLocaleString()+'M impacts'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+'M'}},y:{grid:{color:'transparent'},ticks:{color:tc,font:{size:10},autoSkip:false}}}}
+});
+</script>
+</body>
+</html>

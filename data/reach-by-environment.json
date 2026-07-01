@@ -1,0 +1,67 @@
+[
+  {
+    "environment": "All Environments",
+    "cover_pct": 96.97,
+    "reach": 53906873
+  },
+  {
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "cover_pct": 95.95,
+    "reach": 53337741
+  },
+  {
+    "environment": "Bus (Bus exterior)",
+    "cover_pct": 88.05,
+    "reach": 48948428
+  },
+  {
+    "environment": "Supermarket (exterior)",
+    "cover_pct": 25.66,
+    "reach": 14262214
+  },
+  {
+    "environment": "Taxi (Taxi exteriors)",
+    "cover_pct": 22.25,
+    "reach": 12370265
+  },
+  {
+    "environment": "Rail Station",
+    "cover_pct": 10.73,
+    "reach": 5964861
+  },
+  {
+    "environment": "Shopping centres (interior)",
+    "cover_pct": 10.71,
+    "reach": 5951662
+  },
+  {
+    "environment": "Underground station",
+    "cover_pct": 6.62,
+    "reach": 3681263
+  },
+  {
+    "environment": "Shopping centre (exterior)",
+    "cover_pct": 6.42,
+    "reach": 3569132
+  },
+  {
+    "environment": "Train carriage interior",
+    "cover_pct": 6.36,
+    "reach": 3537211
+  },
+  {
+    "environment": "Tube carriage interior",
+    "cover_pct": 5.94,
+    "reach": 3300543
+  },
+  {
+    "environment": "Motorway service stations",
+    "cover_pct": 3.91,
+    "reach": 2175606
+  },
+  {
+    "environment": "Tram or light railway carriage interior",
+    "cover_pct": 0.64,
+    "reach": 356330
+  }
+]

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment × Region — Route 58</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset","name":"Route 58 — OOH Impacts by Environment and Region","description":"Weekly OOH impacts cross-tabulated by environment and BARB TV region for Great Britain. Classic vs digital split included.","url":"/region-x-environment","creator":{"@type":"Organization","name":"Route Research"},"temporalCoverage":"2025-03","spatialCoverage":"Great Britain","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/impacts-by-region-x-environment.json"}]}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px;--rl:12px}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:10}
+.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent;transition:color .15s}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
+.section{margin-bottom:2.5rem}
+.section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.chart-wrap{position:relative;width:100%}
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:12px;color:var(--text2)}
+.legend-sq{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+.controls{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+.controls label{font-size:13px;color:var(--text2)}
+select{font-size:13px;padding:6px 10px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{border-bottom:0.5px solid var(--border2)}
+th{text-align:left;padding:8px;font-weight:500;color:var(--text2);font-size:12px}
+th:not(:first-child){text-align:right}
+td{padding:8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
+td:not(:first-child){text-align:right}
+.data-links{display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap}
+.data-link{font-size:12px;color:var(--accent);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
+.data-link:hover{text-decoration:underline}
+.note{font-size:11px;color:var(--text3);margin-top:8px}
+footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="../index.html">Route 58</a>
+  <a class="nav-link" href="../index.html">Overview</a>
+  <a class="nav-link" href="../environment/index.html">Environment</a>
+  <a class="nav-link" href="../region/index.html">Region</a>
+  <a class="nav-link active" href="index.html">Env × Region</a>
+  <a class="nav-link" href="../conurbation/index.html">Conurbation</a>
+  <a class="nav-link" href="../media-owner/index.html">Media Owner</a>
+  <a class="nav-link" href="../frames/index.html">Frames</a>
+  <a class="nav-link" href="../planning-summary/index.html">Planning Summary</a>
+</nav>
+<main>
+  <h1>Environment × Region</h1>
+  <p class="subtitle">Weekly impacts by BARB TV region, filtered by environment. Data: week in March 2025 · 10s:0s schedule · GB adults 15+</p>
+
+  <div class="data-links">
+    <a class="data-link" href="../data/impacts-by-region-x-environment.json">impacts-by-region-x-environment.json</a>
+  </div>
+
+  <div class="controls">
+    <label for="envSelect">Environment</label>
+    <select id="envSelect"></select>
+  </div>
+
+  <div class="section">
+    <div class="legend-row">
+      <span><span class="legend-sq" style="background:#7F77DD"></span>Classic</span>
+      <span><span class="legend-sq" style="background:#378ADD"></span>Digital</span>
+    </div>
+    <div class="chart-wrap" style="height:500px">
+      <canvas id="chartRXE"></canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Data table</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Region</th>
+          <th>Classic impacts</th>
+          <th>Digital impacts</th>
+          <th>Total weekly impacts</th>
+          <th>Digital %</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <p class="note">Impacts only — reach is not available at the environment × region intersection.</p>
+  </div>
+</main>
+<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<script>
+const ALL_DATA = [{"region": "London", "environment": "UndergroundStation-London", "total_weekly_impacts": 3230424335, "classic_impacts": 2419125798, "digital_impacts": 811298537, "digital_pct": 25}, {"region": "London", "environment": "Roadside", "total_weekly_impacts": 2556449921, "classic_impacts": 1584209951, "digital_impacts": 972239970, "digital_pct": 38}, {"region": "London", "environment": "Rail Station", "total_weekly_impacts": 940540146, "classic_impacts": 379880012, "digital_impacts": 560660134, "digital_pct": 60}, {"region": "London", "environment": "Shopping Centre Interior", "total_weekly_impacts": 770933928, "classic_impacts": 18213152, "digital_impacts": 752720776, "digital_pct": 98}, {"region": "Midlands", "environment": "Roadside", "total_weekly_impacts": 727453355, "classic_impacts": 411640012, "digital_impacts": 315813343, "digital_pct": 43}, {"region": "North West", "environment": "Roadside", "total_weekly_impacts": 679371702, "classic_impacts": 398236325, "digital_impacts": 281135377, "digital_pct": 41}, {"region": "London", "environment": "Bus", "total_weekly_impacts": 494929233, "classic_impacts": 494929233, "digital_impacts": 0, "digital_pct": 0}, {"region": "Yorkshire", "environment": "Roadside", "total_weekly_impacts": 426856784, "classic_impacts": 277413587, "digital_impacts": 149443197, "digital_pct": 35}, {"region": "Central Scotland", "environment": "Roadside", "total_weekly_impacts": 322952408, "classic_impacts": 204316835, "digital_impacts": 118635573, "digital_pct": 37}, {"region": "South and South-East", "environment": "Roadside", "total_weekly_impacts": 288973198, "classic_impacts": 212889911, "digital_impacts": 76083287, "digital_pct": 26}, {"region": "Midlands", "environment": "Shopping Centre Interior", "total_weekly_impacts": 278360498, "classic_impacts": 21908153, "digital_impacts": 256452345, "digital_pct": 92}, {"region": "North West", "environment": "Shopping Centre Interior", "total_weekly_impacts": 274704056, "classic_impacts": 58615198, "digital_impacts": 216088858, "digital_pct": 79}, {"region": "London", "environment": "Tube Carriage Interior", "total_weekly_impacts": 210390344, "classic_impacts": 210390344, "digital_impacts": 0, "digital_pct": 0}, {"region": "Yorkshire", "environment": "Shopping Centre Interior", "total_weekly_impacts": 179799613, "classic_impacts": 415153, "digital_impacts": 179384460, "digital_pct": 100}, {"region": "Wales", "environment": "Roadside", "total_weekly_impacts": 166980345, "classic_impacts": 137112231, "digital_impacts": 29868114, "digital_pct": 18}, {"region": "Central Scotland", "environment": "Shopping Centre Interior", "total_weekly_impacts": 156888310, "classic_impacts": 4545024, "digital_impacts": 152343286, "digital_pct": 97}, {"region": "North East", "environment": "Roadside", "total_weekly_impacts": 147139438, "classic_impacts": 95065066, "digital_impacts": 52074372, "digital_pct": 35}, {"region": "North West", "environment": "Bus", "total_weekly_impacts": 123727672, "classic_impacts": 123727672, "digital_impacts": 0, "digital_pct": 0}, {"region": "London", "environment": "Taxi", "total_weekly_impacts": 119578387, "classic_impacts": 119578387, "digital_impacts": 0, "digital_pct": 0}, {"region": "North East", "environment": "Shopping Centre Interior", "total_weekly_impacts": 118284110, "classic_impacts": 9919329, "digital_impacts": 108364781, "digital_pct": 92}, {"region": "East Of England", "environment": "Roadside", "total_weekly_impacts": 118157131, "classic_impacts": 86374473, "digital_impacts": 31782658, "digital_pct": 27}, {"region": "Midlands", "environment": "Bus", "total_weekly_impacts": 111644900, "classic_impacts": 111644900, "digital_impacts": 0, "digital_pct": 0}, {"region": "North West", "environment": "Rail Station", "total_weekly_impacts": 90652292, "classic_impacts": 63213230, "digital_impacts": 27439062, "digital_pct": 30}, {"region": "Yorkshire", "environment": "Bus", "total_weekly_impacts": 85028081, "classic_impacts": 85028081, "digital_impacts": 0, "digital_pct": 0}, {"region": "South and South-East", "environment": "Shopping Centre Interior", "total_weekly_impacts": 77499368, "classic_impacts": 5647558, "digital_impacts": 71851810, "digital_pct": 93}, {"region": "West", "environment": "Roadside", "total_weekly_impacts": 74555483, "classic_impacts": 40115027, "digital_impacts": 34440456, "digital_pct": 46}, {"region": "Central Scotland", "environment": "Bus", "total_weekly_impacts": 73399843, "classic_impacts": 73399843, "digital_impacts": 0, "digital_pct": 0}, {"region": "South and South-East", "environment": "Rail Station", "total_weekly_impacts": 71205616, "classic_impacts": 47886774, "digital_impacts": 23318842, "digital_pct": 33}, {"region": "Midlands", "environment": "Rail Station", "total_weekly_impacts": 56001429, "classic_impacts": 27013959, "digital_impacts": 28987470, "digital_pct": 52}, {"region": "South West", "environment": "Roadside", "total_weekly_impacts": 51365811, "classic_impacts": 37807845, "digital_impacts": 13557966, "digital_pct": 26}, {"region": "Central Scotland", "environment": "Rail Station", "total_weekly_impacts": 47940503, "classic_impacts": 18083981, "digital_impacts": 29856522, "digital_pct": 62}, {"region": "South and South-East", "environment": "Bus", "total_weekly_impacts": 45171851, "classic_impacts": 45171851, "digital_impacts": 0, "digital_pct": 0}, {"region": "Yorkshire", "environment": "Rail Station", "total_weekly_impacts": 45144317, "classic_impacts": 36864135, "digital_impacts": 8280182, "digital_pct": 18}, {"region": "North Scotland", "environment": "Roadside", "total_weekly_impacts": 40219138, "classic_impacts": 24105674, "digital_impacts": 16113464, "digital_pct": 40}, {"region": "Wales", "environment": "Shopping Centre Interior", "total_weekly_impacts": 40020805, "classic_impacts": 0, "digital_impacts": 40020805, "digital_pct": 100}, {"region": "London", "environment": "Supermarket Exterior", "total_weekly_impacts": 35253918, "classic_impacts": 7902196, "digital_impacts": 27351722, "digital_pct": 78}, {"region": "East Of England", "environment": "Bus", "total_weekly_impacts": 34315563, "classic_impacts": 34315563, "digital_impacts": 0, "digital_pct": 0}, {"region": "North East", "environment": "Bus", "total_weekly_impacts": 29156066, "classic_impacts": 29156066, "digital_impacts": 0, "digital_pct": 0}, {"region": "Midlands", "environment": "Supermarket Exterior", "total_weekly_impacts": 28672840, "classic_impacts": 8501521, "digital_impacts": 20171319, "digital_pct": 70}, {"region": "South and South-East", "environment": "Supermarket Exterior", "total_weekly_impacts": 27400979, "classic_impacts": 7492360, "digital_impacts": 19908619, "digital_pct": 73}, {"region": "East Of England", "environment": "Shopping Centre Interior", "total_weekly_impacts": 26348490, "classic_impacts": 2615036, "digital_impacts": 23733454, "digital_pct": 90}, {"region": "North West", "environment": "Supermarket Exterior", "total_weekly_impacts": 24459965, "classic_impacts": 4469552, "digital_impacts": 19990413, "digital_pct": 82}, {"region": "East Of England", "environment": "Rail Station", "total_weekly_impacts": 24032181, "classic_impacts": 11083083, "digital_impacts": 12949098, "digital_pct": 54}, {"region": "West", "environment": "Bus", "total_weekly_impacts": 23940633, "classic_impacts": 23940633, "digital_impacts": 0, "digital_pct": 0}, {"region": "West", "environment": "Shopping Centre Interior", "total_weekly_impacts": 23505728, "classic_impacts": 1828266, "digital_impacts": 21677462, "digital_pct": 92}, {"region": "Yorkshire", "environment": "Supermarket Exterior", "total_weekly_impacts": 23116708, "classic_impacts": 7430304, "digital_impacts": 15686404, "digital_pct": 68}, {"region": "North East", "environment": "Rail Station", "total_weekly_impacts": 22665231, "classic_impacts": 15414547, "digital_impacts": 7250684, "digital_pct": 32}, {"region": "Central Scotland", "environment": "UndergroundStation-Glasgow", "total_weekly_impacts": 22192677, "classic_impacts": 14561434, "digital_impacts": 7631243, "digital_pct": 34}, {"region": "London", "environment": "Train Carriage Interior", "total_weekly_impacts": 21710582, "classic_impacts": 21710582, "digital_impacts": 0, "digital_pct": 0}, {"region": "East Of England", "environment": "Supermarket Exterior", "total_weekly_impacts": 21164629, "classic_impacts": 4791272, "digital_impacts": 16373357, "digital_pct": 77}, {"region": "London", "environment": "Tram LR Carriage Interior", "total_weekly_impacts": 20681571, "classic_impacts": 20681571, "digital_impacts": 0, "digital_pct": 0}, {"region": "Midlands", "environment": "Motorway Service Station", "total_weekly_impacts": 19931302, "classic_impacts": 6906431, "digital_impacts": 13024871, "digital_pct": 65}, {"region": "Wales", "environment": "Bus", "total_weekly_impacts": 18227062, "classic_impacts": 18227062, "digital_impacts": 0, "digital_pct": 0}, {"region": "London", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 15683261, "classic_impacts": 406273, "digital_impacts": 15276988, "digital_pct": 97}, {"region": "South West", "environment": "Shopping Centre Interior", "total_weekly_impacts": 15545925, "classic_impacts": 2124980, "digital_impacts": 13420945, "digital_pct": 86}, {"region": "North Scotland", "environment": "Bus", "total_weekly_impacts": 14789557, "classic_impacts": 14789557, "digital_impacts": 0, "digital_pct": 0}, {"region": "North West", "environment": "Motorway Service Station", "total_weekly_impacts": 13943023, "classic_impacts": 1996899, "digital_impacts": 11946124, "digital_pct": 86}, {"region": "South and South-East", "environment": "Train Carriage Interior", "total_weekly_impacts": 13885087, "classic_impacts": 13885087, "digital_impacts": 0, "digital_pct": 0}, {"region": "Wales", "environment": "Supermarket Exterior", "total_weekly_impacts": 13732775, "classic_impacts": 928080, "digital_impacts": 12804695, "digital_pct": 93}, {"region": "Central Scotland", "environment": "Taxi", "total_weekly_impacts": 12611453, "classic_impacts": 12611453, "digital_impacts": 0, "digital_pct": 0}, {"region": "London", "environment": "Motorway Service Station", "total_weekly_impacts": 11774680, "classic_impacts": 4775969, "digital_impacts": 6998711, "digital_pct": 59}, {"region": "Central Scotland", "environment": "Supermarket Exterior", "total_weekly_impacts": 11373972, "classic_impacts": 2014515, "digital_impacts": 9359457, "digital_pct": 82}, {"region": "South and South-East", "environment": "Motorway Service Station", "total_weekly_impacts": 11319211, "classic_impacts": 4019641, "digital_impacts": 7299570, "digital_pct": 64}, {"region": "South West", "environment": "Bus", "total_weekly_impacts": 11239899, "classic_impacts": 11239899, "digital_impacts": 0, "digital_pct": 0}, {"region": "Midlands", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 11192824, "classic_impacts": 3438893, "digital_impacts": 7753931, "digital_pct": 69}, {"region": "West", "environment": "Rail Station", "total_weekly_impacts": 9270569, "classic_impacts": 5375612, "digital_impacts": 3894957, "digital_pct": 42}, {"region": "West", "environment": "Supermarket Exterior", "total_weekly_impacts": 8840543, "classic_impacts": 1228768, "digital_impacts": 7611775, "digital_pct": 86}, {"region": "North West", "environment": "Taxi", "total_weekly_impacts": 8528757, "classic_impacts": 8528757, "digital_impacts": 0, "digital_pct": 0}, {"region": "North East", "environment": "Supermarket Exterior", "total_weekly_impacts": 8472112, "classic_impacts": 2467890, "digital_impacts": 6004222, "digital_pct": 71}, {"region": "Midlands", "environment": "Taxi", "total_weekly_impacts": 8393291, "classic_impacts": 8393291, "digital_impacts": 0, "digital_pct": 0}, {"region": "Wales", "environment": "Rail Station", "total_weekly_impacts": 8388306, "classic_impacts": 7223310, "digital_impacts": 1164996, "digital_pct": 14}, {"region": "North West", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 8370120, "classic_impacts": 62586, "digital_impacts": 8307534, "digital_pct": 99}, {"region": "North Scotland", "environment": "Shopping Centre Interior", "total_weekly_impacts": 8141036, "classic_impacts": 3085120, "digital_impacts": 5055916, "digital_pct": 62}, {"region": "West", "environment": "Motorway Service Station", "total_weekly_impacts": 7358230, "classic_impacts": 3315269, "digital_impacts": 4042961, "digital_pct": 55}, {"region": "Yorkshire", "environment": "Motorway Service Station", "total_weekly_impacts": 6335776, "classic_impacts": 2040163, "digital_impacts": 4295613, "digital_pct": 68}, {"region": "East Of England", "environment": "Motorway Service Station", "total_weekly_impacts": 5948707, "classic_impacts": 2536088, "digital_impacts": 3412619, "digital_pct": 57}, {"region": "Border", "environment": "Roadside", "total_weekly_impacts": 5663077, "classic_impacts": 3532162, "digital_impacts": 2130915, "digital_pct": 38}, {"region": "North Scotland", "environment": "Supermarket Exterior", "total_weekly_impacts": 4855514, "classic_impacts": 0, "digital_impacts": 4855514, "digital_pct": 100}, {"region": "South West", "environment": "Supermarket Exterior", "total_weekly_impacts": 4665023, "classic_impacts": 38777, "digital_impacts": 4626246, "digital_pct": 99}, {"region": "Border", "environment": "Bus", "total_weekly_impacts": 4180618, "classic_impacts": 4180618, "digital_impacts": 0, "digital_pct": 0}, {"region": "South West", "environment": "Rail Station", "total_weekly_impacts": 3226479, "classic_impacts": 2575940, "digital_impacts": 650539, "digital_pct": 20}, {"region": "Yorkshire", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 3127069, "classic_impacts": 0, "digital_impacts": 3127069, "digital_pct": 100}, {"region": "South and South-East", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 2668026, "classic_impacts": 824942, "digital_impacts": 1843084, "digital_pct": 69}, {"region": "East Of England", "environment": "Train Carriage Interior", "total_weekly_impacts": 2373686, "classic_impacts": 2373686, "digital_impacts": 0, "digital_pct": 0}, {"region": "Border", "environment": "Motorway Service Station", "total_weekly_impacts": 2198603, "classic_impacts": 632003, "digital_impacts": 1566600, "digital_pct": 71}, {"region": "Midlands", "environment": "Train Carriage Interior", "total_weekly_impacts": 1936397, "classic_impacts": 1936397, "digital_impacts": 0, "digital_pct": 0}, {"region": "Wales", "environment": "Motorway Service Station", "total_weekly_impacts": 1790095, "classic_impacts": 591754, "digital_impacts": 1198341, "digital_pct": 67}, {"region": "North West", "environment": "Train Carriage Interior", "total_weekly_impacts": 1745667, "classic_impacts": 1745667, "digital_impacts": 0, "digital_pct": 0}, {"region": "Central Scotland", "environment": "Motorway Service Station", "total_weekly_impacts": 1424409, "classic_impacts": 437580, "digital_impacts": 986829, "digital_pct": 69}, {"region": "North Scotland", "environment": "Rail Station", "total_weekly_impacts": 1391076, "classic_impacts": 1217272, "digital_impacts": 173804, "digital_pct": 12}, {"region": "North East", "environment": "Motorway Service Station", "total_weekly_impacts": 1232765, "classic_impacts": 530120, "digital_impacts": 702645, "digital_pct": 57}, {"region": "East Of England", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 1156214, "classic_impacts": 1037012, "digital_impacts": 119202, "digital_pct": 10}, {"region": "South West", "environment": "Motorway Service Station", "total_weekly_impacts": 1116858, "classic_impacts": 533616, "digital_impacts": 583242, "digital_pct": 52}, {"region": "South West", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 532680, "classic_impacts": 0, "digital_impacts": 532680, "digital_pct": 100}, {"region": "Wales", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 497839, "classic_impacts": 107380, "digital_impacts": 390459, "digital_pct": 78}, {"region": "West", "environment": "Taxi", "total_weekly_impacts": 487901, "classic_impacts": 487901, "digital_impacts": 0, "digital_pct": 0}, {"region": "South and South-East", "environment": "Taxi", "total_weekly_impacts": 405985, "classic_impacts": 405985, "digital_impacts": 0, "digital_pct": 0}, {"region": "Central Scotland", "environment": "Shopping Centre Exterior", "total_weekly_impacts": 373214, "classic_impacts": 0, "digital_impacts": 373214, "digital_pct": 100}, {"region": "Border", "environment": "Supermarket Exterior", "total_weekly_impacts": 361951, "classic_impacts": 0, "digital_impacts": 361951, "digital_pct": 100}, {"region": "Wales", "environment": "Taxi", "total_weekly_impacts": 235171, "classic_impacts": 235171, "digital_impacts": 0, "digital_pct": 0}, {"region": "Yorkshire", "environment": "Train Carriage Interior", "total_weekly_impacts": 125718, "classic_impacts": 125718, "digital_impacts": 0, "digital_pct": 0}, {"region": "South West", "environment": "Train Carriage Interior", "total_weekly_impacts": 99725, "classic_impacts": 99725, "digital_impacts": 0, "digital_pct": 0}, {"region": "Border", "environment": "Rail Station", "total_weekly_impacts": 93550, "classic_impacts": 11579, "digital_impacts": 81971, "digital_pct": 88}, {"region": "Central Scotland", "environment": "Tube Carriage Interior", "total_weekly_impacts": 34936, "classic_impacts": 34936, "digital_impacts": 0, "digital_pct": 0}, {"region": "North East", "environment": "Train Carriage Interior", "total_weekly_impacts": 31998, "classic_impacts": 31998, "digital_impacts": 0, "digital_pct": 0}];
+
+const isDark = matchMedia('(prefers-color-scheme:dark)').matches;
+const gc = isDark ? 'rgba(255,255,255,.08)' : 'rgba(0,0,0,.07)';
+const tc = isDark ? 'rgba(255,255,255,.5)' : 'rgba(0,0,0,.45)';
+
+const sel = document.getElementById('envSelect');
+sel.add(new Option('All Environments', '__ALL__'));
+const envs = [...new Set(ALL_DATA.map(d => d.environment))].sort();
+envs.forEach(e => { const o = document.createElement('option'); o.value = e; o.textContent = e; sel.appendChild(o); });
+
+let chart;
+
+function getRows(env) {
+  if (env === '__ALL__') {
+    const byRegion = {};
+    ALL_DATA.forEach(d => {
+      if (!byRegion[d.region]) byRegion[d.region] = { region: d.region, classic_impacts: 0, digital_impacts: 0, total_weekly_impacts: 0 };
+      byRegion[d.region].classic_impacts += d.classic_impacts;
+      byRegion[d.region].digital_impacts += d.digital_impacts;
+      byRegion[d.region].total_weekly_impacts += d.total_weekly_impacts;
+    });
+    return Object.values(byRegion).map(r => ({
+      ...r,
+      digital_pct: r.total_weekly_impacts > 0 ? Math.round(r.digital_impacts / r.total_weekly_impacts * 100) : 0
+    })).sort((a, b) => b.total_weekly_impacts - a.total_weekly_impacts);
+  }
+  return ALL_DATA.filter(d => d.environment === env)
+                 .sort((a, b) => b.total_weekly_impacts - a.total_weekly_impacts);
+}
+
+function update() {
+  const rows = getRows(sel.value);
+  const labels  = rows.map(r => r.region);
+  const classic = rows.map(r => r.classic_impacts);
+  const digital = rows.map(r => r.digital_impacts);
+
+  if (chart) chart.destroy();
+  chart = new Chart(document.getElementById('chartRXE'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Classic', data: classic, backgroundColor: '#7F77DD', stack: 's' },
+        { label: 'Digital', data: digital, backgroundColor: '#378ADD', stack: 's' }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + (ctx.parsed.x / 1e6).toFixed(1) + 'M' } }
+      },
+      scales: {
+        x: { stacked: true, grid: { color: gc }, ticks: { color: tc, font: { size: 11 }, callback: v => v / 1e6 + 'M' } },
+        y: { stacked: true, grid: { color: 'transparent' }, ticks: { color: tc, font: { size: 11 }, autoSkip: false } }
+      }
+    }
+  });
+
+  document.getElementById('tableBody').innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.region}</td>
+      <td>${r.classic_impacts.toLocaleString()}</td>
+      <td>${r.digital_impacts.toLocaleString()}</td>
+      <td>${r.total_weekly_impacts.toLocaleString()}</td>
+      <td>${r.digital_pct}%</td>
+    </tr>
+  `).join('');
+}
+
+sel.addEventListener('change', update);
+update();
+</script>
+</body>
+</html>

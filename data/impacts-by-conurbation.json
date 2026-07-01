@@ -1,0 +1,102 @@
+[
+  {
+    "conurbation": "Greater London",
+    "weekly_impacts": 8151607198
+  },
+  {
+    "conurbation": "No conurbation",
+    "weekly_impacts": 1645486991
+  },
+  {
+    "conurbation": "West Midlands",
+    "weekly_impacts": 823762116
+  },
+  {
+    "conurbation": "Greater Manchester",
+    "weekly_impacts": 768152436
+  },
+  {
+    "conurbation": "Greater Glasgow",
+    "weekly_impacts": 375168303
+  },
+  {
+    "conurbation": "West Yorkshire",
+    "weekly_impacts": 364774636
+  },
+  {
+    "conurbation": "Liverpool",
+    "weekly_impacts": 260454012
+  },
+  {
+    "conurbation": "Tyneside",
+    "weekly_impacts": 228246054
+  },
+  {
+    "conurbation": "Sheffield",
+    "weekly_impacts": 224998042
+  },
+  {
+    "conurbation": "Cardiff",
+    "weekly_impacts": 169720075
+  },
+  {
+    "conurbation": "Edinburgh",
+    "weekly_impacts": 152092438
+  },
+  {
+    "conurbation": "South Hampshire",
+    "weekly_impacts": 126180854
+  },
+  {
+    "conurbation": "Bristol",
+    "weekly_impacts": 108340767
+  },
+  {
+    "conurbation": "Nottingham",
+    "weekly_impacts": 91585988
+  },
+  {
+    "conurbation": "Coventry",
+    "weekly_impacts": 66994183
+  },
+  {
+    "conurbation": "Brighton and Hove",
+    "weekly_impacts": 66452256
+  },
+  {
+    "conurbation": "Reading",
+    "weekly_impacts": 59236001
+  },
+  {
+    "conurbation": "Leicester",
+    "weekly_impacts": 56292830
+  },
+  {
+    "conurbation": "Kingston upon Hull",
+    "weekly_impacts": 51205715
+  },
+  {
+    "conurbation": "Stoke-on-Trent",
+    "weekly_impacts": 45380575
+  },
+  {
+    "conurbation": "Teesside",
+    "weekly_impacts": 37192829
+  },
+  {
+    "conurbation": "Bournemouth/Poole",
+    "weekly_impacts": 33844746
+  },
+  {
+    "conurbation": "Swansea",
+    "weekly_impacts": 26201560
+  },
+  {
+    "conurbation": "Birkenhead",
+    "weekly_impacts": 24999448
+  },
+  {
+    "conurbation": "Southend On Sea",
+    "weekly_impacts": 24321705
+  }
+]

@@ -1,0 +1,248 @@
+[
+  {
+    "media_owner": "Global",
+    "frames": 230059,
+    "regions": 13,
+    "environments": 8
+  },
+  {
+    "media_owner": "KBH",
+    "frames": 67248,
+    "regions": 9,
+    "environments": 2
+  },
+  {
+    "media_owner": "JCDecaux",
+    "frames": 28684,
+    "regions": 13,
+    "environments": 5
+  },
+  {
+    "media_owner": "Bauer Media Outdoor",
+    "frames": 28297,
+    "regions": 13,
+    "environments": 5
+  },
+  {
+    "media_owner": "Bay Media",
+    "frames": 10962,
+    "regions": 9,
+    "environments": 2
+  },
+  {
+    "media_owner": "Ubiquitous",
+    "frames": 6105,
+    "regions": 7,
+    "environments": 1
+  },
+  {
+    "media_owner": "Sherbet London",
+    "frames": 1679,
+    "regions": 2,
+    "environments": 1
+  },
+  {
+    "media_owner": "Alight Media",
+    "frames": 1505,
+    "regions": 13,
+    "environments": 2
+  },
+  {
+    "media_owner": "i-Media Advertising",
+    "frames": 1416,
+    "regions": 13,
+    "environments": 2
+  },
+  {
+    "media_owner": "Fernbank",
+    "frames": 950,
+    "regions": 2,
+    "environments": 1
+  },
+  {
+    "media_owner": "Coop",
+    "frames": 872,
+    "regions": 13,
+    "environments": 1
+  },
+  {
+    "media_owner": "75Media",
+    "frames": 858,
+    "regions": 12,
+    "environments": 1
+  },
+  {
+    "media_owner": "Build",
+    "frames": 765,
+    "regions": 10,
+    "environments": 1
+  },
+  {
+    "media_owner": "Limited Space",
+    "frames": 567,
+    "regions": 11,
+    "environments": 1
+  },
+  {
+    "media_owner": "Ocean Outdoor",
+    "frames": 560,
+    "regions": 11,
+    "environments": 3
+  },
+  {
+    "media_owner": "Pop Art media Group",
+    "frames": 556,
+    "regions": 1,
+    "environments": 2
+  },
+  {
+    "media_owner": "Hi! Street Digital",
+    "frames": 496,
+    "regions": 12,
+    "environments": 1
+  },
+  {
+    "media_owner": "Route Media",
+    "frames": 374,
+    "regions": 4,
+    "environments": 2
+  },
+  {
+    "media_owner": "Gb Outdoor Ltd",
+    "frames": 347,
+    "regions": 10,
+    "environments": 2
+  },
+  {
+    "media_owner": "Pixology Outdoor",
+    "frames": 288,
+    "regions": 1,
+    "environments": 1
+  },
+  {
+    "media_owner": "Dunnhumby (Tesco)",
+    "frames": 225,
+    "regions": 9,
+    "environments": 1
+  },
+  {
+    "media_owner": "Elonex Outdoor Media",
+    "frames": 186,
+    "regions": 11,
+    "environments": 3
+  },
+  {
+    "media_owner": "Global Street Art",
+    "frames": 178,
+    "regions": 9,
+    "environments": 2
+  },
+  {
+    "media_owner": "Jolt",
+    "frames": 124,
+    "regions": 1,
+    "environments": 1
+  },
+  {
+    "media_owner": "Reach Passengers",
+    "frames": 119,
+    "regions": 5,
+    "environments": 1
+  },
+  {
+    "media_owner": "Boomerang Media",
+    "frames": 113,
+    "regions": 8,
+    "environments": 1
+  },
+  {
+    "media_owner": "Smart Outdoor",
+    "frames": 83,
+    "regions": 8,
+    "environments": 2
+  },
+  {
+    "media_owner": "Mural Republic",
+    "frames": 72,
+    "regions": 7,
+    "environments": 2
+  },
+  {
+    "media_owner": "London Lites",
+    "frames": 62,
+    "regions": 1,
+    "environments": 3
+  },
+  {
+    "media_owner": "Out of Hand Maximus",
+    "frames": 56,
+    "regions": 5,
+    "environments": 1
+  },
+  {
+    "media_owner": "Open Media",
+    "frames": 35,
+    "regions": 7,
+    "environments": 2
+  },
+  {
+    "media_owner": "Crystal Clear Media",
+    "frames": 18,
+    "regions": 3,
+    "environments": 2
+  },
+  {
+    "media_owner": "City Outdoor Media",
+    "frames": 15,
+    "regions": 3,
+    "environments": 1
+  },
+  {
+    "media_owner": "EOM DOOH LTD",
+    "frames": 8,
+    "regions": 3,
+    "environments": 2
+  },
+  {
+    "media_owner": "Maxx Media",
+    "frames": 7,
+    "regions": 4,
+    "environments": 1
+  },
+  {
+    "media_owner": "Pearl & Dean Outdoor",
+    "frames": 5,
+    "regions": 1,
+    "environments": 1
+  },
+  {
+    "media_owner": "BlowUP Media",
+    "frames": 5,
+    "regions": 3,
+    "environments": 2
+  },
+  {
+    "media_owner": "T4 MEDIA",
+    "frames": 3,
+    "regions": 2,
+    "environments": 1
+  },
+  {
+    "media_owner": "Connexin Media",
+    "frames": 3,
+    "regions": 1,
+    "environments": 1
+  },
+  {
+    "media_owner": "MediaCo OOH",
+    "frames": 2,
+    "regions": 2,
+    "environments": 1
+  },
+  {
+    "media_owner": "GEM Display",
+    "frames": 1,
+    "regions": 1,
+    "environments": 1
+  }
+]
