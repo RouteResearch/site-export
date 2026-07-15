@@ -17,14 +17,15 @@
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#fff;--bg2:#f5f4f0;--bg3:#eeedea;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px;--rl:12px}
-@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--bg3:#333330;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+:root{--bg:#fff;--bg2:#f5f4f0;--bg3:#eeedea;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--link:#333092;--logo-filter:invert(1);--r:8px;--rl:12px}
+@media(prefers-color-scheme:dark){:root{--link:#9A9CCD;--logo-filter:none;--bg:#1e1e1c;--bg2:#2a2a27;--bg3:#333330;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
 nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:10}
-.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-brand{display:flex;align-items:center;gap:16px;font-size:14px;font-weight:500;padding:12px 0;margin-right:36px;color:var(--text);text-decoration:none}
+.nav-logo{height:28px;width:auto;display:block;filter:var(--logo-filter)}
 .nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent;transition:color .15s}
 .nav-link:hover{color:var(--text)}
-.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-link.active{color:var(--link);border-bottom-color:var(--link)}
 main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
 h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
@@ -42,7 +43,7 @@ td:not(:first-child){text-align:right}
 tr.total td{color:var(--text);font-weight:500}
 .note{font-size:11px;color:var(--text3);margin-top:8px}
 .data-links{display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap}
-.data-link{font-size:12px;color:var(--accent);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
+.data-link{font-size:12px;color:var(--link);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
 .data-link:hover{text-decoration:underline}
 .pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:0.5px solid var(--border)}
 .pagination-info{color:var(--text3);font-size:12px}
@@ -55,7 +56,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="../index.html">Route 58</a>
+  <a class="nav-brand" href="../index.html"><img class="nav-logo" src="../assets/route-logo.png" alt="Route">Route 58</a>
   <a class="nav-link" href="../index.html">Overview</a>
   <a class="nav-link active" href="index.html">Environment</a>
   <a class="nav-link" href="../region/index.html">Region</a>
@@ -77,8 +78,8 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
   <div class="section">
     <div class="section-title">Weekly impacts by environment</div>
     <div class="legend-row">
-      <span><span class="legend-sq" style="background:#378ADD"></span>Classic</span>
-      <span><span class="legend-sq" style="background:#1D9E75"></span>Digital</span>
+      <span><span class="legend-sq" style="background:#EC098D"></span>Classic</span>
+      <span><span class="legend-sq" style="background:#FFDE6C"></span>Digital</span>
     </div>
     <div class="chart-wrap" style="height:520px">
       <canvas id="chartEnv"></canvas>
@@ -281,7 +282,6 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
         
       </tbody>
     </table>
-    <p class="note">Note: Cover is not additive — audiences overlap across environments. Total cover figure reflects unduplicated reach across all environments.</p>
   </div>
 </main>
 <footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
@@ -297,8 +297,8 @@ new Chart(document.getElementById('chartEnv'),{
   data:{
     labels:["Roadside", "UndergroundStation-London", "Shopping Centre Interior", "Rail Station", "Bus", "Supermarket Exterior", "Tube Carriage Interior", "Taxi", "Motorway Service Station", "Shopping Centre Exterior", "Train Carriage Interior", "UndergroundStation-Glasgow", "Tram LR Carriage Interior"],
     datasets:[
-      {label:'Classic',data:[3513, 2419, 129, 616, 1070, 47, 210, 150, 28, 6, 42, 15, 21],backgroundColor:'#378ADD'},
-      {label:'Digital',data:[2093, 811, 1841, 705, 0, 165, 0, 0, 56, 38, 0, 8, 0],backgroundColor:'#1D9E75'}
+      {label:'Classic',data:[3513, 2419, 129, 616, 1070, 47, 210, 150, 28, 6, 42, 15, 21],backgroundColor:'#EC098D'},
+      {label:'Digital',data:[2093, 811, 1841, 705, 0, 165, 0, 0, 56, 38, 0, 8, 0],backgroundColor:'#FFDE6C'}
     ]
   },
   options:{

@@ -8,21 +8,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--r:8px}
-@media(prefers-color-scheme:dark){:root{--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
+:root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--link:#333092;--logo-filter:invert(1);--r:8px}
+@media(prefers-color-scheme:dark){:root{--link:#9A9CCD;--logo-filter:none;--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
 nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:1000;flex-wrap:wrap}
-.nav-brand{font-size:14px;font-weight:500;padding:12px 0;margin-right:24px;color:var(--text);text-decoration:none}
+.nav-brand{display:flex;align-items:center;gap:16px;font-size:14px;font-weight:500;padding:12px 0;margin-right:36px;color:var(--text);text-decoration:none}
+.nav-logo{height:28px;width:auto;display:block;filter:var(--logo-filter)}
 .nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent;transition:color .15s}
 .nav-link:hover{color:var(--text)}
-.nav-link.active{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-link.active{color:var(--link);border-bottom-color:var(--link)}
 main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
 h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
 .section{margin-bottom:2rem}
 .section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
 .data-links{display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap}
-.data-link{font-size:12px;color:var(--accent);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
+.data-link{font-size:12px;color:var(--link);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
 .data-link:hover{text-decoration:underline}
 
 /* Filters */
@@ -37,8 +38,17 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .kpi-val{font-size:26px;font-weight:500}
 
 /* Map */
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:12px;color:var(--text2)}
+.legend-sq{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+#map-wrap{position:relative}
 #map{height:500px;border-radius:var(--r);border:0.5px solid var(--border2);overflow:hidden}
 .note{font-size:11px;color:var(--text3);margin-top:8px}
+
+#frame-tooltip{position:absolute;display:none;z-index:10;pointer-events:none;background:#fff;color:#1a1a18;border-radius:var(--r);box-shadow:0 4px 16px rgba(0,0,0,.25);padding:10px 14px;font-size:13px;min-width:200px}
+#frame-tooltip .ft-row{display:flex;justify-content:space-between;gap:16px;padding:3px 0}
+#frame-tooltip .ft-row+.ft-row{border-top:0.5px solid rgba(0,0,0,.1)}
+#frame-tooltip .ft-label{font-weight:600;white-space:nowrap}
+#frame-tooltip .ft-value{color:#48473f;text-align:right}
 
 /* Table */
 .table-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;color:var(--text2)}
@@ -64,7 +74,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="../index.html">Route 58</a>
+  <a class="nav-brand" href="../index.html"><img class="nav-logo" src="../assets/route-logo.png" alt="Route">Route 58</a>
   <a class="nav-link" href="../index.html">Overview</a>
   <a class="nav-link" href="../environment/index.html">Environment</a>
   <a class="nav-link" href="../region/index.html">Region</a>
@@ -104,8 +114,14 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 
     <div class="section">
       <div class="section-title">Frame locations</div>
-      <div id="map"></div>
-      <p class="note" id="map-note" style="display:none"></p>
+      <div class="legend-row">
+        <span><span class="legend-sq" style="background:#EC098D"></span>Classic</span>
+        <span><span class="legend-sq" style="background:#FFDE6C"></span>Digital</span>
+      </div>
+      <div id="map-wrap">
+        <div id="map"></div>
+        <div id="frame-tooltip"></div>
+      </div>
     </div>
 
     <div class="section">
@@ -139,7 +155,6 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 
 <script>
 const PAGE_SIZE = 10;
-const MAP_LIMIT = 10000;
 
 const FILTERS = [
   { id: 'f-ft',    col: 'FrameTypeClassicDigital', nullLabel: null },
@@ -152,6 +167,7 @@ const FILTERS = [
 ];
 
 let ALL = [], filtered = [], page = 0;
+let mapPoints = [], mapListenersBound = false;
 
 async function init() {
   const resp = await fetch('../data/frames.csv');
@@ -242,16 +258,21 @@ function renderKPIs() {
 }
 
 function renderMap() {
-  const sample = filtered.length > MAP_LIMIT ? filtered.slice(0, MAP_LIMIT) : filtered;
-  const pts = sample.filter(r => r.Latitude && r.Longitude);
+  const pts = filtered.filter(r => r.Latitude && r.Longitude);
+  mapPoints = pts;
 
   let centerLat = 54.5, centerLon = -2, zoom = 5;
   if (pts.length > 0) {
-    const lats = pts.map(r => r.Latitude);
-    const lons = pts.map(r => r.Longitude);
-    centerLat = (Math.min(...lats) + Math.max(...lats)) / 2;
-    centerLon = (Math.min(...lons) + Math.max(...lons)) / 2;
-    const span = Math.max(Math.max(...lats) - Math.min(...lats), Math.max(...lons) - Math.min(...lons));
+    let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
+    for (const r of pts) {
+      if (r.Latitude < minLat) minLat = r.Latitude;
+      if (r.Latitude > maxLat) maxLat = r.Latitude;
+      if (r.Longitude < minLon) minLon = r.Longitude;
+      if (r.Longitude > maxLon) maxLon = r.Longitude;
+    }
+    centerLat = (minLat + maxLat) / 2;
+    centerLon = (minLon + maxLon) / 2;
+    const span = Math.max(maxLat - minLat, maxLon - minLon);
     zoom = span > 8 ? 5 : span > 4 ? 6 : span > 2 ? 7 : span > 1 ? 8 : span > 0.5 ? 9 : span > 0.2 ? 10 : 11;
   }
 
@@ -260,26 +281,60 @@ function renderMap() {
     mode: 'markers',
     lat: pts.map(r => r.Latitude),
     lon: pts.map(r => r.Longitude),
-    text: pts.map(r => `${r.FrameID} · ${r.EnvironmentDescription || '—'}`),
-    hovertemplate: '%{text}<extra></extra>',
+    hoverinfo: 'none',
     marker: {
       size: 6,
-      color: pts.map(r => r.FrameTypeClassicDigital === 'Digital' ? '#378ADD' : '#7F77DD'),
+      color: pts.map(r => r.FrameTypeClassicDigital === 'Digital' ? '#FFDE6C' : '#EC098D'),
       opacity: 0.7,
     },
   }], {
-    map: { style: 'open-street-map', center: { lat: centerLat, lon: centerLon }, zoom },
+    map: { style: 'carto-darkmatter', center: { lat: centerLat, lon: centerLon }, zoom },
     margin: { t: 0, r: 0, b: 0, l: 0 },
     paper_bgcolor: 'transparent',
-  }, { responsive: true });
+  }, { responsive: true }).then(gd => {
+    if (!mapListenersBound) {
+      bindMapHover(gd);
+      mapListenersBound = true;
+    }
+  });
+}
 
-  const note = document.getElementById('map-note');
-  if (filtered.length > MAP_LIMIT) {
-    note.textContent = `Showing first ${MAP_LIMIT.toLocaleString()} of ${filtered.length.toLocaleString()} frames on map — apply more filters to see all.`;
-    note.style.display = 'block';
-  } else {
-    note.style.display = 'none';
-  }
+function bindMapHover(gd) {
+  const tooltip = document.getElementById('frame-tooltip');
+  const wrap = document.getElementById('map-wrap');
+
+  gd.on('plotly_hover', (e) => {
+    const pt = e.points && e.points[0];
+    const r = pt && mapPoints[pt.pointIndex];
+    if (!r || !pt.bbox) return;
+
+    tooltip.innerHTML = `
+      <div class="ft-row"><span class="ft-label">Frame ID</span><span class="ft-value">${r.FrameID}</span></div>
+      <div class="ft-row"><span class="ft-label">Media Owner</span><span class="ft-value">${r.MediaOwnerName || '—'}</span></div>
+      <div class="ft-row"><span class="ft-label">Environment</span><span class="ft-value">${r.EnvironmentDescription || '—'}</span></div>
+      <div class="ft-row"><span class="ft-label">Frame Type</span><span class="ft-value">${r.FrameTypeClassicDigital || '—'}</span></div>
+    `;
+
+    // bbox is the marker's pixel position relative to the map div (map-wrap has no offset from it)
+    const px = (pt.bbox.x0 + pt.bbox.x1) / 2;
+    const py = (pt.bbox.y0 + pt.bbox.y1) / 2;
+
+    const rect = wrap.getBoundingClientRect();
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.display = 'block';
+    const tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+
+    let left = px + 14;
+    let top = py + 14;
+    if (left + tw > rect.width) left = px - tw - 14;
+    if (top + th > rect.height) top = py - th - 14;
+
+    tooltip.style.left = Math.max(0, left) + 'px';
+    tooltip.style.top = Math.max(0, top) + 'px';
+    tooltip.style.visibility = 'visible';
+  });
+
+  gd.on('plotly_unhover', () => { tooltip.style.display = 'none'; });
 }
 
 function renderTable() {

@@ -4,7 +4,7 @@ Release: Route 58
 Data week: March 2025 (one representative week)
 Default schedule: 10-second spot / 0-second break
 Population base: GB adults aged 15+ (55,590,969)
-Generated: 2026-06-16
+Generated: 2026-07-15
 
 ## What this site contains
 Structured audience measurement data for Out-of-Home (OOH) advertising in Great Britain,
@@ -29,6 +29,7 @@ All data is available as structured JSON in the /data/ directory.
 /data/impacts-by-region.json     — weekly impacts + reach by BARB TV region (13 regions)
 /data/impacts-by-conurbation.json — weekly impacts for 25 named conurbations
 /data/media-owners.json          — frame counts for 41 media owners
+/data/trends.json                — frame counts + weekly impacts by release quarter, classic vs digital split
 
 ## Important caveats for agents
 1. SCHEDULE SENSITIVITY: Impact figures change significantly with spot/break schedule.

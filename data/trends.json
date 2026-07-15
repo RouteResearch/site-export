@@ -1,0 +1,92 @@
+[
+  {
+    "quarter": "Q1 2024",
+    "classic_frames": 369255,
+    "digital_frames": 15889,
+    "total_frames": 385144,
+    "classic_impacts": 8550932886,
+    "digital_impacts": 785170070,
+    "total_impacts": 9336102956
+  },
+  {
+    "quarter": "Q2 2024",
+    "classic_frames": 367511,
+    "digital_frames": 15935,
+    "total_frames": 383446,
+    "classic_impacts": 8354492510,
+    "digital_impacts": 732050276,
+    "total_impacts": 9086542786
+  },
+  {
+    "quarter": "Q3 2024",
+    "classic_frames": 367152,
+    "digital_frames": 16198,
+    "total_frames": 383350,
+    "classic_impacts": 8252590811,
+    "digital_impacts": 731616327,
+    "total_impacts": 8984207138
+  },
+  {
+    "quarter": "Q4 2024",
+    "classic_frames": 365834,
+    "digital_frames": 17215,
+    "total_frames": 383049,
+    "classic_impacts": 8355371927,
+    "digital_impacts": 823271886,
+    "total_impacts": 9178643813
+  },
+  {
+    "quarter": "Q1 2025",
+    "classic_frames": 364931,
+    "digital_frames": 17344,
+    "total_frames": 382275,
+    "classic_impacts": 8404991488,
+    "digital_impacts": 918860913,
+    "total_impacts": 9323852401
+  },
+  {
+    "quarter": "Q2 2025",
+    "classic_frames": 365183,
+    "digital_frames": 17180,
+    "total_frames": 382363,
+    "classic_impacts": 8177655264,
+    "digital_impacts": 879177207,
+    "total_impacts": 9056832471
+  },
+  {
+    "quarter": "Q3 2025",
+    "classic_frames": 365336,
+    "digital_frames": 18793,
+    "total_frames": 384129,
+    "classic_impacts": 8217627105,
+    "digital_impacts": 932350262,
+    "total_impacts": 9149977367
+  },
+  {
+    "quarter": "Q4 2025",
+    "classic_frames": 364978,
+    "digital_frames": 19160,
+    "total_frames": 384138,
+    "classic_impacts": 8128221891,
+    "digital_impacts": 940657446,
+    "total_impacts": 9068879337
+  },
+  {
+    "quarter": "Q1 2026",
+    "classic_frames": 363972,
+    "digital_frames": 19936,
+    "total_frames": 383908,
+    "classic_impacts": 8092615994,
+    "digital_impacts": 952826596,
+    "total_impacts": 9045442590
+  },
+  {
+    "quarter": "Q2 2026",
+    "classic_frames": 354338,
+    "digital_frames": 20214,
+    "total_frames": 374552,
+    "classic_impacts": 8007018144,
+    "digital_impacts": 948869324,
+    "total_impacts": 8955887468
+  }
+]
