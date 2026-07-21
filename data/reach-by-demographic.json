@@ -1,42 +1,42 @@
 [
   {
     "demographic": "All Adults",
-    "reach": 53906873,
-    "cover_pct": 96.97
+    "reach": 53883590,
+    "cover_pct": 96.93
   },
   {
     "demographic": "Main Shopper",
-    "reach": 43210912,
-    "cover_pct": 96.98
+    "reach": 43192514,
+    "cover_pct": 96.94
   },
   {
     "demographic": "ABC1",
-    "reach": 30177759,
-    "cover_pct": 97.77
+    "reach": 30167781,
+    "cover_pct": 97.74
   },
   {
     "demographic": "C2DE",
-    "reach": 23729113,
-    "cover_pct": 95.97
+    "reach": 23715809,
+    "cover_pct": 95.92
   },
   {
     "demographic": "All Adults 55+",
-    "reach": 20526529,
-    "cover_pct": 96.17
+    "reach": 20515761,
+    "cover_pct": 96.12
   },
   {
     "demographic": "All Adults 35-54",
-    "reach": 16823531,
-    "cover_pct": 97.67
+    "reach": 16816984,
+    "cover_pct": 97.64
   },
   {
     "demographic": "All Adults 15-34",
-    "reach": 16556813,
-    "cover_pct": 97.27
+    "reach": 16550844,
+    "cover_pct": 97.23
   },
   {
     "demographic": "Main Shopper with children",
-    "reach": 12704482,
-    "cover_pct": 97.5
+    "reach": 12701048,
+    "cover_pct": 97.47
   }
 ]

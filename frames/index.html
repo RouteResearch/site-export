@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frame Explorer — Route 58</title>
+<title>Frame Explorer — Route 59</title>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
@@ -56,7 +56,8 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .table-nav-btns button{font-size:12px;padding:4px 12px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer}
 .table-nav-btns button:disabled{opacity:.35;cursor:default}
 .table-nav-btns button:not(:disabled):hover{background:var(--bg)}
-table{width:100%;border-collapse:collapse;font-size:12px}
+.table-wrap{overflow-x:auto}
+table{width:100%;min-width:640px;border-collapse:collapse;font-size:12px}
 thead tr{border-bottom:0.5px solid var(--border2)}
 th{text-align:left;padding:7px 8px;font-weight:500;color:var(--text2);font-size:11px;white-space:nowrap}
 th:last-child{text-align:right}
@@ -74,7 +75,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="../index.html"><img class="nav-logo" src="../assets/route-logo.png" alt="Route">Route 58</a>
+  <a class="nav-brand" href="../index.html"><img class="nav-logo" src="../assets/route-logo.png" alt="Route">Route 59</a>
   <a class="nav-link" href="../index.html">Overview</a>
   <a class="nav-link" href="../environment/index.html">Environment</a>
   <a class="nav-link" href="../region/index.html">Region</a>
@@ -86,7 +87,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 </nav>
 <main>
   <h1>Frame Explorer</h1>
-  <p class="subtitle">All Route 58 frames with location. Data: week in March 2025 · GB adults 15+</p>
+  <p class="subtitle">All Route 59 frames with location. Data: week in March 2026 · GB adults 15+</p>
 
   <div class="data-links">
     <a class="data-link" href="../data/frames.csv">frames.csv</a>
@@ -133,25 +134,27 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
           <button id="btn-next" disabled>Next →</button>
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Frame ID</th>
-            <th>Type</th>
-            <th>Region</th>
-            <th>Conurbation</th>
-            <th>Environment</th>
-            <th>POI</th>
-            <th>Media owner</th>
-            <th>Postal district</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Frame ID</th>
+              <th>Type</th>
+              <th>Region</th>
+              <th>Conurbation</th>
+              <th>Environment</th>
+              <th>POI</th>
+              <th>Media owner</th>
+              <th>Postal district</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </main>
-<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<footer>Route 59 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
 
 <script>
 const PAGE_SIZE = 10;

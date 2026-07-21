@@ -1,67 +1,67 @@
 {
   "frames": {
-    "total": 383908,
-    "classic": 363972,
-    "digital": 19936
+    "total": 374552,
+    "classic": 354338,
+    "digital": 20214
   },
-  "weekly_impacts": 13982691745,
+  "weekly_impacts": 13871030298,
   "reach": {
-    "total": 53906874,
-    "cover_pct": 96.97,
-    "digital_only": 48231518,
-    "classic_only": 53628531
+    "total": 53883591,
+    "cover_pct": 96.93,
+    "digital_only": 48452348,
+    "classic_only": 53588859
   },
   "population": 55590969,
   "reach_by_month": [
     {
       "month": "Jan",
-      "reach": 53864814
+      "reach": 53840475
     },
     {
       "month": "Feb",
-      "reach": 53880575
+      "reach": 53856036
     },
     {
       "month": "Mar",
-      "reach": 53906873
+      "reach": 53883590
     },
     {
       "month": "Apr",
-      "reach": 53889669
+      "reach": 53866394
     },
     {
       "month": "May",
-      "reach": 53906819
+      "reach": 53883855
     },
     {
       "month": "Jun",
-      "reach": 53910694
+      "reach": 53887518
     },
     {
       "month": "Jul",
-      "reach": 53908731
+      "reach": 53886480
     },
     {
       "month": "Aug",
-      "reach": 53878705
+      "reach": 53854989
     },
     {
       "month": "Sep",
-      "reach": 53906379
+      "reach": 53883147
     },
     {
       "month": "Oct",
-      "reach": 53909930
+      "reach": 53886569
     },
     {
       "month": "Nov",
-      "reach": 53924994
+      "reach": 53902432
     },
     {
       "month": "Dec",
-      "reach": 53833048
+      "reach": 53806884
     }
   ],
-  "release": "Route 58",
-  "data_week": "March 2025"
+  "release": "Route 59",
+  "data_week": "March 2026"
 }

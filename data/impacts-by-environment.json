@@ -1,78 +1,78 @@
 [
   {
-    "environment": "Roadside",
-    "total_weekly_impacts": 5606137779,
-    "classic_impacts": 3512819094,
-    "digital_impacts": 2093318685,
-    "digital_pct": 37
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "total_weekly_impacts": 5564966258,
+    "classic_impacts": 3450889598,
+    "digital_impacts": 2114076660,
+    "digital_pct": 38
   },
   {
     "environment": "UndergroundStation-London",
-    "total_weekly_impacts": 3230424335,
-    "classic_impacts": 2419125798,
-    "digital_impacts": 811298537,
+    "total_weekly_impacts": 3237838552,
+    "classic_impacts": 2417141543,
+    "digital_impacts": 820697009,
     "digital_pct": 25
   },
   {
-    "environment": "Shopping Centre Interior",
-    "total_weekly_impacts": 1970031856,
-    "classic_impacts": 128916964,
-    "digital_impacts": 1841114892,
+    "environment": "Shopping centres (interior)",
+    "total_weekly_impacts": 1912248547,
+    "classic_impacts": 128682933,
+    "digital_impacts": 1783565614,
     "digital_pct": 93
   },
   {
     "environment": "Rail Station",
-    "total_weekly_impacts": 1320551683,
-    "classic_impacts": 615843428,
-    "digital_impacts": 704708255,
-    "digital_pct": 53
+    "total_weekly_impacts": 1305946489,
+    "classic_impacts": 596494445,
+    "digital_impacts": 709452044,
+    "digital_pct": 54
   },
   {
-    "environment": "Bus",
-    "total_weekly_impacts": 1069750972,
-    "classic_impacts": 1069750972,
+    "environment": "Bus (Bus exterior)",
+    "total_weekly_impacts": 1070057459,
+    "classic_impacts": 1070057459,
     "digital_impacts": 0,
     "digital_pct": 0
   },
   {
-    "environment": "Supermarket Exterior",
-    "total_weekly_impacts": 212370915,
+    "environment": "Supermarket (exterior)",
+    "total_weekly_impacts": 211750849,
     "classic_impacts": 47265229,
-    "digital_impacts": 165105686,
+    "digital_impacts": 164485620,
     "digital_pct": 78
   },
   {
-    "environment": "Tube Carriage Interior",
+    "environment": "Tube carriage interior",
     "total_weekly_impacts": 210425279,
     "classic_impacts": 210425279,
     "digital_impacts": 0,
     "digital_pct": 0
   },
   {
-    "environment": "Taxi",
+    "environment": "Taxi (Taxi exteriors)",
     "total_weekly_impacts": 150240941,
     "classic_impacts": 150240941,
     "digital_impacts": 0,
     "digital_pct": 0
   },
   {
-    "environment": "Motorway Service Station",
-    "total_weekly_impacts": 84373647,
-    "classic_impacts": 28315526,
-    "digital_impacts": 56058121,
+    "environment": "Motorway service stations",
+    "total_weekly_impacts": 82654415,
+    "classic_impacts": 28483928,
+    "digital_impacts": 54170487,
     "digital_pct": 66
   },
   {
-    "environment": "Shopping Centre Exterior",
-    "total_weekly_impacts": 43601241,
-    "classic_impacts": 5877083,
-    "digital_impacts": 37724158,
-    "digital_pct": 87
+    "environment": "Shopping centre (exterior)",
+    "total_weekly_impacts": 44267643,
+    "classic_impacts": 5130373,
+    "digital_impacts": 39137270,
+    "digital_pct": 88
   },
   {
-    "environment": "Train Carriage Interior",
-    "total_weekly_impacts": 41908856,
-    "classic_impacts": 41908856,
+    "environment": "Train carriage interior",
+    "total_weekly_impacts": 37759626,
+    "classic_impacts": 37759626,
     "digital_impacts": 0,
     "digital_pct": 0
   },
@@ -84,7 +84,7 @@
     "digital_pct": 34
   },
   {
-    "environment": "Tram LR Carriage Interior",
+    "environment": "Tram or light railway carriage interior",
     "total_weekly_impacts": 20681571,
     "classic_impacts": 20681571,
     "digital_impacts": 0,

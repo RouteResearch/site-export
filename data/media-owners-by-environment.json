@@ -1,0 +1,446 @@
+[
+  {
+    "media_owner": "Route Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 37,
+    "digital_frames": 27
+  },
+  {
+    "media_owner": "Global",
+    "environment": "Tube carriage interior",
+    "classic_frames": 96127,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "KBH",
+    "environment": "Train carriage interior",
+    "classic_frames": 58994,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Global",
+    "environment": "Tram or light railway carriage interior",
+    "classic_frames": 5512,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Global",
+    "environment": "UndergroundStation-London",
+    "classic_frames": 28059,
+    "digital_frames": 2304
+  },
+  {
+    "media_owner": "Global",
+    "environment": "Train carriage interior",
+    "classic_frames": 5130,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Global",
+    "environment": "UndergroundStation-Glasgow",
+    "classic_frames": 672,
+    "digital_frames": 105
+  },
+  {
+    "media_owner": "JCDecaux",
+    "environment": "Rail Station",
+    "classic_frames": 7380,
+    "digital_frames": 1299
+  },
+  {
+    "media_owner": "Global",
+    "environment": "Rail Station",
+    "classic_frames": 1764,
+    "digital_frames": 77
+  },
+  {
+    "media_owner": "Global",
+    "environment": "Bus (Bus exterior)",
+    "classic_frames": 70586,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Coop",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 835
+  },
+  {
+    "media_owner": "Bay Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 10908,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Reach Passengers",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 124
+  },
+  {
+    "media_owner": "Hi! Street Digital",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 494
+  },
+  {
+    "media_owner": "Dunnhumby (Tesco)",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 225
+  },
+  {
+    "media_owner": "Boomerang Media",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 6,
+    "digital_frames": 107
+  },
+  {
+    "media_owner": "Ocean Outdoor",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 79
+  },
+  {
+    "media_owner": "Bauer Media Outdoor",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 449
+  },
+  {
+    "media_owner": "Bauer Media Outdoor",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 21897,
+    "digital_frames": 4660
+  },
+  {
+    "media_owner": "Route Media",
+    "environment": "Rail Station",
+    "classic_frames": 319,
+    "digital_frames": 9
+  },
+  {
+    "media_owner": "JCDecaux",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 667
+  },
+  {
+    "media_owner": "Global",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 16129,
+    "digital_frames": 2594
+  },
+  {
+    "media_owner": "Limited Space",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 439,
+    "digital_frames": 101
+  },
+  {
+    "media_owner": "Elonex Outdoor Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 81
+  },
+  {
+    "media_owner": "Elonex Outdoor Media",
+    "environment": "Motorway service stations",
+    "classic_frames": 0,
+    "digital_frames": 12
+  },
+  {
+    "media_owner": "Bauer Media Outdoor",
+    "environment": "Rail Station",
+    "classic_frames": 125,
+    "digital_frames": 28
+  },
+  {
+    "media_owner": "Elonex Outdoor Media",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 35
+  },
+  {
+    "media_owner": "i-Media Advertising",
+    "environment": "Motorway service stations",
+    "classic_frames": 722,
+    "digital_frames": 633
+  },
+  {
+    "media_owner": "Gb Outdoor Ltd",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 1037,
+    "digital_frames": 37
+  },
+  {
+    "media_owner": "JCDecaux",
+    "environment": "Supermarket (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 536
+  },
+  {
+    "media_owner": "Ocean Outdoor",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 28,
+    "digital_frames": 108
+  },
+  {
+    "media_owner": "Bauer Media Outdoor",
+    "environment": "Supermarket (exterior)",
+    "classic_frames": 454,
+    "digital_frames": 574
+  },
+  {
+    "media_owner": "JCDecaux",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 16319,
+    "digital_frames": 2338
+  },
+  {
+    "media_owner": "Pixology Outdoor",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 225,
+    "digital_frames": 63
+  },
+  {
+    "media_owner": "BackLite UK",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 71
+  },
+  {
+    "media_owner": "Jolt",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 130
+  },
+  {
+    "media_owner": "Pearl & Dean Outdoor",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 5
+  },
+  {
+    "media_owner": "Build",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 631,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "Fernbank",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 937,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Pop Art media Group",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 555,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "i-Media Advertising",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 66
+  },
+  {
+    "media_owner": "Alight Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 678,
+    "digital_frames": 835
+  },
+  {
+    "media_owner": "Alight Media",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 22
+  },
+  {
+    "media_owner": "BackLite UK",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 3
+  },
+  {
+    "media_owner": "Ocean Outdoor",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 59,
+    "digital_frames": 291
+  },
+  {
+    "media_owner": "KBH",
+    "environment": "Rail Station",
+    "classic_frames": 400,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "JCDecaux",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 55,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Bauer Media Outdoor",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 13,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "T4 MEDIA",
+    "environment": "Rail Station",
+    "classic_frames": 3,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Ubiquitous",
+    "environment": "Taxi (Taxi exteriors)",
+    "classic_frames": 6105,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Smart Outdoor",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 101
+  },
+  {
+    "media_owner": "Sherbet London",
+    "environment": "Taxi (Taxi exteriors)",
+    "classic_frames": 1679,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Out of Hand (Maximus)",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 56,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "EOM DOOH LTD",
+    "environment": "Supermarket (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "Global Street Art",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 167,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "BackLite UK",
+    "environment": "Rail Station",
+    "classic_frames": 0,
+    "digital_frames": 2
+  },
+  {
+    "media_owner": "Bay Media",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 27,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Crystal Clear Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 15
+  },
+  {
+    "media_owner": "Mural Republic",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 91,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "Open Media",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 11
+  },
+  {
+    "media_owner": "Pop Art media Group",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "Open Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 4,
+    "digital_frames": 21
+  },
+  {
+    "media_owner": "City Outdoor Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 2,
+    "digital_frames": 14
+  },
+  {
+    "media_owner": "Smart Outdoor",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "Crystal Clear Media",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "Gb Outdoor Ltd",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "EOM DOOH LTD",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 7
+  },
+  {
+    "media_owner": "Mural Republic",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 3,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "MediaCo OOH",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 3
+  },
+  {
+    "media_owner": "BlowUP Media",
+    "environment": "Shopping centre (exterior)",
+    "classic_frames": 0,
+    "digital_frames": 2
+  },
+  {
+    "media_owner": "Maxx Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 0,
+    "digital_frames": 7
+  },
+  {
+    "media_owner": "BlowUP Media",
+    "environment": "Roadside (Inventory with a vehicular audience)",
+    "classic_frames": 3,
+    "digital_frames": 0
+  },
+  {
+    "media_owner": "GEM Display",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 0,
+    "digital_frames": 1
+  },
+  {
+    "media_owner": "Global Street Art",
+    "environment": "Shopping centres (interior)",
+    "classic_frames": 1,
+    "digital_frames": 0
+  }
+]

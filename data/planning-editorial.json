@@ -1,0 +1,87 @@
+{
+  "headline": {
+    "reach_takeout": "No other single medium achieves this level of unduplicated reach in a week. OOH is not a niche amplifier; it is a mass reach channel.",
+    "demographic_takeout": "This means OOH cannot be used to selectively avoid or over-index on broad demographic groups. For audience precision, environment and geography selection are the primary levers."
+  },
+  "environment_notes": {
+    "Roadside (Inventory with a vehicular audience)": "This plan targets Roadside inventory with a vehicular audience and delivers impacts across digital and classic formats, with a larger share allocated to classic units — prioritize classic placements to maximize mass reach. Coverage is high (95.72%), so use this for broad-awareness campaigns aimed at drivers and reserve the digital portion for time-sensitive or contextually relevant messaging.",
+    "UndergroundStation-London": "Disproportionately high impacts relative to reach means very high average frequency — this is a captive, repeat-exposure environment rather than a broad-reach one. Predominantly classic (75%) with a meaningful digital share (25%). High dwell time; strong for brand-building and premium creative formats.",
+    "Shopping centres (interior)": "Shopping centres (interior) are heavily weighted to digital and deliver very high weekly impacts, so they work well to build repeated in-venue exposure. Coverage is limited (10.71%), so use this plan to drive frequency among shopping-centre visitors and pair it with broader-reach channels to lift overall market coverage. Proximity to point of purchase makes this the standout environment for retail and FMCG briefs. Dynamic content, dayparting and contextual triggers are all possible. Strong against Main Shoppers.",
+    "Rail Station": "Rail Station environment where digital formats make up the majority of impacts. Coverage is 10.73%, so use this inventory to drive repeat commuter exposures—this suits frequency-focused campaigns (brand reminders, promotions targeting regular commuters) rather than single-shot reach buys. Prioritize digital creative rotation and concentrated flighting to maximize repeat touchpoints rather than aiming for broad unique reach.",
+    "Bus (Bus exterior)": "Second only to roadside for national reach. Entirely classic (no digital). Moves through residential areas roadside misses — effective for local and regional coverage. Strong value proposition on CPM. All inventory is with Global.",
+    "Supermarket (exterior)": "This supermarket exterior inventory is digital-dominant (78% of weekly impacts). It delivers broad weekly scale and covers about a quarter of the population, so use it when you need mass reach or broad-funnel coverage. Prioritise digital budget to capture the majority of impressions and, if you require a mixed-media presence, set aside a portion of spend for the smaller classic component, which contributes under one-quarter of impacts. Strongly over-indexes for Main Shoppers, and relevant for grocery, FMCG, and health brands.",
+    "Tube carriage interior": "Tube carriage interior delivers concentrated in-journey exposure and is entirely classic with no digital. It drives high weekly impacts and strong frequency but covers a relatively small share of the population (5.94%). Use it for frequency-driven creative and campaigns that rely on repeated impressions in carriages. If you need broader market coverage, supplement with higher-cover formats.",
+    "Taxi (Taxi exteriors)": "Entirely classic (no digital inventory in this dataset). Reach is driven by taxi riders and pedestrians seeing exterior ads. Urban-skewed, good for premium or London-centric brands. Ubiquitous is the dominant media owner for this environment.",
+    "Motorway service stations": "This plan targets Motorway service stations and is digital-weighted, favoring dynamic creative and repeat exposure across service sites. Use it for campaigns prioritising tactical, high-frequency messaging rather than broad market coverage; because overall cover is modest (3.92%), layer with wider OOH or additional schedules to materially expand reach. Smaller in reach but a highly specific audience — people making long-distance journeys. Good for automotive, travel, and food/drink brands. Captive dwell audience with purchase intent (they stop to shop)."
+  },
+  "environment_concentration_tail": "These three environments deliver strong scale, covering 77% of measured inventory. Use them when you need broad reach: prioritize Roadside and Underground — London for the bulk of coverage and add Shopping centres (interior) for incremental exposure.",
+  "geography": {
+    "dominance": "Any national plan will be heavily London-indexed by default: London accounts for 61% of all GB impacts. If London is not a priority, actively weight down or explicitly exclude London inventory.",
+    "underserved": "S & South-East shows a large reach (9,926,780) but far fewer impacts (536,237,773) than London for a similar-sized audience, so weighting S & South-East can be efficient if your audience is there. The Midlands also has a large reach (9,328,557) relative to its impact weight (1,230,268,444).",
+    "digital_share": "Don't assume a simple London/non-London split for digital availability — regional digital share varies (London 38%, Midlands 52%, North East 53%, Wales 35%, etc.), so check the region-level figures before committing to a digital-heavy regional spec."
+  },
+  "classic_digital": {
+    "table_classic_environments": "Bus (Bus exterior), Tube carriage interior, Taxi (Taxi exteriors), Train carriage interior, Tram or light railway carriage interior; Roadside and Underground (London, Glasgow) have majority classic inventory.",
+    "table_digital_environments": "Shopping centre (interior), Shopping centre (exterior), Supermarket (exterior), Motorway service stations, Rail Station.",
+    "digital_brief": "Prioritise environments with the highest digital share, especially shopping centre interiors which are almost entirely digital (93%). Target digital investment at shopping centre exteriors, supermarket exteriors, motorway service stations and rail stations, but confirm actual inventory with media owners before specifying a digital-only plan; several environments are entirely classic (0% digital) in this dataset.",
+    "classic_brief": "Classic frames dominate the network — 95% of frames. Several environments are entirely classic (0% digital) such as bus exteriors, tube and train carriage interiors, taxi exteriors and tram carriage interiors. Roadside and the London and Glasgow undergrounds have majority classic inventory, so plan classic execution there."
+  },
+  "media_owner": {
+    "intro_tail": "A plan built around these four will achieve near-total GB coverage; they account for 92% of frames, so prioritize them for mass-reach campaigns and add smaller owners only to plug specific regional or environment gaps.",
+    "notes": {
+      "Global": "Best for national mass reach and format variety given the widest regional and environment spread.",
+      "KBH": "Useful when you need concentrated formats across multiple regions but fewer environments — good for targeted scale without format diversity.",
+      "JCDecaux": "Good as a consistent national partner to boost coverage in multiple environments alongside Global.",
+      "Bauer Media Outdoor": "Plays a similar reinforcing role to JCDecaux; use to shore up presence in the same national regions and environments.",
+      "Bay Media": "Smaller footprint; use selectively to plug regional or environment holes where the top owners underdeliver.",
+      "Ubiquitous": "Smallest and most specialized — best for hyper-local or single-environment needs rather than broad reach."
+    }
+  },
+  "budget_table": [
+    {
+      "objective": "Maximum national reach",
+      "mix": "Roadside + Bus Exterior",
+      "geography": "All regions, London will naturally dominate",
+      "classic_digital": "Primarily classic"
+    },
+    {
+      "objective": "London saturation",
+      "mix": "Roadside + Underground + Tube Carriage Interior + Taxi",
+      "geography": "London only",
+      "classic_digital": "Mostly classic (Tube Carriage Interior & Taxi are classic-only)"
+    },
+    {
+      "objective": "Retail / FMCG purchase proximity",
+      "mix": "Shopping Centres (Interior) + Supermarket (Exterior)",
+      "geography": "Major shopping destinations nationally",
+      "classic_digital": "Majority digital (78–93% of impacts)"
+    },
+    {
+      "objective": "Commuter / professional audience",
+      "mix": "Rail Station + Tube Carriage Interior + Underground",
+      "geography": "London, major cities",
+      "classic_digital": "Mostly classic (Tube Carriage Interior is classic-only; Rail Station is closest to 50/50)"
+    },
+    {
+      "objective": "Regional outside London",
+      "mix": "Roadside + Bus Exterior + Shopping Centres",
+      "geography": "Specify regions; exclude London",
+      "classic_digital": "Primarily classic"
+    },
+    {
+      "objective": "Digital-first / DCO",
+      "mix": "Shopping Centres + Supermarket (Exterior) + Motorway Service Stations",
+      "geography": "Major retail hubs and motorway corridors nationally",
+      "classic_digital": "Majority digital (66–93% of impacts)"
+    },
+    {
+      "objective": "Automotive / travel",
+      "mix": "Roadside + Motorway Service Stations",
+      "geography": "National, high-flow routes",
+      "classic_digital": "Mixed"
+    }
+  ],
+  "caveats": {
+    "media_owner_diversification_tail": "Global holds 61% share — include KBH, JCDecaux and Bauer Media Outdoor to reduce reliance on a single owner. Use this mix when you need supplier diversification and stronger negotiation leverage across vendors."
+  }
+}

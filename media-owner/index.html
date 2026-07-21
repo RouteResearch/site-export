@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Media Owner — Route 58</title>
+<title>Media Owner — Route 59</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Dataset","name":"Route 58 — OOH Frames by Media Owner","description":"Frame counts for media owners measured by Route in GB, including regions covered and environments covered.","url":"/media-owner","creator":{"@type":"Organization","name":"Route Research"},"temporalCoverage":"2025-03","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/media-owners.json"}]}
+{"@context":"https://schema.org","@type":"Dataset","name":"Route 59 — OOH Frames by Media Owner","description":"Frame counts for media owners measured by Route in GB, split by classic vs digital frame type and by environment, including regions covered and environments covered.","url":"/media-owner","creator":{"@type":"Organization","name":"Route Research"},"temporalCoverage":"2025-03","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/media-owners.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/media-owners-by-environment.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/media-owners-coverage.json"}]}
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#fff;--bg2:#f5f4f0;--text:#1a1a18;--text2:#5f5e5a;--text3:#888780;--border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);--accent:#378ADD;--link:#333092;--logo-filter:invert(1);--r:8px}
 @media(prefers-color-scheme:dark){:root{--link:#9A9CCD;--logo-filter:none;--bg:#1e1e1c;--bg2:#2a2a27;--text:#f0efeb;--text2:#b4b2a9;--text3:#888780;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16)}}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;position:sticky;top:0;z-index:10}
+nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2rem;display:flex;align-items:center;position:sticky;top:0;z-index:10;flex-wrap:wrap}
 .nav-brand{display:flex;align-items:center;gap:16px;font-size:14px;font-weight:500;padding:12px 0;margin-right:36px;color:var(--text);text-decoration:none}
 .nav-logo{height:28px;width:auto;display:block;filter:var(--logo-filter)}
 .nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent}
@@ -31,7 +31,8 @@ th{text-align:left;padding:8px;font-weight:500;color:var(--text2);font-size:12px
 th:not(:first-child){text-align:right}
 td{padding:8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
 td:not(:first-child){text-align:right}
-.data-link{font-size:12px;color:var(--link);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r);display:inline-block;margin-bottom:1.5rem}
+.data-links{display:flex;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap}
+.data-link{font-size:12px;color:var(--link);text-decoration:none;font-family:monospace;background:var(--bg2);padding:4px 10px;border-radius:var(--r)}
 .note{font-size:11px;color:var(--text3);margin-top:8px}
 .pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:0.5px solid var(--border)}
 .pagination-info{color:var(--text3);font-size:12px}
@@ -39,12 +40,15 @@ td:not(:first-child){text-align:right}
 .page-btn{background:none;border:0.5px solid var(--border2);color:var(--text2);padding:5px 14px;border-radius:var(--r);cursor:pointer;font-size:12px;font-family:inherit;line-height:1.4;transition:color .15s,border-color .15s,background .15s}
 .page-btn:hover:not(:disabled){color:var(--text);border-color:var(--accent);background:var(--bg2)}
 .page-btn:disabled{opacity:0.3;cursor:default}
+.filter-row{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap}
+.filter-row label{font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.filter-row select{font-size:13px;padding:6px 10px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer}
 footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
 </style>
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="../index.html"><img class="nav-logo" src="../assets/route-logo.png" alt="Route">Route 58</a>
+  <a class="nav-brand" href="../index.html"><img class="nav-logo" src="../assets/route-logo.png" alt="Route">Route 59</a>
   <a class="nav-link" href="../index.html">Overview</a>
   <a class="nav-link" href="../environment/index.html">Environment</a>
   <a class="nav-link" href="../region/index.html">Region</a>
@@ -56,330 +60,196 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
 </nav>
 <main>
   <h1>Media owner analysis</h1>
-  <p class="subtitle">Frame counts for 41 media owners measured by Route. Total: 383,908 frames across all owners.</p>
+  <p class="subtitle">Frame counts for 39 media owners measured by Route. Total: 374,552 frames across all owners.</p>
 
-  <a class="data-link" href="../data/media-owners.json">media-owners.json</a>
+  <div class="data-links">
+    <a class="data-link" href="../data/media-owners.json">media-owners.json</a>
+    <a class="data-link" href="../data/media-owners-by-environment.json">media-owners-by-environment.json</a>
+    <a class="data-link" href="../data/media-owners-coverage.json">media-owners-coverage.json</a>
+  </div>
+
+  <div class="filter-row">
+    <label for="frameTypeFilter">Frame type</label>
+    <select id="frameTypeFilter">
+      <option value="all" selected>All</option>
+      <option value="classic">Classic</option>
+      <option value="digital">Digital</option>
+    </select>
+    <label for="envFilter">Environment</label>
+    <select id="envFilter">
+      <option value="__ALL__" selected>All environments</option>
+    </select>
+  </div>
 
   <div class="section">
-    <div class="section-title">Frames by media owner — top 15</div>
+    <div class="section-title">Frames by media owner — top <span id="ownerChartTopN">15</span><span id="ownerChartQualifier"></span></div>
     <div class="chart-wrap" style="height:500px">
       <canvas id="chartOwner"></canvas>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">All media owners — frame count</div>
+    <div class="section-title">All media owners — frame count<span id="ownerTableQualifier"></span></div>
     <table>
       <thead><tr><th>Media owner</th><th>Frames</th><th>Regions covered</th><th>Environments covered</th></tr></thead>
-      <tbody id="ownerTbody">
-        
-        <tr>
-          <td>Global</td>
-          <td>230,059</td>
-          <td>13</td>
-          <td>8</td>
-        </tr>
-        
-        <tr>
-          <td>KBH</td>
-          <td>67,248</td>
-          <td>9</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>JCDecaux</td>
-          <td>28,684</td>
-          <td>13</td>
-          <td>5</td>
-        </tr>
-        
-        <tr>
-          <td>Bauer Media Outdoor</td>
-          <td>28,297</td>
-          <td>13</td>
-          <td>5</td>
-        </tr>
-        
-        <tr>
-          <td>Bay Media</td>
-          <td>10,962</td>
-          <td>9</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Ubiquitous</td>
-          <td>6,105</td>
-          <td>7</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Sherbet London</td>
-          <td>1,679</td>
-          <td>2</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Alight Media</td>
-          <td>1,505</td>
-          <td>13</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>i-Media Advertising</td>
-          <td>1,416</td>
-          <td>13</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Fernbank</td>
-          <td>950</td>
-          <td>2</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Coop</td>
-          <td>872</td>
-          <td>13</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>75Media</td>
-          <td>858</td>
-          <td>12</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Build</td>
-          <td>765</td>
-          <td>10</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Limited Space</td>
-          <td>567</td>
-          <td>11</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Ocean Outdoor</td>
-          <td>560</td>
-          <td>11</td>
-          <td>3</td>
-        </tr>
-        
-        <tr>
-          <td>Pop Art media Group</td>
-          <td>556</td>
-          <td>1</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Hi! Street Digital</td>
-          <td>496</td>
-          <td>12</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Route Media</td>
-          <td>374</td>
-          <td>4</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Gb Outdoor Ltd</td>
-          <td>347</td>
-          <td>10</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Pixology Outdoor</td>
-          <td>288</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Dunnhumby (Tesco)</td>
-          <td>225</td>
-          <td>9</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Elonex Outdoor Media</td>
-          <td>186</td>
-          <td>11</td>
-          <td>3</td>
-        </tr>
-        
-        <tr>
-          <td>Global Street Art</td>
-          <td>178</td>
-          <td>9</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Jolt</td>
-          <td>124</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Reach Passengers</td>
-          <td>119</td>
-          <td>5</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Boomerang Media</td>
-          <td>113</td>
-          <td>8</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Smart Outdoor</td>
-          <td>83</td>
-          <td>8</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Mural Republic</td>
-          <td>72</td>
-          <td>7</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>London Lites</td>
-          <td>62</td>
-          <td>1</td>
-          <td>3</td>
-        </tr>
-        
-        <tr>
-          <td>Out of Hand Maximus</td>
-          <td>56</td>
-          <td>5</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Open Media</td>
-          <td>35</td>
-          <td>7</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Crystal Clear Media</td>
-          <td>18</td>
-          <td>3</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>City Outdoor Media</td>
-          <td>15</td>
-          <td>3</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>EOM DOOH LTD</td>
-          <td>8</td>
-          <td>3</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>Maxx Media</td>
-          <td>7</td>
-          <td>4</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Pearl & Dean Outdoor</td>
-          <td>5</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>BlowUP Media</td>
-          <td>5</td>
-          <td>3</td>
-          <td>2</td>
-        </tr>
-        
-        <tr>
-          <td>T4 MEDIA</td>
-          <td>3</td>
-          <td>2</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>Connexin Media</td>
-          <td>3</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>MediaCo OOH</td>
-          <td>2</td>
-          <td>2</td>
-          <td>1</td>
-        </tr>
-        
-        <tr>
-          <td>GEM Display</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        
-      </tbody>
+      <tbody id="ownerTbody"></tbody>
     </table>
-    <p class="note">Total: 383,908 frames.</p>
+    <p class="note" id="ownerNote">Total: 374,552 frames.</p>
   </div>
 </main>
-<footer>Route 58 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<footer>Route 59 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
 <script>
-function paginate(tbodyId,pageSize){const tbody=document.getElementById(tbodyId);const rows=Array.from(tbody.rows);const total=rows.length;const pages=Math.ceil(total/pageSize);let cur=0;const wrap=document.createElement('div');wrap.className='pagination';const info=document.createElement('span');info.className='pagination-info';const btns=document.createElement('div');btns.className='pagination-btns';const prev=document.createElement('button');prev.className='page-btn';prev.textContent='← Prev';const next=document.createElement('button');next.className='page-btn';next.textContent='Next →';btns.append(prev,next);wrap.append(info,btns);tbody.closest('table').after(wrap);function render(){rows.forEach((r,i)=>r.style.display=(i>=cur*pageSize&&i<(cur+1)*pageSize)?'':'none');const from=cur*pageSize+1;const to=Math.min((cur+1)*pageSize,total);info.textContent=`Showing ${from}–${to} of ${total}`;prev.disabled=cur===0;next.disabled=cur===pages-1;}prev.onclick=()=>{cur--;render();};next.onclick=()=>{cur++;render();};render();}
-paginate('ownerTbody',10);
+// Re-invokable: removes any pagination bar left over from a previous call before
+// adding a new one, and reads rows fresh from the tbody each time — needed
+// because applyFilters() rebuilds the tbody's rows (in a new sort order) on
+// every filter change rather than reusing a fixed set of DOM nodes.
+function paginate(tbodyId,pageSize){
+  const tbody=document.getElementById(tbodyId);
+  const table=tbody.closest('table');
+  const old=table.nextElementSibling;
+  if(old&&old.classList.contains('pagination')) old.remove();
+  const rows=Array.from(tbody.rows);
+  const total=rows.length;
+  const pages=Math.ceil(total/pageSize);
+  let cur=0;
+  const wrap=document.createElement('div');wrap.className='pagination';
+  const info=document.createElement('span');info.className='pagination-info';
+  const btns=document.createElement('div');btns.className='pagination-btns';
+  const prev=document.createElement('button');prev.className='page-btn';prev.textContent='← Prev';
+  const next=document.createElement('button');next.className='page-btn';next.textContent='Next →';
+  btns.append(prev,next);wrap.append(info,btns);table.after(wrap);
+  function render(){
+    rows.forEach((r,i)=>r.style.display=(i>=cur*pageSize&&i<(cur+1)*pageSize)?'':'none');
+    const from=cur*pageSize+1;const to=Math.min((cur+1)*pageSize,total);
+    info.textContent=`Showing ${from}–${to} of ${total}`;
+    prev.disabled=cur===0;next.disabled=cur===pages-1;
+  }
+  prev.onclick=()=>{cur--;render();};
+  next.onclick=()=>{cur++;render();};
+  render();
+}
+
 const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
 const gc=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
 const tc=isDark?'rgba(255,255,255,.5)':'rgba(0,0,0,.45)';
-new Chart(document.getElementById('chartOwner'),{
+
+const ALL_OWNERS=[{"media_owner": "Global", "frames": 229059, "classic_frames": 223979, "digital_frames": 5080, "regions": 13, "environments": 8}, {"media_owner": "KBH", "frames": 59394, "classic_frames": 59394, "digital_frames": 0, "regions": 9, "environments": 2}, {"media_owner": "JCDecaux", "frames": 28594, "classic_frames": 23754, "digital_frames": 4840, "regions": 13, "environments": 5}, {"media_owner": "Bauer Media Outdoor", "frames": 28200, "classic_frames": 22489, "digital_frames": 5711, "regions": 13, "environments": 5}, {"media_owner": "Bay Media", "frames": 10935, "classic_frames": 10935, "digital_frames": 0, "regions": 9, "environments": 2}, {"media_owner": "Ubiquitous", "frames": 6105, "classic_frames": 6105, "digital_frames": 0, "regions": 7, "environments": 1}, {"media_owner": "Sherbet London", "frames": 1679, "classic_frames": 1679, "digital_frames": 0, "regions": 2, "environments": 1}, {"media_owner": "Alight Media", "frames": 1535, "classic_frames": 678, "digital_frames": 857, "regions": 13, "environments": 2}, {"media_owner": "i-Media Advertising", "frames": 1421, "classic_frames": 722, "digital_frames": 699, "regions": 13, "environments": 2}, {"media_owner": "Gb Outdoor Ltd", "frames": 1075, "classic_frames": 1037, "digital_frames": 38, "regions": 12, "environments": 2}, {"media_owner": "Fernbank", "frames": 937, "classic_frames": 937, "digital_frames": 0, "regions": 2, "environments": 1}, {"media_owner": "Coop", "frames": 835, "classic_frames": 0, "digital_frames": 835, "regions": 13, "environments": 1}, {"media_owner": "Build", "frames": 632, "classic_frames": 631, "digital_frames": 1, "regions": 10, "environments": 1}, {"media_owner": "Ocean Outdoor", "frames": 565, "classic_frames": 87, "digital_frames": 478, "regions": 11, "environments": 3}, {"media_owner": "Pop Art media Group", "frames": 556, "classic_frames": 555, "digital_frames": 1, "regions": 1, "environments": 2}, {"media_owner": "Limited Space", "frames": 540, "classic_frames": 439, "digital_frames": 101, "regions": 11, "environments": 1}, {"media_owner": "Hi! Street Digital", "frames": 494, "classic_frames": 0, "digital_frames": 494, "regions": 12, "environments": 1}, {"media_owner": "Route Media", "frames": 392, "classic_frames": 356, "digital_frames": 36, "regions": 4, "environments": 2}, {"media_owner": "Pixology Outdoor", "frames": 288, "classic_frames": 225, "digital_frames": 63, "regions": 1, "environments": 1}, {"media_owner": "Dunnhumby (Tesco)", "frames": 225, "classic_frames": 0, "digital_frames": 225, "regions": 9, "environments": 1}, {"media_owner": "Global Street Art", "frames": 168, "classic_frames": 168, "digital_frames": 0, "regions": 9, "environments": 2}, {"media_owner": "Jolt", "frames": 130, "classic_frames": 0, "digital_frames": 130, "regions": 1, "environments": 1}, {"media_owner": "Elonex Outdoor Media", "frames": 128, "classic_frames": 0, "digital_frames": 128, "regions": 11, "environments": 3}, {"media_owner": "Reach Passengers", "frames": 124, "classic_frames": 0, "digital_frames": 124, "regions": 7, "environments": 1}, {"media_owner": "Boomerang Media", "frames": 113, "classic_frames": 6, "digital_frames": 107, "regions": 8, "environments": 1}, {"media_owner": "Smart Outdoor", "frames": 102, "classic_frames": 0, "digital_frames": 102, "regions": 10, "environments": 2}, {"media_owner": "Mural Republic", "frames": 94, "classic_frames": 94, "digital_frames": 0, "regions": 9, "environments": 2}, {"media_owner": "BackLite UK", "frames": 76, "classic_frames": 0, "digital_frames": 76, "regions": 1, "environments": 3}, {"media_owner": "Out of Hand (Maximus)", "frames": 56, "classic_frames": 56, "digital_frames": 0, "regions": 5, "environments": 1}, {"media_owner": "Open Media", "frames": 36, "classic_frames": 4, "digital_frames": 32, "regions": 8, "environments": 2}, {"media_owner": "Crystal Clear Media", "frames": 16, "classic_frames": 0, "digital_frames": 16, "regions": 3, "environments": 2}, {"media_owner": "City Outdoor Media", "frames": 16, "classic_frames": 2, "digital_frames": 14, "regions": 3, "environments": 1}, {"media_owner": "EOM DOOH LTD", "frames": 8, "classic_frames": 0, "digital_frames": 8, "regions": 3, "environments": 2}, {"media_owner": "Maxx Media", "frames": 7, "classic_frames": 0, "digital_frames": 7, "regions": 4, "environments": 1}, {"media_owner": "Pearl & Dean Outdoor", "frames": 5, "classic_frames": 0, "digital_frames": 5, "regions": 1, "environments": 1}, {"media_owner": "BlowUP Media", "frames": 5, "classic_frames": 3, "digital_frames": 2, "regions": 3, "environments": 2}, {"media_owner": "T4 MEDIA", "frames": 3, "classic_frames": 3, "digital_frames": 0, "regions": 2, "environments": 1}, {"media_owner": "MediaCo OOH", "frames": 3, "classic_frames": 0, "digital_frames": 3, "regions": 2, "environments": 1}, {"media_owner": "GEM Display", "frames": 1, "classic_frames": 0, "digital_frames": 1, "regions": 1, "environments": 1}];
+const ALL_OWNERS_BY_NAME={};
+ALL_OWNERS.forEach(o=>{ALL_OWNERS_BY_NAME[o.media_owner]=o;});
+
+// Flat {media_owner, environment, classic_frames, digital_frames} rows, pivoted
+// into owner -> environment -> breakdown for the environment filter.
+const OWNER_ENV_RAW=[{"media_owner": "Route Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 37, "digital_frames": 27}, {"media_owner": "Global", "environment": "Tube carriage interior", "classic_frames": 96127, "digital_frames": 0}, {"media_owner": "KBH", "environment": "Train carriage interior", "classic_frames": 58994, "digital_frames": 0}, {"media_owner": "Global", "environment": "Tram or light railway carriage interior", "classic_frames": 5512, "digital_frames": 0}, {"media_owner": "Global", "environment": "UndergroundStation-London", "classic_frames": 28059, "digital_frames": 2304}, {"media_owner": "Global", "environment": "Train carriage interior", "classic_frames": 5130, "digital_frames": 0}, {"media_owner": "Global", "environment": "UndergroundStation-Glasgow", "classic_frames": 672, "digital_frames": 105}, {"media_owner": "JCDecaux", "environment": "Rail Station", "classic_frames": 7380, "digital_frames": 1299}, {"media_owner": "Global", "environment": "Rail Station", "classic_frames": 1764, "digital_frames": 77}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "classic_frames": 70586, "digital_frames": 0}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 835}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 10908, "digital_frames": 0}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 124}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 494}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 225}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "classic_frames": 6, "digital_frames": 107}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "classic_frames": 0, "digital_frames": 79}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 449}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 21897, "digital_frames": 4660}, {"media_owner": "Route Media", "environment": "Rail Station", "classic_frames": 319, "digital_frames": 9}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 667}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 16129, "digital_frames": 2594}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "classic_frames": 439, "digital_frames": 101}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 81}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "classic_frames": 0, "digital_frames": 12}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "classic_frames": 125, "digital_frames": 28}, {"media_owner": "Elonex Outdoor Media", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 35}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "classic_frames": 722, "digital_frames": 633}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 1037, "digital_frames": 37}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "classic_frames": 0, "digital_frames": 536}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centres (interior)", "classic_frames": 28, "digital_frames": 108}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "classic_frames": 454, "digital_frames": 574}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 16319, "digital_frames": 2338}, {"media_owner": "Pixology Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 225, "digital_frames": 63}, {"media_owner": "BackLite UK", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 71}, {"media_owner": "Jolt", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 130}, {"media_owner": "Pearl & Dean Outdoor", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 5}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 631, "digital_frames": 1}, {"media_owner": "Fernbank", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 937, "digital_frames": 0}, {"media_owner": "Pop Art media Group", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 555, "digital_frames": 0}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 66}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 678, "digital_frames": 835}, {"media_owner": "Alight Media", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 22}, {"media_owner": "BackLite UK", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 3}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 59, "digital_frames": 291}, {"media_owner": "KBH", "environment": "Rail Station", "classic_frames": 400, "digital_frames": 0}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "classic_frames": 55, "digital_frames": 0}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centre (exterior)", "classic_frames": 13, "digital_frames": 0}, {"media_owner": "T4 MEDIA", "environment": "Rail Station", "classic_frames": 3, "digital_frames": 0}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "classic_frames": 6105, "digital_frames": 0}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 101}, {"media_owner": "Sherbet London", "environment": "Taxi (Taxi exteriors)", "classic_frames": 1679, "digital_frames": 0}, {"media_owner": "Out of Hand (Maximus)", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 56, "digital_frames": 0}, {"media_owner": "EOM DOOH LTD", "environment": "Supermarket (exterior)", "classic_frames": 0, "digital_frames": 1}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 167, "digital_frames": 0}, {"media_owner": "BackLite UK", "environment": "Rail Station", "classic_frames": 0, "digital_frames": 2}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "classic_frames": 27, "digital_frames": 0}, {"media_owner": "Crystal Clear Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 15}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 91, "digital_frames": 0}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "classic_frames": 0, "digital_frames": 11}, {"media_owner": "Pop Art media Group", "environment": "Shopping centre (exterior)", "classic_frames": 0, "digital_frames": 1}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 4, "digital_frames": 21}, {"media_owner": "City Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 2, "digital_frames": 14}, {"media_owner": "Smart Outdoor", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 1}, {"media_owner": "Crystal Clear Media", "environment": "Shopping centre (exterior)", "classic_frames": 0, "digital_frames": 1}, {"media_owner": "Gb Outdoor Ltd", "environment": "Shopping centre (exterior)", "classic_frames": 0, "digital_frames": 1}, {"media_owner": "EOM DOOH LTD", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 7}, {"media_owner": "Mural Republic", "environment": "Shopping centre (exterior)", "classic_frames": 3, "digital_frames": 0}, {"media_owner": "MediaCo OOH", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 3}, {"media_owner": "BlowUP Media", "environment": "Shopping centre (exterior)", "classic_frames": 0, "digital_frames": 2}, {"media_owner": "Maxx Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 0, "digital_frames": 7}, {"media_owner": "BlowUP Media", "environment": "Roadside (Inventory with a vehicular audience)", "classic_frames": 3, "digital_frames": 0}, {"media_owner": "GEM Display", "environment": "Shopping centres (interior)", "classic_frames": 0, "digital_frames": 1}, {"media_owner": "Global Street Art", "environment": "Shopping centres (interior)", "classic_frames": 1, "digital_frames": 0}];
+const OWNER_ENV_DATA={};
+OWNER_ENV_RAW.forEach(r=>{
+  if(!OWNER_ENV_DATA[r.media_owner]) OWNER_ENV_DATA[r.media_owner]={};
+  OWNER_ENV_DATA[r.media_owner][r.environment]=r;
+});
+
+// Flat {media_owner, environment, ft, region} membership rows — the only way to
+// recompute "regions covered"/"environments covered" under a filter instead of
+// always showing the unfiltered overall count.
+const OWNER_COVERAGE_RAW=[{"media_owner": "Route Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Global", "environment": "Tube carriage interior", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "Midlands"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "North West"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "Tram or light railway carriage interior", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "Tube carriage interior", "ft": "Classic", "region": "London"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Global", "environment": "UndergroundStation-London", "ft": "Digital", "region": "London"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "South West"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "KBH", "environment": "Train carriage interior", "ft": "Classic", "region": "North East"}, {"media_owner": "Global", "environment": "Train carriage interior", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "UndergroundStation-Glasgow", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "UndergroundStation-London", "ft": "Classic", "region": "London"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "North West"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Classic", "region": "North West"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Classic", "region": "North East"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Global", "environment": "UndergroundStation-Glasgow", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "West"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "North West"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "Border"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "North East"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "South West"}, {"media_owner": "Global", "environment": "Bus (Bus exterior)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Coop", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South West"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "London"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Hi! Street Digital", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Dunnhumby (Tesco)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "West"}, {"media_owner": "Route Media", "environment": "Rail Station", "ft": "Digital", "region": "Wales"}, {"media_owner": "Route Media", "environment": "Rail Station", "ft": "Digital", "region": "North West"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "South West"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "North West"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Digital", "region": "North East"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "London"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Route Media", "environment": "Rail Station", "ft": "Classic", "region": "Wales"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "South West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North East"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Reach Passengers", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "ft": "Digital", "region": "Border"}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "ft": "Digital", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "Elonex Outdoor Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Elonex Outdoor Media", "environment": "Motorway service stations", "ft": "Digital", "region": "London"}, {"media_owner": "Elonex Outdoor Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "Midlands"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "North West"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "West"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "Border"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "East Of England"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "Wales"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "London"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "North East"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "South West"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Border"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "Border"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Digital", "region": "North East"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Digital", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "London"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "West"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Border"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Border"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Wales"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "South West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "South West"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Pixology Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "West"}, {"media_owner": "Route Media", "environment": "Rail Station", "ft": "Classic", "region": "Midlands"}, {"media_owner": "BackLite UK", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Digital", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Jolt", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Digital", "region": "North West"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "North East"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Digital", "region": "North East"}, {"media_owner": "Pearl & Dean Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Route Media", "environment": "Rail Station", "ft": "Classic", "region": "North West"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Classic", "region": "London"}, {"media_owner": "Global", "environment": "Rail Station", "ft": "Classic", "region": "Border"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Classic", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "South West"}, {"media_owner": "Fernbank", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Pop Art media Group", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Bauer Media Outdoor", "environment": "Rail Station", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Route Media", "environment": "Rail Station", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Route Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Alight Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "North West"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "BackLite UK", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "London"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "Midlands"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "London"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South West"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "JCDecaux", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "West"}, {"media_owner": "Fernbank", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "London"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "West"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Border"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "Border"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "Wales"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "London"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "North East"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "North East"}, {"media_owner": "Bauer Media Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "London"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Boomerang Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "South West"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "i-Media Advertising", "environment": "Motorway service stations", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Bay Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "Wales"}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Supermarket (exterior)", "ft": "Classic", "region": "South West"}, {"media_owner": "Pixology Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "JCDecaux", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "London"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Bauer Media Outdoor", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "South West"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "West"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "West"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "North West"}, {"media_owner": "T4 MEDIA", "environment": "Rail Station", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "T4 MEDIA", "environment": "Rail Station", "ft": "Classic", "region": "London"}, {"media_owner": "Elonex Outdoor Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "West"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Sherbet London", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "London"}, {"media_owner": "Sherbet London", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "North West"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Ubiquitous", "environment": "Taxi (Taxi exteriors)", "ft": "Classic", "region": "London"}, {"media_owner": "KBH", "environment": "Rail Station", "ft": "Classic", "region": "South West"}, {"media_owner": "Out of Hand (Maximus)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Out of Hand (Maximus)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "i-Media Advertising", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Out of Hand (Maximus)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "Out of Hand (Maximus)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "North East"}, {"media_owner": "EOM DOOH LTD", "environment": "Supermarket (exterior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "BackLite UK", "environment": "Rail Station", "ft": "Digital", "region": "London"}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "North West"}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "London"}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "North East"}, {"media_owner": "Bay Media", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Crystal Clear Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "North West"}, {"media_owner": "Limited Space", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Pop Art media Group", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "JCDecaux", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Border"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Out of Hand (Maximus)", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North Scotland"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "City Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Alight Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Smart Outdoor", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Crystal Clear Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Crystal Clear Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Smart Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "EOM DOOH LTD", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "JCDecaux", "environment": "Rail Station", "ft": "Classic", "region": "Wales"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North Scotland"}, {"media_owner": "Global", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Border"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "City Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "London"}, {"media_owner": "EOM DOOH LTD", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Elonex Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Elonex Outdoor Media", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Build", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Mural Republic", "environment": "Shopping centre (exterior)", "ft": "Classic", "region": "London"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "East Of England"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "MediaCo OOH", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "EOM DOOH LTD", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "City Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "BlowUP Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "City Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North West"}, {"media_owner": "Crystal Clear Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Maxx Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Yorkshire"}, {"media_owner": "BlowUP Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "North East"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South and South-East"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "South West"}, {"media_owner": "Maxx Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Maxx Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Maxx Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "South and South-East"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North East"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "East Of England"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Wales"}, {"media_owner": "MediaCo OOH", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "London"}, {"media_owner": "Gb Outdoor Ltd", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Midlands"}, {"media_owner": "GEM Display", "environment": "Shopping centres (interior)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "West"}, {"media_owner": "Ocean Outdoor", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Digital", "region": "Yorkshire"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Open Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "North West"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Midlands"}, {"media_owner": "Global Street Art", "environment": "Shopping centres (interior)", "ft": "Classic", "region": "West"}, {"media_owner": "BlowUP Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Wales"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Central Scotland"}, {"media_owner": "Ocean Outdoor", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "Central Scotland"}, {"media_owner": "Global Street Art", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "Wales"}, {"media_owner": "Open Media", "environment": "Shopping centre (exterior)", "ft": "Digital", "region": "South West"}, {"media_owner": "Mural Republic", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "West"}, {"media_owner": "City Outdoor Media", "environment": "Roadside (Inventory with a vehicular audience)", "ft": "Classic", "region": "London"}];
+const OWNER_COVERAGE_BY_OWNER={};
+OWNER_COVERAGE_RAW.forEach(r=>{
+  if(!OWNER_COVERAGE_BY_OWNER[r.media_owner]) OWNER_COVERAGE_BY_OWNER[r.media_owner]=[];
+  OWNER_COVERAGE_BY_OWNER[r.media_owner].push(r);
+});
+
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+const frameTypeFilter=document.getElementById('frameTypeFilter');
+const envFilter=document.getElementById('envFilter');
+const chartQualifier=document.getElementById('ownerChartQualifier');
+const chartTopN=document.getElementById('ownerChartTopN');
+const tableQualifier=document.getElementById('ownerTableQualifier');
+const ownerNote=document.getElementById('ownerNote');
+
+const envs=[...new Set(OWNER_ENV_RAW.map(r=>r.environment))].sort();
+envs.forEach(e=>envFilter.appendChild(new Option(e,e)));
+
+function ownerFrames(owner,env,type){
+  if(env==='__ALL__'){
+    const o=ALL_OWNERS_BY_NAME[owner];
+    if(!o) return 0;
+    return type==='all'?o.frames:o[type+'_frames'];
+  }
+  const row=OWNER_ENV_DATA[owner]?.[env];
+  if(!row) return 0;
+  return type==='all'?row.classic_frames+row.digital_frames:row[type+'_frames'];
+}
+
+function ownerCoverage(owner,env,type){
+  const rows=OWNER_COVERAGE_BY_OWNER[owner]||[];
+  const matchesType=r=>type==='all'||r.ft.toLowerCase()===type;
+  const matchesEnv=r=>env==='__ALL__'||r.environment===env;
+  const regionCount=new Set(rows.filter(r=>matchesEnv(r)&&matchesType(r)).map(r=>r.region)).size;
+  if(env==='__ALL__'){
+    const envCount=new Set(rows.filter(matchesType).map(r=>r.environment)).size;
+    return {regions:regionCount,environments:envCount};
+  }
+  // Environment is already pinned to one value by the dropdown, so "environments
+  // covered" collapses to 1 (present) or 0 (owner has nothing there for this type).
+  return {regions:regionCount,environments:regionCount>0?1:0};
+}
+
+// Single source of truth for "what does owner X show right now" — both dropdowns
+// funnel through this, so the chart and table can never disagree with each other,
+// and both re-rank from the currently selected filter instead of a frozen
+// "top 15 overall" snapshot. Owners with no presence at all under the selected
+// filter (e.g. Digital + a niche environment) are dropped rather than padding
+// the chart/table out with empty rows.
+function computeRows(env,type){
+  return ALL_OWNERS.map(o=>{
+    const frames=ownerFrames(o.media_owner,env,type);
+    const {regions,environments}=ownerCoverage(o.media_owner,env,type);
+    return {media_owner:o.media_owner,frames,regions,environments};
+  }).filter(r=>r.frames>0).sort((a,b)=>b.frames-a.frames);
+}
+
+const ownerChart=new Chart(document.getElementById('chartOwner'),{
   type:'bar',
-  data:{
-    labels:["Global", "KBH", "JCDecaux", "Bauer Media Outdoor", "Bay Media", "Ubiquitous", "Sherbet London", "Alight Media", "i-Media Advertising", "Fernbank", "Coop", "75Media", "Build", "Limited Space", "Ocean Outdoor"],
-    datasets:[{label:'Frames',data:[230059, 67248, 28684, 28297, 10962, 6105, 1679, 1505, 1416, 950, 872, 858, 765, 567, 560],backgroundColor:'#EC098D'}]
-  },
+  data:{labels:[],datasets:[{label:'Frames',data:[],backgroundColor:'#EC098D'}]},
   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.x.toLocaleString()+' frames'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v.toLocaleString()}},y:{grid:{color:'transparent'},ticks:{color:tc,font:{size:11},autoSkip:false}}}}
 });
+
+function applyFilters(){
+  const type=frameTypeFilter.value;
+  const env=envFilter.value;
+  const rows=computeRows(env,type);
+
+  const top15=rows.slice(0,15);
+  ownerChart.data.labels=top15.map(r=>r.media_owner);
+  ownerChart.data.datasets[0].data=top15.map(r=>r.frames);
+  ownerChart.update();
+  chartTopN.textContent=top15.length;
+
+  document.getElementById('ownerTbody').innerHTML=rows.map(r=>`
+    <tr>
+      <td>${r.media_owner}</td>
+      <td>${r.frames.toLocaleString()}</td>
+      <td>${r.regions||'—'}</td>
+      <td>${r.environments||'—'}</td>
+    </tr>
+  `).join('');
+  paginate('ownerTbody',10);
+
+  const framesSum=rows.reduce((s,r)=>s+r.frames,0);
+
+  const bits=[];
+  if(type!=='all') bits.push(capitalize(type));
+  if(env!=='__ALL__') bits.push(env);
+  const qualifier=bits.length?` — ${bits.join(', ')}`:'';
+  chartQualifier.textContent=qualifier;
+  tableQualifier.textContent=qualifier;
+  const typeLabel=type==='all'?'all frame types':`${type} frames`;
+  const envLabel=env==='__ALL__'?'all environments':env;
+  ownerNote.textContent=`Total: ${framesSum.toLocaleString()} frames (${typeLabel}, ${envLabel}).`;
+}
+
+frameTypeFilter.addEventListener('change',applyFilters);
+envFilter.addEventListener('change',applyFilters);
+applyFilters();
 </script>
 </body>
 </html>

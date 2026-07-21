@@ -1,102 +1,202 @@
 [
   {
     "conurbation": "Greater London",
-    "weekly_impacts": 8151607198
+    "weekly_impacts": 8133323303,
+    "classic_impacts": 5108892326,
+    "digital_impacts": 3024430977,
+    "classic_pct": 63,
+    "digital_pct": 37
   },
   {
     "conurbation": "No conurbation",
-    "weekly_impacts": 1645486991
+    "weekly_impacts": 1625955485,
+    "classic_impacts": 961316439,
+    "digital_impacts": 664639046,
+    "classic_pct": 59,
+    "digital_pct": 41
   },
   {
     "conurbation": "West Midlands",
-    "weekly_impacts": 823762116
+    "weekly_impacts": 811080595,
+    "classic_impacts": 370427889,
+    "digital_impacts": 440652706,
+    "classic_pct": 46,
+    "digital_pct": 54
   },
   {
     "conurbation": "Greater Manchester",
-    "weekly_impacts": 768152436
+    "weekly_impacts": 718905321,
+    "classic_impacts": 392201810,
+    "digital_impacts": 326703511,
+    "classic_pct": 55,
+    "digital_pct": 45
   },
   {
     "conurbation": "Greater Glasgow",
-    "weekly_impacts": 375168303
+    "weekly_impacts": 373530025,
+    "classic_impacts": 176913479,
+    "digital_impacts": 196616546,
+    "classic_pct": 47,
+    "digital_pct": 53
   },
   {
     "conurbation": "West Yorkshire",
-    "weekly_impacts": 364774636
+    "weekly_impacts": 356929606,
+    "classic_impacts": 210510982,
+    "digital_impacts": 146418624,
+    "classic_pct": 59,
+    "digital_pct": 41
   },
   {
     "conurbation": "Liverpool",
-    "weekly_impacts": 260454012
+    "weekly_impacts": 259281677,
+    "classic_impacts": 138226770,
+    "digital_impacts": 121054907,
+    "classic_pct": 53,
+    "digital_pct": 47
   },
   {
     "conurbation": "Tyneside",
-    "weekly_impacts": 228246054
+    "weekly_impacts": 226894034,
+    "classic_impacts": 86678526,
+    "digital_impacts": 140215508,
+    "classic_pct": 38,
+    "digital_pct": 62
   },
   {
     "conurbation": "Sheffield",
-    "weekly_impacts": 224998042
+    "weekly_impacts": 224236800,
+    "classic_impacts": 75699200,
+    "digital_impacts": 148537600,
+    "classic_pct": 34,
+    "digital_pct": 66
   },
   {
     "conurbation": "Cardiff",
-    "weekly_impacts": 169720075
+    "weekly_impacts": 168258968,
+    "classic_impacts": 109037707,
+    "digital_impacts": 59221261,
+    "classic_pct": 65,
+    "digital_pct": 35
   },
   {
     "conurbation": "Edinburgh",
-    "weekly_impacts": 152092438
+    "weekly_impacts": 151752381,
+    "classic_impacts": 84601871,
+    "digital_impacts": 67150510,
+    "classic_pct": 56,
+    "digital_pct": 44
   },
   {
     "conurbation": "South Hampshire",
-    "weekly_impacts": 126180854
+    "weekly_impacts": 124549870,
+    "classic_impacts": 72016666,
+    "digital_impacts": 52533204,
+    "classic_pct": 58,
+    "digital_pct": 42
   },
   {
     "conurbation": "Bristol",
-    "weekly_impacts": 108340767
+    "weekly_impacts": 109763404,
+    "classic_impacts": 48968944,
+    "digital_impacts": 60794460,
+    "classic_pct": 45,
+    "digital_pct": 55
   },
   {
     "conurbation": "Nottingham",
-    "weekly_impacts": 91585988
-  },
-  {
-    "conurbation": "Coventry",
-    "weekly_impacts": 66994183
+    "weekly_impacts": 96410391,
+    "classic_impacts": 36959054,
+    "digital_impacts": 59451337,
+    "classic_pct": 38,
+    "digital_pct": 62
   },
   {
     "conurbation": "Brighton and Hove",
-    "weekly_impacts": 66452256
+    "weekly_impacts": 68097597,
+    "classic_impacts": 42816066,
+    "digital_impacts": 25281531,
+    "classic_pct": 63,
+    "digital_pct": 37
+  },
+  {
+    "conurbation": "Coventry",
+    "weekly_impacts": 66275131,
+    "classic_impacts": 50035256,
+    "digital_impacts": 16239875,
+    "classic_pct": 75,
+    "digital_pct": 25
   },
   {
     "conurbation": "Reading",
-    "weekly_impacts": 59236001
+    "weekly_impacts": 60255151,
+    "classic_impacts": 29009442,
+    "digital_impacts": 31245709,
+    "classic_pct": 48,
+    "digital_pct": 52
   },
   {
     "conurbation": "Leicester",
-    "weekly_impacts": 56292830
+    "weekly_impacts": 55614133,
+    "classic_impacts": 31420798,
+    "digital_impacts": 24193335,
+    "classic_pct": 56,
+    "digital_pct": 44
   },
   {
     "conurbation": "Kingston upon Hull",
-    "weekly_impacts": 51205715
+    "weekly_impacts": 49439955,
+    "classic_impacts": 22127580,
+    "digital_impacts": 27312375,
+    "classic_pct": 45,
+    "digital_pct": 55
   },
   {
     "conurbation": "Stoke-on-Trent",
-    "weekly_impacts": 45380575
+    "weekly_impacts": 43441247,
+    "classic_impacts": 27128276,
+    "digital_impacts": 16312971,
+    "classic_pct": 62,
+    "digital_pct": 38
   },
   {
     "conurbation": "Teesside",
-    "weekly_impacts": 37192829
+    "weekly_impacts": 36722812,
+    "classic_impacts": 27020472,
+    "digital_impacts": 9702340,
+    "classic_pct": 74,
+    "digital_pct": 26
   },
   {
     "conurbation": "Bournemouth/Poole",
-    "weekly_impacts": 33844746
+    "weekly_impacts": 34102690,
+    "classic_impacts": 22466255,
+    "digital_impacts": 11636435,
+    "classic_pct": 66,
+    "digital_pct": 34
   },
   {
     "conurbation": "Swansea",
-    "weekly_impacts": 26201560
+    "weekly_impacts": 27194579,
+    "classic_impacts": 18670181,
+    "digital_impacts": 8524398,
+    "classic_pct": 69,
+    "digital_pct": 31
   },
   {
     "conurbation": "Birkenhead",
-    "weekly_impacts": 24999448
+    "weekly_impacts": 24855723,
+    "classic_impacts": 17428772,
+    "digital_impacts": 7426951,
+    "classic_pct": 70,
+    "digital_pct": 30
   },
   {
     "conurbation": "Southend On Sea",
-    "weekly_impacts": 24321705
+    "weekly_impacts": 24159444,
+    "classic_impacts": 17239605,
+    "digital_impacts": 6919839,
+    "classic_pct": 71,
+    "digital_pct": 29
   }
 ]
