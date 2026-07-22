@@ -330,11 +330,11 @@ new Chart(document.getElementById('chartReachMonth'), {
     plugins:{
       legend:{display:false},
       tooltip:{callbacks:{label:ctx=>' Reach: '+ctx.parsed.y.toLocaleString()}},
-      totalLabels:{totals:[53840475, 53856036, 53883590, 53866394, 53883855, 53887518, 53886480, 53854989, 53883147, 53886569, 53902432, 53806884],format:v=>(v/1e6).toFixed(1)+'M'}
+      totalLabels:{totals:[53840475, 53856036, 53883590, 53866394, 53883855, 53887518, 53886480, 53854989, 53883147, 53886569, 53902432, 53806884],format:v=>(v/1e6).toFixed(2)+'M'}
     },
     scales:{
       x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},
-      y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>(v/1e6).toFixed(1)+'M'},min:52500000,max:54000000}
+      y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>(v/1e6).toFixed(2)+'M'},min:52500000,max:54000000}
     }
   }
 });
@@ -382,11 +382,11 @@ new Chart(document.getElementById('chartTrendsImpacts'), {
     plugins:{
       legend:{display:false},
       tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()+'M'}},
-      totalLabels:{totals:trendsImpactsTotals,format:v=>(v/1000).toFixed(1)+'Bn'}
+      totalLabels:{totals:trendsImpactsTotals,format:v=>(v/1000).toFixed(2)+'Bn'}
     },
     scales:{
       x:{stacked:true,grid:{color:'transparent'},ticks:{color:tc,font:{size:10}}},
-      y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+'M'},min:4000,max:10000}
+      y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v.toFixed(2)+'M'},min:4000,max:10000}
     }
   }
 });
