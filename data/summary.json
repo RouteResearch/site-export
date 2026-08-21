@@ -9,7 +9,9 @@
     "total": 53883591,
     "cover_pct": 96.93,
     "digital_only": 48452348,
-    "classic_only": 53588859
+    "classic_only": 53588859,
+    "digital_cover_pct": 87.16,
+    "classic_cover_pct": 96.4
   },
   "population": 55590969,
   "reach_by_month": [

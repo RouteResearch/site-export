@@ -57,11 +57,13 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .table-nav-btns button:disabled{opacity:.35;cursor:default}
 .table-nav-btns button:not(:disabled):hover{background:var(--bg)}
 .table-wrap{overflow-x:auto}
-table{width:100%;min-width:640px;border-collapse:collapse;font-size:12px}
+table{table-layout:fixed;border-collapse:collapse;font-size:12px}
 thead tr{border-bottom:0.5px solid var(--border2)}
-th{text-align:left;padding:7px 8px;font-weight:500;color:var(--text2);font-size:11px;white-space:nowrap}
+th{text-align:left;padding:7px 8px;font-weight:500;color:var(--text2);font-size:11px;white-space:nowrap;position:relative;overflow:hidden;text-overflow:ellipsis}
 th:last-child{text-align:right}
-td{padding:7px 8px;color:var(--text2);border-bottom:0.5px solid var(--border);white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.col-resizer{position:absolute;top:0;right:0;bottom:0;width:6px;cursor:col-resize;user-select:none;touch-action:none}
+.col-resizer:hover,.col-resizer.resizing{background:var(--accent)}
+td{padding:7px 8px;color:var(--text2);border-bottom:0.5px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 td:last-child{text-align:right}
 
 /* Loading */
@@ -136,16 +138,26 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
       </div>
       <div class="table-wrap">
         <table>
+          <colgroup>
+            <col style="width:110px">
+            <col style="width:70px">
+            <col style="width:100px">
+            <col style="width:120px">
+            <col style="width:200px">
+            <col style="width:130px">
+            <col style="width:150px">
+            <col style="width:100px">
+          </colgroup>
           <thead>
             <tr>
-              <th>Frame ID</th>
-              <th>Type</th>
-              <th>Region</th>
-              <th>Conurbation</th>
-              <th>Environment</th>
-              <th>POI</th>
-              <th>Media owner</th>
-              <th>Postal district</th>
+              <th>Frame ID<div class="col-resizer"></div></th>
+              <th>Type<div class="col-resizer"></div></th>
+              <th>Region<div class="col-resizer"></div></th>
+              <th>Conurbation<div class="col-resizer"></div></th>
+              <th>Environment<div class="col-resizer"></div></th>
+              <th>POI<div class="col-resizer"></div></th>
+              <th>Media owner<div class="col-resizer"></div></th>
+              <th>Postal district<div class="col-resizer"></div></th>
             </tr>
           </thead>
           <tbody id="tbody"></tbody>
@@ -165,7 +177,7 @@ const FILTERS = [
   { id: 'f-conurb',col: 'Conurbation_Name',        nullLabel: 'No conurbation' },
   { id: 'f-env',   col: 'EnvironmentDescription',  nullLabel: null },
   { id: 'f-poi',   col: 'POI',                     nullLabel: 'No POI' },
-  { id: 'f-owner', col: 'MediaOwnerName',           nullLabel: null },
+  { id: 'f-owner', col: 'MediaOwnerName',           nullLabel: null, alpha: true },
   { id: 'f-pd',    col: 'Postal_District',          nullLabel: null },
 ];
 
@@ -186,7 +198,9 @@ async function init() {
   FILTERS.forEach(f => {
     const counts = {};
     ALL.forEach(r => { const v = r[f.col] ?? ''; counts[v] = (counts[v] || 0) + 1; });
-    const vals = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    const vals = f.alpha
+      ? Object.keys(counts).sort((a, b) => a.localeCompare(b))
+      : Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
     const sel = document.getElementById(f.id);
     const allOpt = new Option('All', '__ALL__');
     sel.add(allOpt);
@@ -196,9 +210,9 @@ async function init() {
     });
   });
 
-  // Default: first media owner by frame count (most frames)
+  // Default: 5th media owner in the alphabetically sorted list
   const ownerSel = document.getElementById('f-owner');
-  if (ownerSel.options.length > 1) ownerSel.selectedIndex = 11;
+  if (ownerSel.options.length > 5) ownerSel.selectedIndex = 0;
 
   FILTERS.forEach(f => document.getElementById(f.id).addEventListener('change', applyFilters));
   document.getElementById('btn-prev').addEventListener('click', () => { page--; renderTable(); });
@@ -228,7 +242,9 @@ function applyFilters() {
 
     const counts = {};
     subset.forEach(r => { const v = r[f.col] ?? ''; counts[v] = (counts[v] || 0) + 1; });
-    const vals = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    const vals = f.alpha
+      ? Object.keys(counts).sort((a, b) => a.localeCompare(b))
+      : Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
 
     sel.innerHTML = '';
     sel.add(new Option('All', '__ALL__'));
@@ -260,6 +276,30 @@ function renderKPIs() {
   document.getElementById('kpi-frames').textContent = ids.size.toLocaleString();
 }
 
+// Fits a lat/lon bounding box into a mapWidthPx x mapHeightPx viewport, returning a zoom level in
+// the standard web-mercator 256px-tile convention (used by Mapbox GL / MapLibre, which the "map"
+// trace renders with). Adapted from the well-known Google Maps "getBoundsZoomLevel" formula so it
+// accounts for the viewport's aspect ratio and longitude's cos(latitude) shrinkage — unlike a plain
+// max(latSpan, lonSpan) heuristic, this can't pick a zoom that leaves far-apart points off-screen.
+function fitBoundsZoom(bounds, mapWidthPx, mapHeightPx) {
+  const WORLD_DIM = 256;
+  const MIN_ZOOM = 2;
+  const MAX_ZOOM = 15;
+  const MIN_FRACTION = 1e-4; // guards against log(0) when every point shares one exact coordinate
+  const PAD = 0.85; // shrink the effective viewport so points sit inside the edges, not flush against them
+
+  const latRad = lat => {
+    const sin = Math.sin(lat * Math.PI / 180);
+    return Math.log((1 + sin) / (1 - sin)) / 2;
+  };
+
+  const latFraction = Math.max((latRad(bounds.maxLat) - latRad(bounds.minLat)) / Math.PI, MIN_FRACTION);
+  const lonFraction = Math.max((bounds.maxLon - bounds.minLon) / 360, MIN_FRACTION);
+  const zoomFor = (pxDim, fraction) => Math.log2((pxDim * PAD) / WORLD_DIM / fraction);
+
+  return Math.min(Math.max(Math.min(zoomFor(mapHeightPx, latFraction), zoomFor(mapWidthPx, lonFraction)), MIN_ZOOM), MAX_ZOOM);
+}
+
 function renderMap() {
   const pts = filtered.filter(r => r.Latitude && r.Longitude);
   mapPoints = pts;
@@ -275,8 +315,12 @@ function renderMap() {
     }
     centerLat = (minLat + maxLat) / 2;
     centerLon = (minLon + maxLon) / 2;
-    const span = Math.max(maxLat - minLat, maxLon - minLon);
-    zoom = span > 8 ? 5 : span > 4 ? 6 : span > 2 ? 7 : span > 1 ? 8 : span > 0.5 ? 9 : span > 0.2 ? 10 : 11;
+    const mapDiv = document.getElementById('map');
+    zoom = fitBoundsZoom(
+      { minLat, maxLat, minLon, maxLon },
+      mapDiv.clientWidth || 800,
+      mapDiv.clientHeight || 500
+    );
   }
 
   Plotly.react('map', [{
@@ -363,6 +407,32 @@ function renderTable() {
   document.getElementById('btn-prev').disabled = page === 0;
   document.getElementById('btn-next').disabled = end >= filtered.length;
 }
+
+function initColumnResize() {
+  const table = document.querySelector('.table-wrap table');
+  const cols = table.querySelectorAll('colgroup col');
+  const MIN_WIDTH = 50;
+  table.querySelectorAll('th').forEach((th, i) => {
+    const resizer = th.querySelector('.col-resizer');
+    resizer.addEventListener('mousedown', e => {
+      e.preventDefault();
+      const startX = e.pageX;
+      const startWidth = cols[i].getBoundingClientRect().width;
+      resizer.classList.add('resizing');
+      const onMove = e2 => {
+        cols[i].style.width = Math.max(MIN_WIDTH, startWidth + (e2.pageX - startX)) + 'px';
+      };
+      const onUp = () => {
+        resizer.classList.remove('resizing');
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      };
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+  });
+}
+initColumnResize();
 
 init().catch(err => {
   document.getElementById('loading').innerHTML =
