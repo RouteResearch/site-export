@@ -292,7 +292,8 @@ Chart.register({
     meta.data.forEach((bar, i) => {
       const v = opts.totals[i];
       if (v == null) return;
-      ctx.fillText(opts.format ? opts.format(v) : v, bar.x, bar.y - 4);
+      const yOffset = opts.stagger && i % 2 === 1 ? 16 : 4;
+      ctx.fillText(opts.format ? opts.format(v) : v, bar.x, bar.y - yOffset);
     });
     ctx.restore();
   }
@@ -326,11 +327,11 @@ new Chart(document.getElementById('chartReachMonth'), {
   },
   options:{
     responsive:true,maintainAspectRatio:false,
-    layout:{padding:{top:18}},
+    layout:{padding:{top:30}},
     plugins:{
       legend:{display:false},
       tooltip:{callbacks:{label:ctx=>' Reach: '+ctx.parsed.y.toLocaleString()}},
-      totalLabels:{totals:[53840475, 53856036, 53883590, 53866394, 53883855, 53887518, 53886480, 53854989, 53883147, 53886569, 53902432, 53806884],format:v=>(v/1e6).toFixed(2)+'M'}
+      totalLabels:{totals:[53840475, 53856036, 53883590, 53866394, 53883855, 53887518, 53886480, 53854989, 53883147, 53886569, 53902432, 53806884],format:v=>(v/1e6).toFixed(2)+'M',stagger:true}
     },
     scales:{
       x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},
