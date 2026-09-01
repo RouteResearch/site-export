@@ -64,7 +64,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
   <a class="nav-link" href="../conurbation/index.html">Conurbation</a>
   <a class="nav-link" href="../media-owner/index.html">Media Owner</a>
   <a class="nav-link" href="../frames/index.html">Frames</a>
-  <a class="nav-link" href="../planning-summary/index.html">Planning Summary</a>
+  <a class="nav-link" href="../planning-summary/index.html">Key Stats</a>
 </nav>
 <main>
   <h1>Environment analysis</h1>
@@ -284,7 +284,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
     </table>
   </div>
 </main>
-<footer>Route 59 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<footer>Route 59 (Q2 2026) · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
 <script>
 function paginate(tbodyId,pageSize){const tbody=document.getElementById(tbodyId);const rows=Array.from(tbody.rows);const total=rows.length;const pages=Math.ceil(total/pageSize);let cur=0;const wrap=document.createElement('div');wrap.className='pagination';const info=document.createElement('span');info.className='pagination-info';const btns=document.createElement('div');btns.className='pagination-btns';const prev=document.createElement('button');prev.className='page-btn';prev.textContent='← Prev';const next=document.createElement('button');next.className='page-btn';next.textContent='Next →';btns.append(prev,next);wrap.append(info,btns);tbody.closest('table').after(wrap);function render(){rows.forEach((r,i)=>r.style.display=(i>=cur*pageSize&&i<(cur+1)*pageSize)?'':'none');const from=cur*pageSize+1;const to=Math.min((cur+1)*pageSize,total);info.textContent=`Showing ${from}–${to} of ${total}`;prev.disabled=cur===0;next.disabled=cur===pages-1;}prev.onclick=()=>{cur--;render();};next.onclick=()=>{cur++;render();};render();}
 paginate('envImpactsTbody',10);

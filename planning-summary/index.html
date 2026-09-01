@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Planning Summary — Route 59</title>
+<title>Key Stats Summary — Route 59</title>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@type":"Dataset",
-  "name":"Route 59 — OOH Planning Summary",
-  "description":"Actionable GB OOH planning guidance derived from Route audience data: environment selection, geography weighting, classic vs digital trade-offs, media owner landscape, and objective allocation guidance.",
+  "name":"Route 59 — Key Stats Summary",
+  "description":"Latest GB OOH audience statistics from Route: headline reach, weekly impacts, and inventory figures, with environment and regional breakdowns.",
   "url":"/planning-summary","creator":{"@type":"Organization","name":"Route Research"},
   "temporalCoverage":"2025-03","spatialCoverage":"Great Britain",
-  "distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/summary.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/impacts-by-environment.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/impacts-by-region.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/media-owners.json"}]
+  "distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/summary.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/reach-by-demographic.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/impacts-by-environment.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/reach-by-environment.json"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"../data/impacts-by-region.json"}]
 }
 </script>
 <style>
@@ -25,66 +25,41 @@ nav{background:var(--bg2);border-bottom:0.5px solid var(--border2);padding:0 2re
 .nav-link{font-size:13px;color:var(--text2);text-decoration:none;padding:12px 14px;border-bottom:2px solid transparent}
 .nav-link:hover{color:var(--text)}
 .nav-link.active{color:var(--link);border-bottom-color:var(--link)}
-main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+main{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
 h1{font-size:22px;font-weight:500;margin-bottom:4px}
-h2{font-size:16px;font-weight:500;margin-bottom:10px}
-.subtitle{font-size:13px;color:var(--text2);margin-bottom:2rem}
-.section{margin-bottom:3rem}
-.section-title{font-size:12px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;padding-bottom:8px;border-bottom:0.5px solid var(--border)}
+h2{font-size:17px;font-weight:500;margin-bottom:10px;margin-top:2.5rem}
+.subtitle{font-size:13px;color:var(--text2);margin-bottom:1.5rem}
+.lede{font-size:14px;color:var(--text2);margin-bottom:1.5rem;line-height:1.7}
+.lede strong{color:var(--text);font-weight:500}
+.section{margin-bottom:1rem}
 
-/* Takeout callout */
-.takeout{background:var(--bg2);border-left:3px solid var(--link);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;margin-bottom:1.5rem;font-size:13px;color:var(--text2);line-height:1.6}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1rem}
+.kpi{background:var(--bg2);border-radius:var(--r);padding:14px 16px}
+.kpi-label{font-size:12px;color:var(--text2);margin-bottom:4px}
+.kpi-val{font-size:22px;font-weight:500}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:2px}
+
+.takeout{background:var(--bg2);border-left:3px solid var(--link);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;margin-bottom:1rem;font-size:14px;color:var(--text2);line-height:1.65}
 .takeout strong{color:var(--text);font-weight:500}
 
-/* Environment cards */
-.env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:1.5rem}
-.env-card{background:var(--bg2);border-radius:var(--r);padding:16px}
-.env-card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.env-card-name{font-size:14px;font-weight:500}
-.env-card-tag{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
-.tag-digital{background:#FFDE6C;color:#1a1a18}
-.tag-classic{background:#EC098D;color:#1a1a18}
-.env-card-stat{font-size:13px;color:var(--text2);margin-bottom:2px}
-.env-card-note{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5}
-
-/* Budget table */
-.budget-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:1rem}
-.budget-table thead tr{border-bottom:0.5px solid var(--border2)}
-.budget-table th{text-align:left;padding:8px;font-weight:500;color:var(--text2);font-size:12px}
-.budget-table th:not(:first-child){text-align:right}
-.budget-table td{padding:8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
-.budget-table td:not(:first-child){text-align:right}
-.budget-table tr.highlight td{color:var(--text);font-weight:500}
-
-/* Geo grid */
-.geo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:1.5rem}
-.geo-card{background:var(--bg2);border-radius:var(--r);padding:14px 16px}
-.geo-card-region{font-size:13px;font-weight:500;margin-bottom:4px}
-.geo-card-stat{font-size:12px;color:var(--text2)}
-.geo-card-dig{font-size:11px;color:var(--text3);margin-top:2px}
-
-/* Caveat */
-.caveat{background:var(--bg2);border-left:3px solid var(--amber);border-radius:0 var(--r) var(--r) 0;padding:10px 14px;font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5}
+.caveat{background:var(--bg2);border-left:3px solid var(--amber);border-radius:0 var(--r) var(--r) 0;padding:10px 14px;font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.55}
 .caveat strong{color:var(--text);font-weight:500}
 
-/* Verdict chips */
-.chip{display:inline-block;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px;margin-right:4px}
-.chip-go{background:rgba(29,158,117,.15);color:var(--green)}
-.chip-warn{background:rgba(186,117,23,.15);color:var(--amber)}
-.chip-no{background:rgba(192,57,43,.12);color:var(--red)}
-
-/* Digital bar */
-.dig-bar-wrap{background:#EC098D;border-radius:4px;height:8px;width:100%;margin-top:6px;overflow:hidden}
-.dig-bar{height:100%;background:#FFDE6C;border-radius:4px}
-
-/* Demographic table */
-table{width:100%;border-collapse:collapse;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:1rem}
 thead tr{border-bottom:0.5px solid var(--border2)}
 th{text-align:left;padding:8px;font-weight:500;color:var(--text2);font-size:12px}
 th:not(:first-child){text-align:right}
 td{padding:8px;color:var(--text2);border-bottom:0.5px solid var(--border)}
 td:not(:first-child){text-align:right}
-tr.hi td{color:var(--text);font-weight:500}
+
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:1rem}
+.def{background:var(--bg2);border-radius:var(--r);padding:12px 14px}
+.def-term{font-size:13px;font-weight:500;margin-bottom:3px}
+.def-body{font-size:12px;color:var(--text2);line-height:1.5}
+
+.cta{font-size:13px;font-style:italic;color:var(--text2);margin-bottom:1rem}
+.cta a{color:var(--link)}
+a{color:var(--link)}
 
 footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:var(--text3);text-align:center}
 </style>
@@ -99,323 +74,69 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
   <a class="nav-link" href="../conurbation/index.html">Conurbation</a>
   <a class="nav-link" href="../media-owner/index.html">Media Owner</a>
   <a class="nav-link" href="../frames/index.html">Frames</a>
-  <a class="nav-link active" href="index.html">Planning Summary</a>
+  <a class="nav-link active" href="index.html">Key Stats</a>
 </nav>
 
 <main>
-  <h1>Planning summary</h1>
-  <p class="subtitle">Actionable guidance for GB OOH planning from Route 59 · Week in March 2026 · 10s:0s schedule · GB adults 15+</p>
+  <h1>Latest GB OOH audience statistics — Q2 2026</h1>
+  <p class="subtitle">Route Q2 2026 release (Route 59) · Week in March 2026 · GB adults aged 15+</p>
 
-  <!-- HEADLINE REACH -->
-  <div class="section">
-    <div class="section-title">The headline case for OOH</div>
-    <div class="takeout">
-      <strong>OOH reaches 53.9M GB adults every week — 97% of the population.</strong> The 13.9Bn weekly impacts figure reflects an incredibly high frequency of exposure across 374,552 frames nationally. No other single medium achieves this level of unduplicated reach in a week. OOH is not a niche amplifier; it is a mass reach channel.
-    </div>
-    
-    
-    
-    <div class="takeout">
-      <strong>Reach is remarkably consistent across demographics.</strong> Cover ranges only from 95.9% (C2DE) to 97.7% (ABC1) — a 1.8pp spread. This means OOH cannot be used to selectively avoid or over-index on broad demographic groups. For audience precision, environment and geography selection are the primary levers.
-    </div>
+  <p class="lede">Route's Q2 2026 release measures out-of-home (OOH) audiences among GB adults aged 15+. The audience data relates to a week in March 2026. It measures <strong>374,552 OOH frames across Great Britain</strong>. Of these, <strong>354,338 (94.60%) are classic and 20,214 (5.40%) are digital</strong>.</p>
+
+  <p class="lede">The interactive dashboard provides the headline audience and inventory figures and allows the data to be explored by <a href="../environment/index.html">environment</a>, <a href="../region/index.html">geography</a>, <a href="../index.html">demographic group</a>, <a href="../frames/index.html">inventory</a> and <a href="../media-owner/index.html">media owner</a>. Below we highlight some of the key facts from the Q2 2026 data.</p>
+
+  <p class="lede">Unless otherwise stated, impact figures are based on a <strong>10-second spot and 0-second break schedule (10s:0s)</strong>.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-label">Total frames</div><div class="kpi-val">374,552</div><div class="kpi-sub">354,338 classic (94.60%) · 20,214 digital (5.40%)</div></div>
   </div>
 
-  <!-- ENVIRONMENT SELECTION -->
-  <div class="section">
-    <div class="section-title">Environment selection guide</div>
-    <div class="takeout">
-      <strong>Environment is your most powerful targeting tool.</strong> Each of the 13 measured environments has a distinct reach profile, digital/classic split, and audience dwell context. Start here before thinking about regions or media owners.
-    </div>
-
-    <div class="env-grid">
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Roadside (Inventory with a vehicular audience)</span>
-          <span class="env-card-tag tag-classic">62% classic</span>
-        </div>
-        <div class="env-card-stat">5.6Bn weekly impacts · 95.72% cover · 53.2M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:38%"></div></div>
-        
-        <div class="env-card-note">This plan targets Roadside inventory with a vehicular audience and delivers impacts across digital and classic formats, with a larger share allocated to classic units — prioritize classic placements to maximize mass reach. Coverage is high (95.72%), so use this for broad-awareness campaigns aimed at drivers and reserve the digital portion for time-sensitive or contextually relevant messaging.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Underground — London</span>
-          <span class="env-card-tag tag-classic">75% classic</span>
-        </div>
-        <div class="env-card-stat">3.2Bn weekly impacts · 6.50% cover · 3.6M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:25%"></div></div>
-        <div class="env-card-note">Disproportionately high impacts relative to reach means very high average frequency — this is a captive, repeat-exposure environment rather than a broad-reach one. Predominantly classic (75%) with a meaningful digital share (25%). High dwell time; strong for brand-building and premium creative formats.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Shopping centres (interior)</span>
-          <span class="env-card-tag tag-digital">93% digital</span>
-        </div>
-        <div class="env-card-stat">1.9Bn weekly impacts · 10.71% cover · 6.0M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:93%"></div></div>
-        
-        <div class="env-card-note">Shopping centres (interior) are heavily weighted to digital and deliver very high weekly impacts, so they work well to build repeated in-venue exposure. Coverage is limited (10.71%), so use this plan to drive frequency among shopping-centre visitors and pair it with broader-reach channels to lift overall market coverage. Proximity to point of purchase makes this the standout environment for retail and FMCG briefs. Dynamic content, dayparting and contextual triggers are all possible. Strong against Main Shoppers.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Rail Station</span>
-          <span class="env-card-tag tag-digital">54% digital</span>
-        </div>
-        <div class="env-card-stat">1.3Bn weekly impacts · 10.73% cover · 6.0M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:54%"></div></div>
-        
-        <div class="env-card-note">Rail Station environment where digital formats make up the majority of impacts. Coverage is 10.73%, so use this inventory to drive repeat commuter exposures—this suits frequency-focused campaigns (brand reminders, promotions targeting regular commuters) rather than single-shot reach buys. Prioritize digital creative rotation and concentrated flighting to maximize repeat touchpoints rather than aiming for broad unique reach.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Bus Exterior</span>
-          <span class="env-card-tag tag-classic">100% classic</span>
-        </div>
-        <div class="env-card-stat">1.1Bn weekly impacts · 88.05% cover · 48.9M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:0%"></div></div>
-        
-        <div class="env-card-note">Second only to roadside for national reach. Entirely classic (no digital). Moves through residential areas roadside misses — effective for local and regional coverage. Strong value proposition on CPM. All inventory is with Global.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Supermarket (exterior)</span>
-          <span class="env-card-tag tag-digital">78% digital</span>
-        </div>
-        <div class="env-card-stat">212M weekly impacts · 25.64% cover · 14.3M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:78%"></div></div>
-        
-        <div class="env-card-note">This supermarket exterior inventory is digital-dominant (78% of weekly impacts). It delivers broad weekly scale and covers about a quarter of the population, so use it when you need mass reach or broad-funnel coverage. Prioritise digital budget to capture the majority of impressions and, if you require a mixed-media presence, set aside a portion of spend for the smaller classic component, which contributes under one-quarter of impacts. Strongly over-indexes for Main Shoppers, and relevant for grocery, FMCG, and health brands.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Tube carriage interior</span>
-          <span class="env-card-tag tag-classic">100% classic</span>
-        </div>
-        <div class="env-card-stat">210M weekly impacts · 5.94% cover · 3.3M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:0%"></div></div>
-        
-        <div class="env-card-note">Tube carriage interior delivers concentrated in-journey exposure and is entirely classic with no digital. It drives high weekly impacts and strong frequency but covers a relatively small share of the population (5.94%). Use it for frequency-driven creative and campaigns that rely on repeated impressions in carriages. If you need broader market coverage, supplement with higher-cover formats.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Taxi (Taxi exteriors)</span>
-          <span class="env-card-tag tag-classic">100% classic</span>
-        </div>
-        <div class="env-card-stat">150M weekly impacts · 22.25% cover · 12.4M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:0%"></div></div>
-        
-        <div class="env-card-note">Entirely classic (no digital inventory in this dataset). Reach is driven by taxi riders and pedestrians seeing exterior ads. Urban-skewed, good for premium or London-centric brands. Ubiquitous is the dominant media owner for this environment.</div>
-      </div>
-      
-      <div class="env-card">
-        <div class="env-card-head">
-          <span class="env-card-name">Motorway service stations</span>
-          <span class="env-card-tag tag-digital">66% digital</span>
-        </div>
-        <div class="env-card-stat">83M weekly impacts · 3.92% cover · 2.2M reach</div>
-        <div class="dig-bar-wrap"><div class="dig-bar" style="width:66%"></div></div>
-        
-        <div class="env-card-note">This plan targets Motorway service stations and is digital-weighted, favoring dynamic creative and repeat exposure across service sites. Use it for campaigns prioritising tactical, high-frequency messaging rather than broad market coverage; because overall cover is modest (3.92%), layer with wider OOH or additional schedules to materially expand reach. Smaller in reach but a highly specific audience — people making long-distance journeys. Good for automotive, travel, and food/drink brands. Captive dwell audience with purchase intent (they stop to shop).</div>
-      </div>
-      
-    </div>
-
-    <div class="takeout">
-      <strong>Roadside (Inventory with a vehicular audience) (40%), Underground — London (23%), Shopping centres (interior) (14%) account for roughly 77% of total weekly impacts.</strong> These three environments deliver strong scale, covering 77% of measured inventory. Use them when you need broad reach: prioritize Roadside and Underground — London for the bulk of coverage and add Shopping centres (interior) for incremental exposure.
-    </div>
+  <h2>How many people does OOH reach in Great Britain?</h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-label">Weekly reach</div><div class="kpi-val">53.88M</div><div class="kpi-sub">96.93% of the population</div></div>
+    <div class="kpi"><div class="kpi-label">Classic reach</div><div class="kpi-val">53.59M</div><div class="kpi-sub">96.40% cover</div></div>
+    <div class="kpi"><div class="kpi-label">Digital reach</div><div class="kpi-val">48.45M</div><div class="kpi-sub">87.16% cover</div></div>
   </div>
+  <p class="lede">Weekly OOH cover is consistently high across the broad age groups shown in the Q2 2026 data. OOH reaches <strong>97.23% of adults aged 15–34, 97.64% of adults aged 35–54 and 96.12% of adults aged 55+</strong> in a week.</p>
 
-  <!-- GEOGRAPHY -->
-  <div class="section">
-    <div class="section-title">Geography: where the weight is</div>
-    <div class="takeout">
-      <strong>London dominates:</strong> the capital generates 8.4Bn of 13.9Bn total GB weekly impacts — 61% of all OOH weight from one region. Any national plan will be heavily London-indexed by default: London accounts for 61% of all GB impacts. If London is not a priority, actively weight down or explicitly exclude London inventory.
-    </div>
-
-    <div class="geo-grid">
-      
-      <div class="geo-card">
-        <div class="geo-card-region">London</div>
-        <div class="geo-card-stat">8.4Bn impacts · 14.9M reach</div>
-        <div class="geo-card-dig">38% digital · 62% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">Midlands</div>
-        <div class="geo-card-stat">1.2Bn impacts · 9.3M reach</div>
-        <div class="geo-card-dig">52% digital · 48% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">North West</div>
-        <div class="geo-card-stat">1.2Bn impacts · 7.0M reach</div>
-        <div class="geo-card-dig">44% digital · 56% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">Yorkshire</div>
-        <div class="geo-card-stat">759M impacts · 6.7M reach</div>
-        <div class="geo-card-dig">47% digital · 53% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">Central Scotland</div>
-        <div class="geo-card-stat">640M impacts · 3.5M reach</div>
-        <div class="geo-card-dig">49% digital · 51% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">S &amp; South-East</div>
-        <div class="geo-card-stat">536M impacts · 9.9M reach</div>
-        <div class="geo-card-dig">38% digital · 62% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">North East</div>
-        <div class="geo-card-stat">321M impacts · 2.6M reach</div>
-        <div class="geo-card-dig">53% digital · 47% classic</div>
-      </div>
-      
-      <div class="geo-card">
-        <div class="geo-card-region">Wales</div>
-        <div class="geo-card-stat">247M impacts · 3.1M reach</div>
-        <div class="geo-card-dig">35% digital · 65% classic</div>
-      </div>
-      
-    </div>
-
-    <div class="takeout">
-      <strong>S &amp; South-East shows a large reach (9,926,780) but far fewer impacts (536,237,773) than London for a similar-sized audience, so weighting S &amp; South-East can be efficient if your audience is there. The Midlands also has a large reach (9,328,557) relative to its impact weight (1,230,268,444).</strong>
-    </div>
-
-    <div class="takeout">
-      <strong>Digital share doesn't simply track London.</strong> Don&#39;t assume a simple London/non-London split for digital availability — regional digital share varies (London 38%, Midlands 52%, North East 53%, Wales 35%, etc.), so check the region-level figures before committing to a digital-heavy regional spec.
-    </div>
+  <h2>How many impacts are delivered on a weekly basis?</h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-label">Weekly impacts</div><div class="kpi-val">13.87Bn</div><div class="kpi-sub">10s:0s schedule</div></div>
+    <div class="kpi"><div class="kpi-label">Classic impacts</div><div class="kpi-val">8.18Bn</div></div>
+    <div class="kpi"><div class="kpi-label">Digital impacts</div><div class="kpi-val">5.69Bn</div></div>
   </div>
+  <p class="lede">Across the measured inventory, a total of <strong>13.87 billion weekly impacts</strong> are delivered (using a 10s:0s schedule). Classic OOH frames generate <strong>8.18 billion weekly impacts</strong>, and digital frames generate <strong>5.69 billion weekly impacts</strong>.</p>
 
-  <!-- CLASSIC vs DIGITAL -->
-  <div class="section">
-    <div class="section-title">Classic vs digital: the trade-off</div>
-    <div class="takeout">
-      <strong>Digital frames are only 5.4% of total inventory</strong> (20,214 of 374,552 frames in R59) but generate a disproportionate share of impacts due to location — digital screens are concentrated where footfall is highest, including roadside in major conurbations, underground stations, shopping centres, and rail. Classic frames dominate by volume but digital punches well above its weight in impacts.
-    </div>
+  <h2>How do OOH audiences vary by environment?</h2>
+  <p class="lede">Route measures audiences across <strong>13 OOH environments</strong>, which differ in their audience reach, number of impacts and balance of classic and digital OOH.</p>
+  <div class="takeout"><strong>Roadside has the highest weekly reach in the Q2 2026 data at 53.2 million</strong>, followed by <strong>Bus Exterior at 48.9 million</strong>.</div>
+  <div class="takeout">The environments generating the highest numbers of weekly impacts are <strong>Roadside (5.6bn)</strong>, <strong>London Underground (3.2bn)</strong>, <strong>Shopping Centre Interior (1.9bn)</strong>, <strong>Rail Station (1.3bn)</strong> and <strong>Bus Exterior (1.1bn)</strong>.</div>
+  <div class="caveat"><strong>Note:</strong> Reach and cover figures for individual environments are not additive, as the same person may encounter OOH advertising in more than one environment during the week.</div>
+  <p class="cta">Explore audiences across all 13 OOH environments in the <a href="../environment/index.html">interactive dashboard</a>.</p>
 
-    <table style="margin-bottom:1rem">
-      <thead><tr><th>Format</th><th>Frames (R59)</th><th>Share of inventory</th><th>Top 5 environments by impacts</th></tr></thead>
-      <tbody>
-        <tr class="hi"><td>Classic</td><td>354,338</td><td>94.6%</td><td>1. Roadside · 2. Underground London · 3. Bus · 4. Rail Station · 5. Tube Carriage Interior</td></tr>
-        <tr class="hi"><td>Digital</td><td>20,214</td><td>5.4%</td><td>1. Roadside · 2. Shopping Centre Interior · 3. Underground London · 4. Rail Station · 5. Supermarket Exterior</td></tr>
-      </tbody>
-    </table>
+  <h2>How does OOH vary across Great Britain?</h2>
+  <p class="lede">OOH audience reach and impacts vary by region.</p>
+  <div class="takeout"><strong>Inventory in London accounts for 8.41 billion weekly impacts in the Q2 2026 data, approximately 61% of the GB total, and has a weekly reach of 14.93 million people.</strong></div>
+  <p class="lede">Outside London, the <strong>Midlands and North West each generate approximately 1.2 billion weekly impacts</strong>. The South &amp; South-East has the highest weekly reach outside London at <strong>9.9 million</strong>, followed by the Midlands at <strong>9.3 million</strong> and the North West at <strong>7.0 million</strong>.</p>
+  <div class="caveat"><strong>Note:</strong> Regional reach figures are not additive, as an individual may be present in more than one region during the measurement period.</div>
+  <p class="cta">Explore audience reach, impacts and the classic/digital mix across all GB regions in the <a href="../region/index.html">interactive dashboard</a>.</p>
 
-    <div class="takeout">
-      <strong>For a digital-only brief:</strong> the five environments generating the highest digital impacts are, in order: Roadside (38% digital overall, concentrated in major conurbations), Shopping Centre Interior (93% digital), Underground London (25% digital), Rail Station (54% digital), and Supermarket Exterior (78% digital). Bus, Tube Carriage Interior, Train Carriage Interior, Tram, and Taxi are entirely classic and do not contribute to a digital inventory plan.
-    </div>
-
-    <div class="takeout">
-      <strong>For a classic-first brief:</strong> Bus, Tube Carriage Interior, Train Carriage Interior, Tram, and Taxi are entirely classic (0% digital) — build here for guaranteed classic execution. Roadside (62% classic) and Underground London (75% classic) add mass reach on a majority-classic split. Roadside alone delivers 95.72% cover — no other environment comes close.
-    </div>
+  <h2>Understanding the figures</h2>
+  <div class="defs">
+    <div class="def"><div class="def-term">Reach</div><div class="def-body">The unique number of people who see an ad or campaign.</div></div>
+    <div class="def"><div class="def-term">Cover</div><div class="def-body">The proportion of the target audience exposed to a campaign in a week. Cover = Reach ÷ Population.</div></div>
+    <div class="def"><div class="def-term">Impacts</div><div class="def-body">The total number of times an ad or campaign is seen.</div></div>
+    <div class="def"><div class="def-term">Frequency</div><div class="def-body">The average number of times those exposed to a campaign see it. Frequency = Impacts ÷ Reach.</div></div>
   </div>
+  <p class="lede">Route's audience measurement takes account of whether people are likely to see an OOH advertising frame; it does not simply count everybody who passes it. Find out more about how Route measures OOH audiences in our <a href="https://www.route.org.uk/methodology.php">methodology section here</a>.</p>
 
-  <!-- MEDIA OWNER LANDSCAPE -->
-  <div class="section">
-    <div class="section-title">Media owner landscape</div>
-    <div class="takeout">
-      <strong>The market is highly concentrated.</strong> The top four media owners — Global (229,059 frames), KBH (59,394 frames), JCDecaux (28,594 frames), and Bauer Media Outdoor (28,200 frames) — account for 92% of all 374,552 measured frames in Route 59. Each occupies a distinct position within the inventory landscape, with different environment mixes, digital ratios, and geographic footprints.
-    </div>
+  <h2>A note on impact figures</h2>
+  <div class="caveat"><strong>Schedule sensitivity:</strong> Impact figures depend on the advertising schedule selected. The impact figures quoted in this summary use a <strong>10-second spot / 0-second break schedule</strong>. For digital frames, this assumes the advertisement is playing continuously on the screen. Changing the spot or break length changes the number of impacts generated.</div>
 
-    <table>
-      <thead><tr><th>Media owner</th><th>Frames (R59)</th><th>Regions</th><th>Environments</th><th>Classic / Digital</th></tr></thead>
-      <tbody>
-        <tr><td>Global</td><td>229,059</td><td>All 13</td><td>8</td><td>98% classic · 2% digital</td></tr>
-        <tr><td>KBH</td><td>59,394</td><td>9</td><td>2</td><td>100% classic</td></tr>
-        <tr><td>JCDecaux</td><td>28,594</td><td>All 13</td><td>5</td><td>83% classic · 17% digital</td></tr>
-        <tr><td>Bauer Media Outdoor</td><td>28,200</td><td>All 13</td><td>5</td><td>80% classic · 20% digital</td></tr>
-        <tr><td>Bay Media</td><td>10,935</td><td>9</td><td>2</td><td>100% classic</td></tr>
-        <tr><td>Ubiquitous</td><td>6,105</td><td>7</td><td>1 (taxi)</td><td>100% classic</td></tr>
-        <tr><td>Sherbet London</td><td>1,679</td><td>2</td><td>1 (taxi)</td><td>100% classic</td></tr>
-        <tr><td>Alight Media</td><td>1,535</td><td>All 13</td><td>2</td><td>44% classic · 56% digital</td></tr>
-        <tr><td>i-Media Advertising</td><td>1,421</td><td>All 13</td><td>2</td><td>51% classic · 49% digital</td></tr>
-        <tr><td>Gb Outdoor Ltd</td><td>1,075</td><td>12</td><td>2</td><td>96% classic · 4% digital</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size:11px;color:var(--text3);margin-top:6px">Top 10 by frame count. Ocean Outdoor (565 frames, 11 regions, 3 environments, 85% digital) appears at #14 — see planning note below.</p>
-
-    <div class="takeout" style="margin-top:1.5rem">
-      <strong>Global</strong> holds inventory across 8 environments spanning all 13 regions — the broadest footprint of any measured media owner. Its transit estate covers tube carriage interior (96,127 frames), bus exterior (70,586), London Underground stations (30,363), tram/light railway (5,512), Glasgow Underground (777), rail station, and train carriage interior, alongside roadside. With this range, Global can deliver against virtually any audience journey touchpoint within a single owner deal. The estate is 97.8% classic by frame count, reflecting the scale of its panel networks.
-    </div>
-    <div class="takeout">
-      <strong>KBH</strong> operates a specialist on-train media estate: 58,994 of their 59,394 frames are train carriage interior panels (Traincards), all classic format, making them the primary provider of this environment in Route. Coverage spans 9 regions across the national rail commuter network. The remaining 400 frames are at rail stations. For briefs that require a captive, in-journey audience context, KBH's inventory is concentrated precisely there.
-    </div>
-    <div class="takeout">
-      <strong>JCDecaux</strong> holds inventory across rail station, roadside, shopping centre interior, supermarket exterior, and shopping centre exterior. Their rail station estate (8,679 frames across 13 regions) is their largest single-environment concentration, while their retail digital presence — shopping centres and supermarkets are entirely digital within their portfolio — means they can service both transit and point-of-purchase briefs from a single owner. National coverage across all 13 BARB regions.
-    </div>
-    <div class="takeout">
-      <strong>Bauer Media Outdoor</strong> has a roadside-dominant estate: 26,557 of their 28,200 frames (94%) are roadside, split across classic Adshel panels and Adshel Live digital 6-sheets. This concentration gives their portfolio a distinct national roadside character. Supplementary presence in supermarket exterior, shopping centre interior, rail station, and shopping centre exterior rounds out a small but multi-environment offer. All 13 regions are covered, with the roadside network providing consistent availability across the country.
-    </div>
-    <div class="takeout">
-      <strong>Ocean Outdoor</strong> records 565 frames across 3 environments (roadside, shopping centre interior, and shopping centre exterior) in 11 regions, with 85% of frames being digital. The frame count reflects a selective, site-specific inventory model rather than a broad network. Within roadside alone, 291 of their 350 frames are digital. Their presence across 11 regions indicates a geographically distributed, if curated, national footprint.
-    </div>
-    <div class="takeout">
-      <strong>Bay Media</strong> holds 10,935 frames across 9 regions, almost entirely roadside classic (10,908 frames), with 27 classic panels in shopping centre interiors. The estate is 100% classic with no digital inventory in Route 59. Coverage across 9 regions gives Bay Media a meaningful regional footprint, though with gaps in 4 of the 13 BARB regions.
-    </div>
-    <div class="takeout">
-      <strong>Ubiquitous</strong> records 6,105 frames across 7 regions, all in taxi exterior, entirely classic format. Alongside Sherbet London, they are one of two Route-measured owners operating exclusively in the taxi environment. With the larger footprint of the two, Ubiquitous offers the broader geographic reach for briefs targeting this environment.
-    </div>
-    <div class="takeout">
-      <strong>Sherbet London</strong> records 1,679 frames across 2 regions, all in taxi exterior, all classic. The more geographically concentrated of the two Route-measured taxi specialists, Sherbet is best suited to briefs with a London-focused remit within this environment.
-    </div>
-    <div class="takeout">
-      <strong>Alight Media</strong> is a mid-sized owner by inventory count — 1,535 frames — but with national reach across all 13 BARB regions, which distinguishes them from larger owners with comparable or greater geographic footprints. Inventory is split between roadside (1,513 frames) and shopping centre interior (22 frames). Their roadside estate is majority digital by frame count: 835 of 1,513 roadside frames are digital (55%), giving Alight a distinct digital-first roadside character.
-    </div>
-    <div class="takeout">
-      <strong>i-Media Advertising</strong> holds 1,421 frames across all 13 regions in two environments: motorway service stations (1,355 frames, split near-equally classic/digital) and a small roadside digital supplement (66 frames). With 95% of their estate at motorway service stations, i-Media is a specialist in that specific high-dwell, journey-context environment — the only top-10 owner with a majority MSA focus.
-    </div>
-    <div class="takeout">
-      <strong>Gb Outdoor Ltd</strong> records 1,075 frames across 12 of 13 regions, primarily roadside classic (1,037 frames), with a marginal digital roadside and shopping centre exterior presence. The near-national regional footprint across 12 regions is notable for their frame count, giving broad geographic availability within a classic-dominant, roadside-focused estate.
-    </div>
-  </div>
-
-  <!-- BUDGET ALLOCATION GUIDE -->
-  <div class="section">
-    <div class="section-title">Objective considerations</div>
-    <div class="takeout">
-      These are indicative planning principles based on Route 59 audience data. Actual budget splits should be informed by CPM, client brief, and campaign objectives. All impact figures are for a 10s:0s spot/break schedule — confirm the trading schedule before fixing numbers.
-    </div>
-
-    <table class="budget-table">
-      <thead><tr><th>Objective</th><th>Recommended environment mix</th><th>Geography emphasis</th><th>Classic/Digital</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Maximum national reach</strong></td><td>Roadside + Bus Exterior</td><td>All regions; actively de-weight London to avoid excess frequency against a contained audience — London adds impacts, not incremental reach</td><td>Primarily classic; classic frames outnumber digital roughly 17.5:1 nationally</td></tr>
-        <tr><td><strong>London saturation</strong></td><td>Roadside + Underground + Tube Carriage Interior + Bus + Taxi</td><td>London only</td><td>Predominantly classic; Tube Carriage Interior, Bus, and Taxi are entirely classic, Underground London is 75% classic — Roadside's 38% digital share provides the digital layer</td></tr>
-        <tr><td><strong>Retail / FMCG purchase proximity</strong></td><td>Shopping Centre Interior + Supermarket Exterior + Roadside (proximity-targeted near retail parks and high streets)</td><td>Major shopping destinations and retail clusters nationally</td><td>Majority digital for in-centre (93%) and supermarket (78%) inventory; roadside component will include classic</td></tr>
-        <tr><td><strong>Commuter / professional audience</strong></td><td>Rail Station + Tube Carriage Interior + Underground + Roadside (near stations and on arterial commuter routes)</td><td>London, major commuter cities</td><td>Mixed, station-dependent: Rail Station is near 50/50 (54% digital), Underground London leans classic (75% classic), Tube Carriage Interior is entirely classic</td></tr>
-        <tr><td><strong>Regional outside London</strong></td><td>Roadside + Bus + Shopping Centre</td><td>Specify regions; exclude London</td><td>Classic-led; digital share varies by region, running 31–53% of impacts across non-London regions</td></tr>
-        <tr><td><strong>Automotive / travel</strong></td><td>Roadside + Motorway Service Stations</td><td>National, high-flow routes</td><td>Mixed</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- CAVEATS -->
-  <div class="section">
-    <div class="section-title">Key caveats for planning</div>
-    <div class="caveat"><strong>Schedule sensitivity:</strong> The 13.9Bn weekly impacts figure is based on a 10s spot / 0s break schedule. A more realistic 10s:50s schedule reduces total impacts by approximately 35% to ~9.0Bn. Always confirm the commercial schedule when presenting impact figures to clients or comparing across sources.</div>
-    <div class="caveat"><strong>Data week:</strong> All Route 59 figures come from a single week in March 2026. Route releases quarterly. Reach figures are stable year-round (53.8M–53.9M). Impact figures may vary by season — outdoor pedestrian footfall is higher in summer, shopping centre indoor traffic is higher in winter.</div>
-    <div class="caveat"><strong>Reach is not additive:</strong> Environment cover figures cannot be summed. The 95.72% Roadside (Inventory with a vehicular audience) cover and 88.05% Bus (Bus exterior) cover do not add to 184%. Unduplicated total cover across all environments is 96.93%. Use the total figure for cross-environment planning.</div>
-    <div class="caveat"><strong>London dominance in impacts vs reach:</strong> London generates 61% of all impacts but only 28% of reach (14.9M of 53.9M). This means London plans generate very high frequency. If frequency is not the objective, London-heavy plans may be inefficient compared to a broader national spread.</div>
-    <div class="caveat"><strong>Digital inventory is scarce outside London:</strong> Only 5% of frames are digital nationally, and they are heavily concentrated in London and major retail/transit environments. Digital-only plans outside London will face availability constraints. Confirm inventory before committing to a digital-heavy specification in regional markets.</div>
-  </div>
+  <p class="lede">The figures summarised here relate to a <strong>week in March 2026</strong> and form part of <strong>Route's Q2 2026 release (Route 59)</strong>. Route data is updated quarterly, so the release and measurement period should always be stated when quoting Route audience figures.</p>
+  <p class="cta">Use the Q2 2026 <a href="../index.html">interactive dashboard</a> to explore the data in more detail.</p>
 
 </main>
-<footer>Route 59 · Route Research 2026 · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<footer>Route 59 (Q2 2026) · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
 </body>
 </html>

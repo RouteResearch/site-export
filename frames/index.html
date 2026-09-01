@@ -85,7 +85,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
   <a class="nav-link" href="../conurbation/index.html">Conurbation</a>
   <a class="nav-link" href="../media-owner/index.html">Media Owner</a>
   <a class="nav-link active" href="index.html">Frames</a>
-  <a class="nav-link" href="../planning-summary/index.html">Planning Summary</a>
+  <a class="nav-link" href="../planning-summary/index.html">Key Stats</a>
 </nav>
 <main>
   <h1>Frame Explorer</h1>
@@ -166,7 +166,7 @@ footer{border-top:0.5px solid var(--border);padding:1.5rem;font-size:12px;color:
     </div>
   </div>
 </main>
-<footer>Route 59 · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
+<footer>Route 59 (Q2 2026) · Route Research · <a href="https://www.route.org.uk/methodology.php" style="color:inherit">Methodology</a></footer>
 
 <script>
 const PAGE_SIZE = 10;
@@ -212,7 +212,7 @@ async function init() {
 
   // Default: 5th media owner in the alphabetically sorted list
   const ownerSel = document.getElementById('f-owner');
-  if (ownerSel.options.length > 5) ownerSel.selectedIndex = 0;
+  if (ownerSel.options.length > 5) ownerSel.selectedIndex = 1;
 
   FILTERS.forEach(f => document.getElementById(f.id).addEventListener('change', applyFilters));
   document.getElementById('btn-prev').addEventListener('click', () => { page--; renderTable(); });
